@@ -6,7 +6,6 @@ import numpy as np
 def generate_and_index_embeddings(
     data_path: str = "data",
     model_name: str = "Omartificial-Intelligence-Space/Arabic-Triplet-Matryoshka-V2",
-    batch_size: int = 32,
     should_index: bool = True
 ):
     print("Loading and chunking documents...")
@@ -18,7 +17,6 @@ def generate_and_index_embeddings(
     embeddings = model.encode(
         chunks_text,
         convert_to_tensor=False,
-        batch_size=batch_size,
         show_progress_bar=True
     )
 
@@ -26,7 +24,7 @@ def generate_and_index_embeddings(
     
     if should_index:
         print("Indexing to ChromaDB...")
-        add_embeddings_to_chromadb(embeddings, chunks, batch_size=1000)
+        add_embeddings_to_chromadb(embeddings, chunks)
     
     return embeddings, chunks
 

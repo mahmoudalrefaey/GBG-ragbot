@@ -1,5 +1,5 @@
 import chromadb
-from typing import List, Dict
+from typing import List
 import numpy as np
 from langchain_core.documents import Document
 
@@ -11,8 +11,7 @@ collection = chroma_client.get_or_create_collection(
 
 def add_embeddings_to_chromadb(
     embeddings: np.ndarray,
-    chunks: List[Document],
-    batch_size: int = 1000
+    chunks: List[Document]
 ):
     ids = []
     documents = []
@@ -28,50 +27,14 @@ def add_embeddings_to_chromadb(
         })
         embeddings_list.append(embedding.tolist())
     
-    for i in range(0, len(ids), batch_size):
-        batch_ids = ids[i:i+batch_size]
-        batch_docs = documents[i:i+batch_size]
-        batch_metas = metadatas[i:i+batch_size]
-        batch_emb = embeddings_list[i:i+batch_size]
-        
-        collection.add(
-            ids=batch_ids,
-            documents=batch_docs,
-            metadatas=batch_metas,
-            embeddings=batch_emb
-        )
-        
-        print(f"Added {len(batch_ids)} documents to ChromaDB")
-    
-    print(f"Total documents in collection: {collection.count()}")
-
-def retrieve_similar(
-    query_embedding: List[float],
-    n_results: int = 5,
-    where_filter: Dict = None
-):
-    results = collection.query(
-        query_embeddings=[query_embedding],
-        n_results=n_results,
-        where=where_filter
+    collection.add(
+        ids=ids,
+        documents=documents,
+        metadatas=metadatas,
+        embeddings=embeddings_list
     )
-    
-    retrieved = []
-    for i, doc in enumerate(results['documents'][0]):
-        retrieved.append({
-            'document': doc,
-            'metadata': results['metadatas'][0][i],
-            'distance': results['distances'][0][i]  # Lower = more similar
-        })
-    
-    return retrieved
-
-def get_collection_info():
-    return {
-        'name': collection.name,
-        'count': collection.count(),
-        'metadata': collection.metadata
-    }
+    print(f"Added {len(ids)} documents to ChromaDB")
+    print(f"Total documents in collection: {collection.count()}")
 
 def clear_collection():
     if collection.count() > 0:
