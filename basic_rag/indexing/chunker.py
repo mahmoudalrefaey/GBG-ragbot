@@ -2,11 +2,10 @@
 from basic_rag.ingestion.data_loader import load_pdfs
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 
-text_splitter = RecursiveCharacterTextSplitter(
+text_splitter = RecursiveCharacterTextSplitter.from_tiktoken_encoder(
+    encoding_name="cl100k_base",
     chunk_size=1024,
-    chunk_overlap=64,
-    length_function=len,
-    is_separator_regex=False,
+    chunk_overlap=150,
 )
 
 
