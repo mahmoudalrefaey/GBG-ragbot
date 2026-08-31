@@ -2,16 +2,17 @@
 from basic_rag.ingestion.data_loader import load_pdfs
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 
-text_splitter = RecursiveCharacterTextSplitter.from_tiktoken_encoder(
-    encoding_name="cl100k_base",
-    chunk_size=1024,
-    chunk_overlap=150,
-)
-
-
-documents, file_count = load_pdfs("data")
-chunks = text_splitter.split_documents(documents)
-
-print(f"Loaded {file_count} PDF files.")
-print(f"Total documents loaded: {len(documents)}")
-print(f"Total chunks created: {len(chunks)}")
+def chunk_pdfs(directory: str):
+    documents, file_count = load_pdfs(directory)
+    text_splitter = RecursiveCharacterTextSplitter.from_tiktoken_encoder(
+        encoding_name="cl100k_base",
+        chunk_size=1024,
+        chunk_overlap=150,
+    )
+    chunks = text_splitter.split_documents(documents)
+    
+    print(f"Loaded {file_count} PDF files.")
+    print(f"Total documents loaded: {len(documents)}")
+    print(f"Total chunks created: {len(chunks)}")
+    
+    return chunks

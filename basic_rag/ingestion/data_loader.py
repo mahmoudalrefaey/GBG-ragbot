@@ -47,8 +47,3 @@ def load_pdfs(directory: str):
         print(f"Extracted {len(full_text)} pages\n")
     
     return documents, file_count
-
-
-documents, file_count = load_pdfs("data")
-    
-print(f"Loaded {file_count} PDFs\n")
