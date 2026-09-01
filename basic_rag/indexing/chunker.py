@@ -4,8 +4,7 @@ from langchain_text_splitters import RecursiveCharacterTextSplitter
 
 def chunk_pdfs(directory: str):
     documents, file_count = load_pdfs(directory)
-    text_splitter = RecursiveCharacterTextSplitter.from_tiktoken_encoder(
-        encoding_name="cl100k_base",
+    text_splitter = RecursiveCharacterTextSplitter(
         chunk_size=1024,
         chunk_overlap=150,
     )

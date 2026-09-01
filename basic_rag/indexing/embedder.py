@@ -1,36 +1,70 @@
 from sentence_transformers import SentenceTransformer
+
 from basic_rag.indexing.chunker import chunk_pdfs
 from basic_rag.indexing.vector_db import add_embeddings_to_chromadb
-import numpy as np
+
+
+EMBEDDING_MODEL_NAME = (
+    "Omartificial-Intelligence-Space/Arabic-Triplet-Matryoshka-V2"
+)
+
+
+embedding_model = SentenceTransformer(
+    EMBEDDING_MODEL_NAME, 
+    device= "cpu"
+    )
+
 
 def generate_and_index_embeddings(
     data_path: str = "data",
-    model_name: str = "Omartificial-Intelligence-Space/Arabic-Triplet-Matryoshka-V2",
-    should_index: bool = True
 ):
+    """
+    Load documents, create chunks, generate embeddings,
+    and store them in ChromaDB.
+    """
+
     print("Loading and chunking documents...")
-    model = SentenceTransformer(model_name)
+
     chunks = chunk_pdfs(data_path)
-    chunks_text = [doc.page_content for doc in chunks]
+
+    if not chunks:
+        print("No documents found.")
+        return
+
+    print(f"Total chunks created: {len(chunks)}")
+
+    chunks_text = [
+        chunk.page_content
+        for chunk in chunks
+    ]
 
     print("Generating embeddings...")
-    embeddings = model.encode(
+
+    embeddings = embedding_model.encode(
         chunks_text,
         convert_to_tensor=False,
-        show_progress_bar=True
+        show_progress_bar=True,
     )
 
     print(f"Embedding Shape: {embeddings.shape}")
-    
-    if should_index:
-        print("Indexing to ChromaDB...")
-        add_embeddings_to_chromadb(embeddings, chunks)
-    
-    return embeddings, chunks
 
-def get_query_embedding(
-    query: str,
-    model_name: str = "Omartificial-Intelligence-Space/Arabic-Triplet-Matryoshka-V2"
-):
-    model = SentenceTransformer(model_name)
-    return model.encode(query, convert_to_tensor=False)
+    print("Indexing to ChromaDB...")
+
+    add_embeddings_to_chromadb(
+        embeddings,
+        chunks,
+    )
+
+
+def get_query_embedding(query: str):
+    """
+    Generate an embedding for a user query.
+
+    The embedding model is loaded once at application startup
+    and reused for all queries.
+    """
+
+    return embedding_model.encode(
+        query,
+        convert_to_tensor=False,
+    )

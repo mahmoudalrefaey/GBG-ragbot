@@ -14,7 +14,7 @@ def retrieve_similar(
     where_filter: Dict = None,
     model_name: str = "Omartificial-Intelligence-Space/Arabic-Triplet-Matryoshka-V2"
 ):
-    query_embedding = get_query_embedding(query, model_name)
+    query_embedding = get_query_embedding(query)
     
     results = collection.query(
         query_embeddings=[query_embedding],
