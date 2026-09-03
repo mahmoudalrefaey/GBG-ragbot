@@ -23,7 +23,8 @@ def add_embeddings_to_chromadb(
         documents.append(chunk.page_content)
         metadatas.append({
             "source": chunk.metadata.get("source", "unknown"),
-            "chunk_index": i
+            "page": chunk.metadata.get("page", "unknown"),
+            "chunk_index": i,
         })
         embeddings_list.append(embedding.tolist())
     

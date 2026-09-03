@@ -14,23 +14,24 @@ llm = ChatOllama(
 def generate_answer(
     question: str,
     n_results: int = 4,
-) -> str:
-
+    return_context: bool = False,
+):
     retrieved = retrieve_similar(
         query=question,
         n_results=n_results,
     )
 
     if not retrieved:
-        return "There is no documentation available to answer your question. Please provide more context or check the documentation."
+        answer = (
+            "There is no documentation available to answer your question. "
+            "Please provide more context or check the documentation."
+        )
 
-    # for item in retrieved:
-    #     print("\n--- RETRIEVED DOCUMENT ---")
-    #     print("Source:", item["metadata"].get("source"))
-    #     print("Chunk:", item["metadata"].get("chunk_index"))
-    #     print("Distance:", item["distance"])
-    #     print(item["document"])
-    
+        if return_context:
+            return answer, []
+
+        return answer
+
     context_parts = []
 
     for item in retrieved:
@@ -39,11 +40,11 @@ def generate_answer(
         distance = item.get("distance")
 
         source = metadata.get("source", "unknown")
-        chunk_index = metadata.get("chunk_index", "unknown")
+        page = metadata.get("page", "unknown")
 
         context_parts.append(
             f"""Source: {source}
-Chunk: {chunk_index}
+Page: {page}
 Distance: {distance}
 
 {document}"""
@@ -58,4 +59,9 @@ Distance: {distance}
 
     response = llm.invoke(messages)
 
-    return response.content
+    answer = response.content
+
+    if return_context:
+        return answer, context_parts
+
+    return answer
