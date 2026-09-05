@@ -5,7 +5,7 @@ from basic_rag.retrieval.retriever import retrieve_similar
 
 
 llm = ChatOllama(
-    model="llama3.2",
+    model="llama3.2:latest",
     temperature=0,
     num_ctx=4096
 )
