@@ -110,7 +110,23 @@ def retrieve_similar(
         for doc in hybrid_docs[:n_results]
     ]
 
+def retrieve_by_embedding(embedding, n_results: int = 10):
+    results = collection.query(
+        query_embeddings=[embedding],
+        n_results=n_results,
+    )
 
+    documents = results["documents"][0]
+    metadatas = results["metadatas"][0]
+
+    return [
+        {
+            "document": doc,
+            "metadata": metadatas[i] or {},
+        }
+        for i, doc in enumerate(documents)
+    ]
+    
 def get_collection_info() -> Dict:
     return {
         "name": collection.name,
