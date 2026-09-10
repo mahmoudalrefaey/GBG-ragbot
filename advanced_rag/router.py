@@ -9,7 +9,7 @@ load_dotenv()
 
 
 router_llm = ChatGroq(
-    model="llama-3.1-8b-instant",
+    model=os.environ.get("LIGHT_MODEL"),
     temperature=0,
     max_tokens=100,
     api_key=os.environ.get("GROQ_API_KEY"),
