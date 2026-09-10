@@ -1,5 +1,6 @@
 import json
 import os
+import re
 
 from dotenv import load_dotenv
 from langchain_groq import ChatGroq
@@ -11,7 +12,7 @@ load_dotenv()
 router_llm = ChatGroq(
     model=os.environ.get("LIGHT_MODEL"),
     temperature=0,
-    max_tokens=100,
+    max_tokens=200,
     api_key=os.environ.get("GROQ_API_KEY"),
 )
 
@@ -32,90 +33,131 @@ VALID_ROUTES = {
 ROUTER_PROMPT = """
 You are a routing classifier for an Arabic bank-document RAG system.
 
-Choose exactly ONE route:
+Choose exactly ONE route from:
 
-basic
-rewrite
-multi_query
-decomposition
-hyde
-self_query
-reranking
-compression
-crag
+basic, rewrite, multi_query, decomposition, hyde, self_query, reranking, compression, crag
 
-Rules:
+Decision rules:
 
 basic:
-Use for normal factual questions that can likely be answered
-with standard hybrid retrieval.
+  Simple, clear factual question with specific keywords that
+  standard hybrid retrieval can match directly.
+  Example: "ما هي غرامة فقدان بطاقة الدخول؟"
 
 rewrite:
-Use when the query is vague, ambiguous, poorly phrased,
-or missing important search wording.
+  The query is vague, ambiguous, conversational, or uses
+  informal phrasing that needs cleanup for retrieval.
+  Example: "ايش الاجراء لما حد يضيع الكرت؟"
 
 multi_query:
-Use when different wording or terminology could retrieve
-different relevant documents for the same information need.
+  The question could benefit from multiple phrasings because
+  the key concept may appear under different terminology.
+  Example: "ما هي إجراءات التعامل مع الأصول الراكدة؟"
 
 decomposition:
-Use only when the question contains multiple independent
-information needs that should be searched separately.
+  The question contains TWO OR MORE independent sub-questions
+  that need separate retrieval.
+  Example: "ما هي مدة الجرد وكم عدد أعضاء اللجنة؟"
 
 hyde:
-Use for conceptual or semantic questions where generating
-a hypothetical relevant passage could improve dense retrieval.
+  Conceptual or abstract question where generating a
+  hypothetical answer passage would help dense retrieval.
+  Example: "كيف يتم التعامل مع المواد التالفة في المستودع؟"
 
 self_query:
-Use only when the user explicitly specifies metadata such as
-a document name or page number.
+  The user explicitly mentions a document name, source,
+  or page number as a filter.
+  Example: "في دليل الإنذار المركزي صفحة 5، ما هي صلاحيات المدير؟"
 
 reranking:
-Use when the query is specific but several similar candidate
-documents are likely and better ranking is useful.
+  A specific factual question where many similar chunks may
+  be retrieved and better ranking would help find the exact one.
+  Example: "من هو صاحب صلاحية الموافقة على دخول جناح الإدارة؟"
 
 compression:
-Use when retrieved documents are likely to contain long,
-irrelevant sections.
+  Retrieved documents are likely long with much irrelevant
+  content that should be filtered before generation.
 
 crag:
-Use when retrieval is likely to be uncertain and corrective
-retrieval may be useful.
+  High uncertainty about whether retrieval will find the right
+  document; corrective re-retrieval may be needed.
 
-Prefer BASIC whenever an advanced technique is not clearly
-necessary.
+Return ONLY valid JSON with route and reason:
 
-Return ONLY valid JSON:
-
-{"route":"basic"}
+{"route":"basic","reason":"short explanation"}
 
 User query:
 """
 
 
-def route_query(query: str) -> str:
+def _extract_json(text: str) -> dict | None:
+    """Extract JSON from raw LLM output, handling
+    fenced code blocks and extra text."""
+    # Try direct parse first
+    text = text.strip()
+    try:
+        return json.loads(text)
+    except json.JSONDecodeError:
+        pass
+
+    # Try extracting from fenced code block
+    match = re.search(
+        r"```(?:json)?\s*(\{.*?\})\s*```",
+        text,
+        re.DOTALL,
+    )
+    if match:
+        try:
+            return json.loads(match.group(1))
+        except json.JSONDecodeError:
+            pass
+
+    # Try finding first { ... } in the text
+    match = re.search(r"\{[^{}]*\}", text)
+    if match:
+        try:
+            return json.loads(match.group(0))
+        except json.JSONDecodeError:
+            pass
+
+    return None
+
+
+def route_query(query: str) -> dict:
+    """
+    Route a query and return a dict with:
+      - route: str (the selected route name)
+      - reason: str (why this route was chosen)
+    """
     try:
         response = router_llm.invoke(
             ROUTER_PROMPT + query
         )
 
-        result = json.loads(
-            response.content
-        )
+        result = _extract_json(response.content)
 
-        route = result.get(
-            "route",
-            "basic",
-        )
+        if result is None:
+            return {
+                "route": "basic",
+                "reason": "Could not parse router output",
+            }
 
-    except (
-        json.JSONDecodeError,
-        TypeError,
-        AttributeError,
-    ):
-        return "basic"
+        route = result.get("route", "basic")
+        reason = result.get("reason", "")
+
+    except Exception:
+        return {
+            "route": "basic",
+            "reason": "Router error, defaulting to basic",
+        }
 
     if route not in VALID_ROUTES:
-        return "basic"
+        return {
+            "route": "basic",
+            "reason": f"Invalid route '{route}', defaulting to basic",
+        }
 
-    return route
+    return {
+        "route": route,
+        "reason": reason,
+    }
