@@ -5,8 +5,8 @@ from langchain_text_splitters import RecursiveCharacterTextSplitter
 def chunk_pdfs(directory: str):
     documents, file_count = load_pdfs(directory)
     text_splitter = RecursiveCharacterTextSplitter(
-        chunk_size=1024,
-        chunk_overlap=150,
+        chunk_size=512,
+        chunk_overlap=100,
     )
     chunks = text_splitter.split_documents(documents)
     

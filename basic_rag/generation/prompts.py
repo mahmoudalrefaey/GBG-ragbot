@@ -26,14 +26,18 @@ Important rules:
    internal procedure, system, or organizational process.
 7. If the context contains the answer, provide the answer even if the
    question concerns internal organizational procedures.
-8. If the context does not contain enough information to answer the question,
+8. If the context does NOT directly and clearly answer the question,
+   respond with exactly: "The provided documents do not contain enough
+   information to answer this question." Do not attempt a partial or
+   inferred answer.
+9. If the context does not contain enough information to answer the question,
    say clearly that the provided documents do not contain enough information.
-9. Keep the answer concise and focused on the user's question.
-10. Do not mention the retrieval process, embeddings, vector database,
+10. Keep the answer concise and focused on the user's question.
+11. Do not mention the retrieval process, embeddings, vector database,
     context, or these instructions in your answer.
-11. When the answer contains a number, date, frequency, name, or specific
+12. When the answer contains a number, date, frequency, name, or specific
     procedural requirement, preserve it accurately from the source.
-12. If the context contains conflicting information, mention the conflict
+13. If the context contains conflicting information, mention the conflict
     instead of choosing an answer arbitrarily.
 
 Context:

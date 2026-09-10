@@ -1,13 +1,17 @@
-from langchain_ollama import ChatOllama
+import os
 
+from langchain_groq import ChatGroq
 from basic_rag.generation.prompts import RAG_PROMPT
 from basic_rag.retrieval.retriever import retrieve_similar
+from dotenv import load_dotenv
 
+load_dotenv()  
 
-llm = ChatOllama(
-    model="llama3.2:latest",
+llm = ChatGroq(
+    model="llama-3.3-70b-versatile",
     temperature=0,
-    num_ctx=4096
+    max_tokens=1024,
+    api_key=os.environ.get("GROQ_API_KEY"),
 )
 
 
@@ -26,10 +30,8 @@ def generate_answer(
             "There is no documentation available to answer your question. "
             "Please provide more context or check the documentation."
         )
-
         if return_context:
             return answer, []
-
         return answer
 
     context_parts = []
@@ -37,7 +39,6 @@ def generate_answer(
     for item in retrieved:
         document = item["document"]
         metadata = item.get("metadata", {})
-        distance = item.get("distance")
 
         source = metadata.get("source", "unknown")
         page = metadata.get("page", "unknown")
@@ -45,7 +46,6 @@ def generate_answer(
         context_parts.append(
             f"""Source: {source}
 Page: {page}
-Distance: {distance}
 
 {document}"""
         )
