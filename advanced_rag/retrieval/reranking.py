@@ -5,9 +5,10 @@ from advanced_rag.retrieval.base import retrieve
 
 RERANKER_MODEL = "BAAI/bge-reranker-v2-m3"
 
+
 reranker = CrossEncoder(
     RERANKER_MODEL,
-    device="cuda",
+    device="cpu",
 )
 
 
@@ -25,11 +26,14 @@ def rerank_documents(
         for item in documents
     ]
 
-    scores = reranker.predict(pairs)
+    scores = reranker.predict(
+        pairs,
+        show_progress_bar=False,
+    )
 
     ranked = sorted(
         zip(documents, scores),
-        key=lambda x: x[1],
+        key=lambda x: float(x[1]),
         reverse=True,
     )
 
@@ -42,6 +46,7 @@ def rerank_documents(
         document
         for document, _ in ranked
     ]
+
 
 def reranked_retrieve(
     query: str,

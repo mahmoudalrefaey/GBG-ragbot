@@ -1,28 +1,34 @@
-from langchain_groq import ChatGroq
-from dotenv import load_dotenv
 import os
+
+from dotenv import load_dotenv
+from langchain_groq import ChatGroq
 
 from advanced_rag.retrieval.base import retrieve
 
+
 load_dotenv()
 
+
 llm = ChatGroq(
-    model="llama-3.3-70b-versatile",
+    model=os.environ.get("LIGHT_MODEL"),
     temperature=0,
-    max_tokens=512,
+    max_tokens=256,
     api_key=os.environ.get("GROQ_API_KEY"),
 )
 
 
-def generate_queries(query: str, num_queries: int = 3):
+def generate_queries(
+    query: str,
+    num_queries: int = 3,
+):
     prompt = f"""
 Generate {num_queries} different search queries for the
 following question.
 
-The queries should preserve the same information need while
+The queries must preserve the same information need while
 using different wording.
 
-Return one query per line.
+Return exactly one query per line.
 Do not number them.
 Do not answer the question.
 
@@ -38,13 +44,21 @@ Question:
         if line.strip()
     ]
 
+    queries = queries[:num_queries]
+
+    if query not in queries:
+        queries.insert(0, query)
+
     return queries[:num_queries]
 
 
-def multi_query_retrieve(query: str, n_results: int = 10):
+def multi_query_retrieve(
+    query: str,
+    n_results: int = 10,
+):
     queries = generate_queries(query)
 
-    all_documents = {}
+    result_lists = []
 
     for generated_query in queries:
         documents = retrieve(
@@ -52,10 +66,33 @@ def multi_query_retrieve(query: str, n_results: int = 10):
             n_results=n_results,
         )
 
-        for item in documents:
-            key = item["document"]
+        result_lists.append(documents)
 
-            if key not in all_documents:
-                all_documents[key] = item
+    scores = {}
+    documents = {}
 
-    return list(all_documents.values())
+    for results in result_lists:
+        for rank, item in enumerate(results):
+            metadata = item.get("metadata", {})
+
+            doc_id = (
+                metadata.get("chunk_id")
+                or item["document"]
+            )
+
+            documents[doc_id] = item
+
+            scores[doc_id] = scores.get(doc_id, 0.0) + (
+                1.0 / (60 + rank + 1)
+            )
+
+    ranked_ids = sorted(
+        scores,
+        key=scores.get,
+        reverse=True,
+    )
+
+    return [
+        documents[doc_id]
+        for doc_id in ranked_ids[:n_results]
+    ]

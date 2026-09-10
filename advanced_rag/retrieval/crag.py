@@ -1,12 +1,21 @@
+import os
+
 from advanced_rag.retrieval.base import retrieve
 from advanced_rag.retrieval.reranking import rerank_documents
+
+
+CRAG_THRESHOLD = float(
+    os.environ.get(
+        "CRAG_THRESHOLD",
+        "0.0",
+    )
+)
 
 
 def crag_retrieve(
     query: str,
     candidate_k: int = 10,
     n_results: int = 4,
-    threshold: float = 0.0,
 ):
     documents = retrieve(
         query,
@@ -23,16 +32,14 @@ def crag_retrieve(
     if not ranked:
         return []
 
-    best_score = ranked[0][1]
+    best_score = float(ranked[0][1])
 
-    if best_score >= threshold:
+    if best_score >= CRAG_THRESHOLD:
         return [
             document
             for document, _ in ranked
         ]
 
-    # Corrective fallback:
-    # search again using a rewritten query.
     from advanced_rag.query.query_rewriting import rewrite_query
 
     rewritten_query = rewrite_query(query)
@@ -46,6 +53,26 @@ def crag_retrieve(
         rewritten_query,
         corrected_documents,
         n_results=n_results,
+        return_scores=True,
     )
 
-    return corrected_ranked
+    if not corrected_ranked:
+        return [
+            document
+            for document, _ in ranked
+        ]
+
+    corrected_best_score = float(
+        corrected_ranked[0][1]
+    )
+
+    if corrected_best_score > best_score:
+        return [
+            document
+            for document, _ in corrected_ranked
+        ]
+
+    return [
+        document
+        for document, _ in ranked
+    ]

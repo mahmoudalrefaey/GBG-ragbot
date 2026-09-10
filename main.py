@@ -1,6 +1,14 @@
-from basic_rag.indexing.embedder import generate_and_index_embeddings
-from basic_rag.retrieval.retriever import get_collection_info
-from basic_rag.generation.generator import generate_answer
+from basic_rag.indexing.embedder import (
+    generate_and_index_embeddings,
+)
+
+from basic_rag.retrieval.retriever import (
+    get_collection_info,
+)
+
+from advanced_rag.generator import (
+    generate_advanced_answer,
+)
 
 
 def main():
@@ -29,10 +37,15 @@ def main():
         if not question:
             continue
 
-        if question.lower() in {"exit", "quit"}:
+        if question.lower() in {
+            "exit",
+            "quit",
+        }:
             break
 
-        answer = generate_answer(question)
+        answer = generate_advanced_answer(
+            question
+        )
 
         print(f"\nAssistant: {answer}")
 

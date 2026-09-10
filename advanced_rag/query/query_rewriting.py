@@ -1,11 +1,14 @@
-from langchain_groq import ChatGroq
-from dotenv import load_dotenv
 import os
+
+from dotenv import load_dotenv
+from langchain_groq import ChatGroq
+
 
 load_dotenv()
 
+
 llm = ChatGroq(
-    model="llama-3.3-70b-versatile",
+    model=os.environ.get("LIGHT_MODEL"),
     temperature=0,
     max_tokens=256,
     api_key=os.environ.get("GROQ_API_KEY"),
@@ -18,6 +21,8 @@ Rewrite the following user query into a clear, standalone
 search query for retrieving information from Arabic bank documents.
 
 Keep the original meaning.
+Preserve names, numbers, dates, frequencies, and conditions.
+
 Do not answer the question.
 Return only the rewritten query.
 
@@ -27,4 +32,6 @@ Query:
 
     response = llm.invoke(prompt)
 
-    return response.content.strip()
+    rewritten = response.content.strip()
+
+    return rewritten or query

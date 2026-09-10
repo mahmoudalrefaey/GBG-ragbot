@@ -8,12 +8,11 @@ from dotenv import load_dotenv
 load_dotenv()  
 
 llm = ChatGroq(
-    model="llama-3.3-70b-versatile",
+    model=os.environ.get("MAIN_MODEL"),
     temperature=0,
     max_tokens=1024,
     api_key=os.environ.get("GROQ_API_KEY"),
 )
-
 
 def generate_answer(
     question: str,

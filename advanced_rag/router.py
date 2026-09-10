@@ -4,6 +4,7 @@ import os
 from dotenv import load_dotenv
 from langchain_groq import ChatGroq
 
+
 load_dotenv()
 
 
@@ -15,8 +16,21 @@ router_llm = ChatGroq(
 )
 
 
+VALID_ROUTES = {
+    "basic",
+    "rewrite",
+    "multi_query",
+    "decomposition",
+    "hyde",
+    "self_query",
+    "reranking",
+    "compression",
+    "crag",
+}
+
+
 ROUTER_PROMPT = """
-You are a routing classifier for an Arabic document RAG system.
+You are a routing classifier for an Arabic bank-document RAG system.
 
 Choose exactly ONE route:
 
@@ -32,17 +46,44 @@ crag
 
 Rules:
 
-- basic: simple factual question that can be answered with normal retrieval.
-- rewrite: ambiguous, vague, incomplete, or poorly phrased query.
-- multi_query: query may benefit from several different search formulations.
-- decomposition: complex question containing multiple independent information needs.
-- hyde: conceptual question where a hypothetical document would improve semantic retrieval.
-- self_query: query explicitly contains metadata constraints such as source, document, or page.
-- reranking: normal retrieval may return relevant candidates but ranking needs improvement.
-- compression: retrieved documents are likely long or contain substantial irrelevant text.
-- crag: retrieval quality may be poor or uncertain and corrective retrieval is useful.
+basic:
+Use for normal factual questions that can likely be answered
+with standard hybrid retrieval.
 
-Prefer BASIC whenever an advanced technique is not clearly necessary.
+rewrite:
+Use when the query is vague, ambiguous, poorly phrased,
+or missing important search wording.
+
+multi_query:
+Use when different wording or terminology could retrieve
+different relevant documents for the same information need.
+
+decomposition:
+Use only when the question contains multiple independent
+information needs that should be searched separately.
+
+hyde:
+Use for conceptual or semantic questions where generating
+a hypothetical relevant passage could improve dense retrieval.
+
+self_query:
+Use only when the user explicitly specifies metadata such as
+a document name or page number.
+
+reranking:
+Use when the query is specific but several similar candidate
+documents are likely and better ranking is useful.
+
+compression:
+Use when retrieved documents are likely to contain long,
+irrelevant sections.
+
+crag:
+Use when retrieval is likely to be uncertain and corrective
+retrieval may be useful.
+
+Prefer BASIC whenever an advanced technique is not clearly
+necessary.
 
 Return ONLY valid JSON:
 
@@ -53,30 +94,28 @@ User query:
 
 
 def route_query(query: str) -> str:
-    response = router_llm.invoke(
-        ROUTER_PROMPT + query
-    )
-
     try:
-        result = json.loads(response.content)
-        route = result.get("route", "basic")
+        response = router_llm.invoke(
+            ROUTER_PROMPT + query
+        )
 
-    except (json.JSONDecodeError, TypeError):
+        result = json.loads(
+            response.content
+        )
+
+        route = result.get(
+            "route",
+            "basic",
+        )
+
+    except (
+        json.JSONDecodeError,
+        TypeError,
+        AttributeError,
+    ):
         return "basic"
 
-    valid_routes = {
-        "basic",
-        "rewrite",
-        "multi_query",
-        "decomposition",
-        "hyde",
-        "self_query",
-        "reranking",
-        "compression",
-        "crag",
-    }
-
-    if route not in valid_routes:
+    if route not in VALID_ROUTES:
         return "basic"
 
     return route
