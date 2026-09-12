@@ -164,10 +164,8 @@ def render_metrics(metrics: Any, *, show_reasons: bool = True) -> None:
     if show_reasons:
         for name, detail in metrics.items():
             reason = detail.get("reason") if isinstance(detail, dict) else None
-            with st.expander(f"{name} reason"):
-                if reason is None or reason == "":
-                    st.info("No reason was provided for this metric.")
-                else:
+            if reason:
+                with st.expander(f"{name} reason"):
                     st.write(reason)
 
 
@@ -200,19 +198,6 @@ def render_metadata_cards(value: Any, empty_message: str) -> None:
                 else:
                     display = item
                 card(str(key).replace("_", " "), display)
-
-
-def render_time(value: Any) -> None:
-    if not isinstance(value, dict) or not value:
-        card("Details", "Timing information is not available.")
-        return
-
-    seconds = value.get("seconds")
-    if isinstance(seconds, (int, float)):
-        card("Seconds", f"{seconds:.2f}")
-        return
-
-    card("Seconds", text(seconds))
 
 
 def render_chunks(chunks: Any) -> None:
@@ -318,4 +303,7 @@ for index, sample in enumerate(results, start=1):
                 )
         with timing:
             with st.expander("Time"):
-                render_time(sample.get("time"))
+                render_metadata_cards(
+                    sample.get("time"),
+                    "Timing information is not available.",
+                )
