@@ -1,13 +1,18 @@
+import os
 import re
 import unicodedata
 from typing import Dict, List, Optional
 
+from dotenv import load_dotenv
 from langchain_core.documents import Document
 from langchain_core.retrievers import BaseRetriever
 from langchain_community.retrievers import BM25Retriever
 
 from basic_rag.indexing.vector_db import collection
 from basic_rag.indexing.embedder import get_query_embedding
+
+load_dotenv()
+RAG_N_RESULTS = int(os.getenv("RAG_N_RESULTS", "5"))
 
 
 # ── Arabic-aware tokenizer for BM25 ────────────────────────
@@ -229,7 +234,7 @@ def _filter_documents(
 
 def retrieve_similar(
     query: str,
-    n_results: int = 5,
+    n_results: int = RAG_N_RESULTS,
     where: Optional[dict] = None,
 ) -> List[Dict]:
     candidate_k = max(n_results * 5, 20)
@@ -271,7 +276,7 @@ def retrieve_similar(
 
 def retrieve_with_details(
     query: str,
-    n_results: int = 5,
+    n_results: int = RAG_N_RESULTS,
     where: Optional[dict] = None,
 ) -> dict:
     """
@@ -362,7 +367,7 @@ def retrieve_with_details(
 
 def retrieve_by_embedding(
     embedding,
-    n_results: int = 10,
+    n_results: int = RAG_N_RESULTS,
     where: Optional[dict] = None,
 ):
     kwargs = {

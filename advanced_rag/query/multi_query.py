@@ -7,6 +7,7 @@ from advanced_rag.retrieval.base import retrieve
 
 
 load_dotenv()
+RAG_N_RESULTS = int(os.getenv("RAG_N_RESULTS", "5"))
 
 
 llm = ChatGroq(
@@ -54,7 +55,7 @@ Question:
 
 def multi_query_retrieve(
     query: str,
-    n_results: int = 10,
+    n_results: int = RAG_N_RESULTS,
 ):
     queries = generate_queries(query)
 

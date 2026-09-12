@@ -8,6 +8,7 @@ from basic_rag.retrieval.retriever import retrieve_by_embedding
 
 
 load_dotenv()
+RAG_N_RESULTS = int(os.getenv("RAG_N_RESULTS", "5"))
 
 
 llm = ChatGroq(
@@ -40,7 +41,7 @@ Question:
 
 def hyde_retrieve(
     query: str,
-    n_results: int = 10,
+    n_results: int = RAG_N_RESULTS,
 ):
     hypothetical_document = generate_hypothetical_document(
         query

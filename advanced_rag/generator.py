@@ -1,5 +1,7 @@
 import time
+import os
 
+from dotenv import load_dotenv
 from basic_rag.generation.generator import (
     llm,
     RAG_PROMPT,
@@ -34,6 +36,9 @@ from advanced_rag.retrieval.contextual_compression import (
 from advanced_rag.retrieval.crag import (
     crag_retrieve,
 )
+
+load_dotenv()
+RAG_N_RESULTS = int(os.getenv("RAG_N_RESULTS", "5"))
 
 
 # Maps route names to human-readable technique descriptions
@@ -76,7 +81,7 @@ def _retrieve_by_route(
     if route == "basic":
         return retrieve(
             question,
-            n_results=4,
+            n_results=RAG_N_RESULTS,
         )
 
     if route == "rewrite":
@@ -84,52 +89,52 @@ def _retrieve_by_route(
 
         return retrieve(
             rewritten,
-            n_results=4,
+            n_results=RAG_N_RESULTS,
         )
 
     if route == "multi_query":
         return multi_query_retrieve(
             question,
-            n_results=4,
+            n_results=6,
         )
 
     if route == "decomposition":
         return decomposition_retrieve(
             question,
-            n_results=4,
+            n_results=8,
         )
 
     if route == "hyde":
         return hyde_retrieve(
             question,
-            n_results=4,
+            n_results=RAG_N_RESULTS,
         )
 
     if route == "self_query":
         return self_query_retrieve(
             question,
-            n_results=4,
+            n_results=RAG_N_RESULTS,
         )
 
     if route == "reranking":
         return reranked_retrieve(
             question,
             candidate_k=15,
-            n_results=4,
+            n_results=RAG_N_RESULTS,
         )
 
     if route == "compression":
         return compressed_retrieve(
             question,
             candidate_k=10,
-            n_results=4,
+            n_results=RAG_N_RESULTS,
         )
 
     if route == "crag":
         return crag_retrieve(
             question,
             candidate_k=10,
-            n_results=4,
+            n_results=RAG_N_RESULTS,
         )
 
     return []
@@ -205,7 +210,7 @@ def generate_advanced_answer_with_metadata(
     if not documents:
         fallback_used = True
         retrieval_start2 = time.time()
-        documents = retrieve(question, n_results=4)
+        documents = retrieve(question, n_results=RAG_N_RESULTS)
         retrieval_time += time.time() - retrieval_start2
 
     # Step 3: Generate

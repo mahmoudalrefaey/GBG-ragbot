@@ -33,6 +33,8 @@ from basic_rag.generation.generator import generate_answer
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
+load_dotenv(PROJECT_ROOT / ".env")
+RAG_N_RESULTS = int(os.getenv("RAG_N_RESULTS", "5"))
 EVAL_DIR = PROJECT_ROOT / "basic_rag" / "evaluation"
 DEFAULT_DATASET_PATH = EVAL_DIR / "full_eval_dataset.json"
 RESULTS_DIR = EVAL_DIR / "results"
@@ -143,7 +145,7 @@ def run_evaluation(limit=2, dataset_path=None):
 
         answer, context_chunks = generate_answer(
             question=question,
-            n_results=4,
+            n_results=RAG_N_RESULTS,
             return_context=True,
         )
 

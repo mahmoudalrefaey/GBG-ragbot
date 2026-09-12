@@ -6,17 +6,18 @@ from basic_rag.retrieval.retriever import retrieve_similar
 from dotenv import load_dotenv
 
 load_dotenv()  
+RAG_N_RESULTS = int(os.getenv("RAG_N_RESULTS", "5"))
 
 llm = ChatGroq(
     model=os.environ.get("MAIN_MODEL"),
     temperature=0,
-    max_tokens=1024,
+    max_tokens=2048,
     api_key=os.environ.get("GROQ_API_KEY"),
 )
 
 def generate_answer(
     question: str,
-    n_results: int = 4,
+    n_results: int = RAG_N_RESULTS,
     return_context: bool = False,
 ):
     retrieved = retrieve_similar(

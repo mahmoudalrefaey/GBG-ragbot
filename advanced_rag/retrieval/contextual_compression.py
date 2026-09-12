@@ -8,6 +8,7 @@ from advanced_rag.retrieval.reranking import rerank_documents
 
 
 load_dotenv()
+RAG_N_RESULTS = int(os.getenv("RAG_N_RESULTS", "5"))
 
 
 llm = ChatGroq(
@@ -123,7 +124,7 @@ Retrieved documents:
 def compressed_retrieve(
     query: str,
     candidate_k: int = 10,
-    n_results: int = 4,
+    n_results: int = RAG_N_RESULTS,
 ):
     documents = retrieve(
         query,
