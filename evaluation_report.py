@@ -100,7 +100,7 @@ st.markdown(
 def latest_report() -> tuple[dict[str, Any] | None, str | None]:
     try:
         files = sorted(
-            RESULTS_DIR.glob("results_*.json"),
+            RESULTS_DIR.glob("results*.json"),
             key=lambda path: path.stat().st_mtime,
             reverse=True,
         )
