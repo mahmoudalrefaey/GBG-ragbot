@@ -141,7 +141,7 @@ def card(label: str, value: Any, *, arabic: bool = False) -> None:
     )
 
 
-def render_metrics(metrics: Any) -> None:
+def render_metrics(metrics: Any, *, show_reasons: bool = True) -> None:
     if not isinstance(metrics, dict) or not metrics:
         st.info("No metric results are available for this sample.")
         return
@@ -161,11 +161,14 @@ def render_metrics(metrics: Any) -> None:
                 unsafe_allow_html=True,
             )
 
-    for name, detail in metrics.items():
-        reason = detail.get("reason") if isinstance(detail, dict) else None
-        if reason:
+    if show_reasons:
+        for name, detail in metrics.items():
+            reason = detail.get("reason") if isinstance(detail, dict) else None
             with st.expander(f"{name} reason"):
-                st.write(reason)
+                if reason is None or reason == "":
+                    st.info("No reason was provided for this metric.")
+                else:
+                    st.write(reason)
 
 
 def render_sources(sources: Any) -> None:
@@ -197,6 +200,19 @@ def render_metadata_cards(value: Any, empty_message: str) -> None:
                 else:
                     display = item
                 card(str(key).replace("_", " "), display)
+
+
+def render_time(value: Any) -> None:
+    if not isinstance(value, dict) or not value:
+        card("Details", "Timing information is not available.")
+        return
+
+    seconds = value.get("seconds")
+    if isinstance(seconds, (int, float)):
+        card("Seconds", f"{seconds:.2f}")
+        return
+
+    card("Seconds", text(seconds))
 
 
 def render_chunks(chunks: Any) -> None:
@@ -241,7 +257,7 @@ if report is None:
 averages = report.get("averages")
 if isinstance(averages, dict) and averages:
     st.subheader("Average scores")
-    render_metrics(averages)
+    render_metrics(averages, show_reasons=False)
 
 results = report.get("results")
 if not isinstance(results, list) or not results:
@@ -254,7 +270,11 @@ for index, sample in enumerate(results, start=1):
         st.warning(f"Sample {index} could not be displayed.")
         continue
 
-    with st.expander(f"Sample {index}: {text(sample.get('question'))}", expanded=index == 1):
+    question_heading = text(sample.get("question"))
+    with st.expander(
+        f"\u202b{question_heading}\u202c",
+        expanded=index == 1,
+    ):
         question, category = st.columns(2)
         with question:
             card("Question", sample.get("question"), arabic=True)
@@ -263,7 +283,7 @@ for index, sample in enumerate(results, start=1):
 
         answer, truth = st.columns(2)
         with answer:
-            card("Generated answer", sample.get("generated_answer", sample.get("answer")), arabic=True)
+            card("Generated answer", sample.get("generated_answer"), arabic=True)
         with truth:
             card("Ground truth", sample.get("ground_truth"), arabic=True)
 
@@ -298,7 +318,4 @@ for index, sample in enumerate(results, start=1):
                 )
         with timing:
             with st.expander("Time"):
-                render_metadata_cards(
-                    sample.get("time"),
-                    "Timing information is not available.",
-                )
+                render_time(sample.get("time"))
