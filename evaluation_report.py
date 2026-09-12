@@ -278,7 +278,7 @@ for index, sample in enumerate(results, start=1):
             render_sources(sources)
 
         strategy = sample.get("advanced_rag_strategies_used")
-        with st.expander("Advanced RAG strategies used"):
+        with st.expander("RAG strategies used"):
             if strategy:
                 render_metadata_cards(strategy, "No strategy details are available.")
             else:
