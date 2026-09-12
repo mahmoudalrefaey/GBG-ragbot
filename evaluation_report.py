@@ -10,7 +10,7 @@ from typing import Any
 import streamlit as st
 
 
-RESULTS_DIR = Path(__file__).resolve().parents[1] / "basic_rag" / "evaluation" / "results"
+RESULTS_DIR = Path(__file__).resolve().parent / "basic_rag" / "evaluation" / "results"
 
 st.set_page_config(
     page_title="Evaluation Report",
