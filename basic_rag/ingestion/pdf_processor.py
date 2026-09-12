@@ -1,56 +1,40 @@
-from pathlib import Path
 from io import BytesIO
-import re
-import unicodedata
+from pathlib import Path
 
+import easyocr
 import pymupdf
-import pytesseract
+import numpy as np
 from PIL import Image
 
-
-DPI = 300
-OCR_LANG = "ara"
-
-TOP_CROP = 0.12
-BOTTOM_CROP = 0.91
-LEFT_CROP = 0.03
-RIGHT_CROP = 0.97
+from basic_rag.ingestion.preprocessor import preprocess_text
 
 
-def normalize_arabic_text(text: str) -> str:
-    """
-    Basic cleanup only.
-    Does not spell-correct Arabic.
-    """
-
-    text = unicodedata.normalize("NFC", text)
-
-    invisible_chars = [
-        "\u200e",
-        "\u200f",
-        "\u202a",
-        "\u202b",
-        "\u202c",
-        "\u202d",
-        "\u202e",
-        "\ufeff",
-        "\u061c",
-    ]
-
-    for char in invisible_chars:
-        text = text.replace(char, "")
-
-    text = text.replace("\r\n", "\n")
-    text = text.replace("\r", "\n")
-
-    text = re.sub(r"[ \t]+", " ", text)
-    text = re.sub(r"\s+([،؛:,.!?؟])", r"\1", text)
-    text = re.sub(r"\n{3,}", "\n\n", text)
-
-    return text.strip()
+DPI = 250
+TOP_CROP = 0.10
+BOTTOM_CROP = 0.95
 
 
-def render_page(page):
+_reader: easyocr.Reader | None = None
+
+
+def _get_reader() -> easyocr.Reader:
+    global _reader
+
+    if _reader is None:
+        import torch
+
+        use_gpu = torch.cuda.is_available()
+        print(
+            "Loading EasyOCR model for Arabic and English "
+            f"(GPU: {'yes' if use_gpu else 'no'})..."
+        )
+        _reader = easyocr.Reader(["ar", "en"], gpu=use_gpu)
+        print("EasyOCR model loaded.")
+
+    return _reader
+
+
+def render_page(page: pymupdf.Page) -> Image.Image:
     pix = page.get_pixmap(
         dpi=DPI,
         colorspace=pymupdf.csRGB,
@@ -65,28 +49,23 @@ def render_page(page):
 def crop_content(image: Image.Image) -> Image.Image:
     width, height = image.size
 
-    left = int(width * LEFT_CROP)
     top = int(height * TOP_CROP)
-
-    right = int(width * RIGHT_CROP)
     bottom = int(height * BOTTOM_CROP)
 
-    return image.crop(
-        (left, top, right, bottom)
-    )
+    return image.crop((0, top, width, bottom))
 
 
 def ocr_page(image: Image.Image) -> str:
-    text = pytesseract.image_to_string(
-        image,
-        lang=OCR_LANG,
-        config="--oem 3 --psm 6",
+    results = _get_reader().readtext(
+        np.asarray(image),
+        detail=0,
+        paragraph=True,
     )
 
-    return normalize_arabic_text(text)
+    return preprocess_text("\n\n".join(results))
 
 
-def process_pdf(pdf_path: str | Path):
+def process_pdf(pdf_path: str | Path) -> list[dict[str, object]]:
     pdf_path = Path(pdf_path)
 
     doc = pymupdf.open(pdf_path)
@@ -103,6 +82,7 @@ def process_pdf(pdf_path: str | Path):
         image = render_page(page)
         image = crop_content(image)
 
+        print("Running EasyOCR...")
         text = ocr_page(image)
 
         if not text:
