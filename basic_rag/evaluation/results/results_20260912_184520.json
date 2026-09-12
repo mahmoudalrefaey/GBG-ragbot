@@ -1,0 +1,107 @@
+{
+  "judge_model": "openai/gpt-oss-120b",
+  "dataset": "D:\\GBG_BOT\\basic_rag\\evaluation\\eval_dataset.json",
+  "evaluated_at": "2026-09-12T15:45:20.374516+00:00",
+  "averages": {
+    "Context Relevance": 0.0,
+    "Faithfulness": 1.0,
+    "Answer Relevance": 0.5,
+    "Correctness": 0.8
+  },
+  "results": [
+    {
+      "question": "السلام عليكم، ما هي جنسية اللاعب محمد صلاح؟",
+      "answer": "وعليكم السلام. أنا مساعد مُصمم للإجابة على الأسئلة المتعلقة بإجراءات ووثائق بنك الإسكان فقط. لذلك لا أستطيع تقديم معلومات عن جنسية اللاعب محمد صلاح. إذا كان لديك أي سؤال حول سياسات أو إجراءات البنك، فأنا هنا للمساعدة.",
+      "ground_truth": "وعليكم السلام. عذراً، أنا مساعد ذكاء اصطناعي مصمم للإجابة على الأسئلة المتعلقة بإجراءات بنك الإسكان فقط (الإنذار، البريد، المستودعات). لا تتوفر لدي معلومات حول الشخصيات الرياضية.",
+      "category": "خارج النطاق (OOD)",
+      "references": "خارج نطاق الوثائق المقدمة (لا يوجد مرجع في الأدلة الثلاثة)",
+      "generated_answer": "وعليكم السلام. أنا مساعد مُصمم للإجابة على الأسئلة المتعلقة بإجراءات ووثائق بنك الإسكان فقط. لذلك لا أستطيع تقديم معلومات عن جنسية اللاعب محمد صلاح. إذا كان لديك أي سؤال حول سياسات أو إجراءات البنك، فأنا هنا للمساعدة.",
+      "metrics": {
+        "Context Relevance": {
+          "score": 0.0,
+          "reason": "The score is 0.00 because every retrieved statement is unrelated to Mohamed Salah’s nationality, e.g., \"The statement 'دون الحاجة الى اخذ صورة عنها' is unrelated to Mohamed Salah's nationality\" and \"The statement 'المنفذ مسؤول أول - مهندس أنظمة أمنية -15' is about a security engineer role, not the player's nationality\"; no relevant statements were found."
+        },
+        "Faithfulness": {
+          "score": 1.0,
+          "reason": "The score is 1.00 because there are no contradictions, indicating the actual output fully aligns with the retrieval context."
+        },
+        "Answer Relevance": {
+          "score": 0.5,
+          "reason": "The score is 0.50 because the answer contained two irrelevant statements—a greeting and unrelated banking assistance—so only part of the response addressed the player's nationality, preventing a higher relevance score."
+        },
+        "Correctness": {
+          "score": 0.8,
+          "reason": "The actual output matches the expected intent by greeting, apologizing, and stating the assistant is limited to bank‑related queries, thus refusing to provide Mohamed Salah’s nationality. It preserves the core meaning, but it omits the specific list of bank services (الإنذار، البريد، المستودعات) and the explicit word “عذراً”, which are present in the expected answer, resulting in a slight loss of detail."
+        }
+      },
+      "retrieved_chunks": [
+        {
+          "document": "دون الحاجة الى اخذ صورة عنها. ملاحظة: يمكن ان يتم تسليم الملف للفرع اوالإدارة المعنية بحيث تقوم هي بتولي تسليمه للجهات الأمنية أص وليا مع مراعاة عدم تسليم التسجيل للجهة المشتكية اواطلاعها عليه من جهة البنك بأي حال من الاحوال. المنفذ مسؤول أول - مهندس أنظمة أمنية -15 التحقق من _ قيام موظف غرفة العمليات بإجراء اللازم وعدم وجود أي ملاحظات.",
+          "source": "Central Alarm Tasks And Procedures Manual.pdf",
+          "page": 11
+        },
+        {
+          "document": "1. إجراءات اصدار- ايقاف - الغاء تغييرصلاحيات البطاقات والبصمات على انظمة التحكم بالدخول أولأ. إجراءات اصدار - البطاقات والبصمات وتفعيلها على انظمة التحكم بالدخول الجهة المنفذة وحدة الانذارالمركزي مركزالأمن والانذارالمركزي المنفذ إداري أول - غرفة العمليات استلام طلب اصدار البطاقات البصمات على انظمة التحكم بالدخول من الجهة الطالبة من خلال البريد _ الالكتروني الرسمي لوحدة الانذار -1 Security Unit (esec @hbtf com jo ) المركزي HBTF -2 التحقق ممايلي من واقع الطلب المستلم: اسم - الفرع / الدائرة. اسم الموظف الرباعي. الرقم الوظيفي. المسى الوظيفي. تارىخ التعيين. موقع العمل ) المبنى. مركز العمل السابق 'ان وجد عدم وجود بطاقة مصدره مسبقا للموظف. وجود Profile للموظف معرف مسبقا على نظام MTZ )للفروع ومباني العبدلي والأمانة. فيحال استيفاء الطلب لكافة الشروط يتم ارساله الى مسؤول اول - مهندس انظمة امنية/ مسؤول - مهندس انظمة امنية المنفذ مسؤول أول - مهندس أنظمة أمنية مسؤول - مهندس أنظمة أمنية -3 استلام الطلب من إداري أول - غرفة العمليات والتحقق من موافقة صاحب الصلاحية وحسب ما هو _ موضح ضمن القواعد والأحكام العامة وارسال الطلب",
+          "source": "Central Alarm Tasks And Procedures Manual.pdf",
+          "page": 8
+        },
+        {
+          "document": "المنفذ مسؤول أول - مهندس أنظمة أمنية مسؤول - مهندس أنظمة أمنية -3 استلام الطلب من إداري أول - غرفة العمليات والتحقق من موافقة صاحب الصلاحية وحسب ما هو _ موضح ضمن القواعد والأحكام العامة وارسال الطلب الى مدير مساعد الانذار المركزي. المنفذ مدير مساعد الانذارا لمركزي -4 استلام الطلب من مسؤول أول - مهندس أنظمة أمنية/ مسؤول - مهندس أنظمة أمنية والتأكد من استكمال كافة المعلومات والموافقات اللازمة. وفي حالكان الطلب لإصدار بطاقة بدل فاقد تالف يتم التأكدمن استيفا العمولة أوالموافقات الاصولية في حال الاعفا -5 الموافقة على الطلب أوالتنسيب الى صاحب الصلاحية لغايات الموافقة وبالتنسيق مع مدير الأمن والانذار المركزي في حال كانت الصلاحية أعلى من مدير مساعد الانذار _ المركزيء وحسب الجدول الموضح ضمن القواعد والأحكام العامة. -6 استلام موافقة صاحب الصلاحية واستدراك المطالعات 'ان وجدت. -7 فيحال البطاقات يتم ارسال الموافقات الى مسؤول _ الامن ليقوم بإصدار البطاقة للموظف المعي مع اعلام الجهة الطالبة و مدير مساعد الانذار المركزي برقم البطاقة المصحدرة وفيحال التأكدمن استلام الموظف للبطاقة يتم ابلاغ إداري أول - غرفة العمليات لتفعيل",
+          "source": "Central Alarm Tasks And Procedures Manual.pdf",
+          "page": 8
+        },
+        {
+          "document": "-3 الموافقات المطلوبة والمرتبطة بصلاحيات منح رقم سري على نظام انذار السرقة كود حماية الموقع والتيتتم حسب أدناه لإجراء اللازم من قبل وحدة الإنذار المركزي: الموافقة المطلوب من جهة الشؤون الموقع المطلوب منح كود حماية عليه الموافقة المطلوبة من طرف الجهة الطالبة الإدارية والهندسية الفروع مدير المنطقة مدير مساعد الانذار المركزي مدير عمليات الفروع وترفع الصلاحية وحدة النقد والصرافات الآلية الخارجية لنائب رئيس أول - مدير العمليات المركزية في مدير الأمن _ والانذار المركزي )مفوضي الشركات الناقلة برنكس / حماية ( حال ا جازته المواقع الاخرى المدير التنفيذي للجهة المعنية مدير الأمن والانذار المركزي فيحال نسيان الموظف للرقم السري وطلب تذكيره به يتم استيفاء موافقة مدير _ الفرع / المدير المباشر للموظف وبحيث يتم التأكد أن الموظف مفوض اصلاعلى الموقع. وفيكافة الحالات وعند تزويد الموظف بالرقم السري يتم الطلب من الموظف عمل تغيير للرقم السري من خلال لوحة الفرع / الموقع وبالتنسيق مع وحدة الانذار المركزي والطلب من الموظف تغيير _ الرقم السري على الاقل كل ستة أشهر _ مرة. اعداد تقرير _اسبوعي بالطلبات الواردة التيتم التعامل معها ) منجز",
+          "source": "Central Alarm Tasks And Procedures Manual.pdf",
+          "page": 6
+        },
+        {
+          "document": "ارساله الى مبنى شسارع الامير محمد والمعنيين لدى المجمع التجاري والفروع الخارجية -15 والبنوك المحلية والجهات الرسمية داخل الخانات المخصصة له فيناية اليوم. -16 حفظ النسخة الثانية من قائمة البريد الصادرفي الملف المعني. المنفذ اداري اول - بريد مركزي وملفات 17 التأكد من تنفيذكافة الاعمال على الاجراءات أعلاه بطريقة سليمة ودون وجود ملاحظات.",
+          "source": "Central Mail and Files Unit Procedures Manual.pdf",
+          "page": 16
+        }
+      ],
+      "sources": [
+        {
+          "document": "Central Alarm Tasks And Procedures Manual.pdf",
+          "page": 11
+        },
+        {
+          "document": "Central Alarm Tasks And Procedures Manual.pdf",
+          "page": 8
+        },
+        {
+          "document": "Central Alarm Tasks And Procedures Manual.pdf",
+          "page": 8
+        },
+        {
+          "document": "Central Alarm Tasks And Procedures Manual.pdf",
+          "page": 6
+        },
+        {
+          "document": "Central Mail and Files Unit Procedures Manual.pdf",
+          "page": 16
+        }
+      ],
+      "advanced_rag_strategies_used": {
+        "route": "basic",
+        "technique": "Basic Hybrid Retrieval (Dense + BM25 + RRF)",
+        "fallback_used": false
+      },
+      "cost": {
+        "value": 0.000796,
+        "currency": "USD",
+        "input_tokens": 1376,
+        "output_tokens": 72,
+        "input_price_per_1k": 0.0005,
+        "output_price_per_1k": 0.0015,
+        "estimated": true
+      },
+      "time": {
+        "milliseconds": 1731.26,
+        "seconds": 1.73126
+      },
+      "question_id": "q1"
+    }
+  ]
+}
