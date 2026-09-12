@@ -1,12 +1,12 @@
 {
-  "judge_model": "openai/gpt-oss-20b",
+  "judge_model": "openai/gpt-oss-120b",
   "dataset": "D:\\GBG_BOT\\basic_rag\\evaluation\\eval_dataset.json",
   "evaluated_at": "2026-09-12T15:45:20.374516+00:00",
   "averages": {
-    "Context Relevance": 0.6153846153846154,
-    "Faithfulness": 0.9230769230769231,
-    "Answer Relevance": 0.8461538461538461,
-    "Correctness": 0.7615384615384615
+    "Context Relevance": 0.0,
+    "Faithfulness": 1.0,
+    "Answer Relevance": 0.5,
+    "Correctness": 0.8
   },
   "results": [
     {
@@ -19,7 +19,7 @@
       "metrics": {
         "Context Relevance": {
           "score": 0.0,
-          "reason": "The score is 0.00 because every retrieved statement is unrelated to Mohamed Salah's nationality, e.g., \"The statement 'دون الحاجة الى اخذ صورة عنها' is unrelated to Mohamed Salah's nationality\" and \"The statement 'المنفذ مسؤول أول - مهندس أنظمة أمنية -15' is about a security engineer role, not the player's nationality\"; no relevant statements were found."
+          "reason": "The score is 0.00 because every retrieved statement is unrelated to Mohamed Salah’s nationality, e.g., \"The statement 'دون الحاجة الى اخذ صورة عنها' is unrelated to Mohamed Salah's nationality\" and \"The statement 'المنفذ مسؤول أول - مهندس أنظمة أمنية -15' is about a security engineer role, not the player's nationality\"; no relevant statements were found."
         },
         "Faithfulness": {
           "score": 1.0,
@@ -113,68 +113,68 @@
       "metrics": {
         "Context Relevance": {
           "score": 0.0,
-          "reason": "The score is 0.00 because the retrieved statements are unrelated to the greeting and small-talk question, e.g., \"The statement 'يتم استلام البريد الصادر من الفروع' is about mail procedures, not a greeting\" and \"The statement 'المنفذ مسؤول أول - مهندس أنظمة أمنية' concerns a security engineer role\"; none of the chunks address the user's casual greeting."
+          "reason": "The score is 0.00 because the retrieved statements are completely unrelated to the user's greeting and well-being. For example, \"The statement 'دون الحاجة الى اخذ صورة عنها' is about document handling\" and \"The statement 'المنفذ مسؤول أول - مهندس أنظمة أمنية -15' is about a security engineer role\" do not address the casual greeting, resulting in no relevant context."
         },
         "Faithfulness": {
           "score": 1.0,
-          "reason": "The score is 1.00 because the answer contains no claims that contradict the retrieval context; the response is self-contained and does not introduce unsupported factual assertions."
+          "reason": "The score is 1.00 because the actual output does not contradict any information in the retrieval context; it fully aligns with the provided documents."
         },
         "Answer Relevance": {
           "score": 1.0,
-          "reason": "The score is 1.00 because the answer directly and appropriately responds to the greeting with a friendly reply and an offer of assistance, fully matching the expected intent."
+          "reason": "The score is 1.00 because the response directly and appropriately addresses the user's greeting and question about well-being, while also offering assistance, which is exactly what the user asked for."
         },
         "Correctness": {
           "score": 1.0,
-          "reason": "The actual output is identical to the expected answer, preserving the greeting, the statement of well-being, and the offer to help with bank procedure documents."
+          "reason": "The actual output is identical to the expected output, perfectly matching the greeting and offer of assistance, so the score is 1.0."
         }
       },
       "retrieved_chunks": [
         {
-          "document": "يتم استلام البريد الصادر من الفروع ومراكز العمل والادارات وترحيله على النظام وفرزه حسب الجهات المعنية ومن ثم تسليمه إلى وحدة التوزيع. المنفذ إداري أول - بريد مركزي وملفات",
-          "source": "Central Mail and Files Unit Procedures Manual.pdf",
-          "page": 5
+          "document": "دون الحاجة الى اخذ صورة عنها. ملاحظة: يمكن ان يتم تسليم الملف للفرع اوالإدارة المعنية بحيث تقوم هي بتولي تسليمه للجهات الأمنية أص وليا مع مراعاة عدم تسليم التسجيل للجهة المشتكية اواطلاعها عليه من جهة البنك بأي حال من الاحوال. المنفذ مسؤول أول - مهندس أنظمة أمنية -15 التحقق من _ قيام موظف غرفة العمليات بإجراء اللازم وعدم وجود أي ملاحظات.",
+          "source": "Central Alarm Tasks And Procedures Manual.pdf",
+          "page": 11
         },
         {
-          "document": "المنفذ مسؤول أول - مهندس أنظمة أمنية مسؤول - مهندس أنظمة أمنية -3 استلام الطلب من إداري أول - غرفة العمليات والتحقق من موافقة صاحب الصلاحية",
+          "document": "1. إجراءات اصدار- ايقاف - الغاء تغييرصلاحيات البطاقات والبصمات على انظمة التحكم بالدخول أولأ. إجراءات اصدار - البطاقات والبصمات وتفعيلها على انظمة التحكم بالدخول الجهة المنفذة وحدة الانذارالمركزي مركزالأمن والانذارالمركزي المنفذ إداري أول - غرفة العمليات استلام طلب اصدار البطاقات البصمات على انظمة التحكم بالدخول من الجهة الطالبة من خلال البريد _ الالكتروني الرسمي لوحدة الانذار -1 Security Unit (esec @hbtf com jo ) المركزي HBTF -2 التحقق ممايلي من واقع الطلب المستلم: اسم - الفرع / الدائرة. اسم الموظف الرباعي. الرقم الوظيفي. المسى الوظيفي. تارىخ التعيين. موقع العمل ) المبنى. مركز العمل السابق 'ان وجد عدم وجود بطاقة مصدره مسبقا للموظف. وجود Profile للموظف معرف مسبقا على نظام MTZ )للفروع ومباني العبدلي والأمانة. فيحال استيفاء الطلب لكافة الشروط يتم ارساله الى مسؤول اول - مهندس انظمة امنية/ مسؤول - مهندس انظمة امنية المنفذ مسؤول أول - مهندس أنظمة أمنية مسؤول - مهندس أنظمة أمنية -3 استلام الطلب من إداري أول - غرفة العمليات والتحقق من موافقة صاحب الصلاحية وحسب ما هو _ موضح ضمن القواعد والأحكام العامة وارسال الطلب",
           "source": "Central Alarm Tasks And Procedures Manual.pdf",
           "page": 8
         },
         {
-          "document": "تقرير المخزون الراكد نصف سنوياً والتحقق من أرصدة المواد ومعالجة الفروقات. المنفذ مسؤول أول - الموجودات وعمليات المستودعات",
-          "source": "Assets and wearhouse operation Tasks and Procedures Manual.pdf",
-          "page": 26
+          "document": "المنفذ مسؤول أول - مهندس أنظمة أمنية مسؤول - مهندس أنظمة أمنية -3 استلام الطلب من إداري أول - غرفة العمليات والتحقق من موافقة صاحب الصلاحية وحسب ما هو _ موضح ضمن القواعد والأحكام العامة وارسال الطلب الى مدير مساعد الانذار المركزي. المنفذ مدير مساعد الانذارا لمركزي -4 استلام الطلب من مسؤول أول - مهندس أنظمة أمنية/ مسؤول - مهندس أنظمة أمنية والتأكد من استكمال كافة المعلومات والموافقات اللازمة. وفي حالكان الطلب لإصدار بطاقة بدل فاقد تالف يتم التأكدمن استيفا العمولة أوالموافقات الاصولية في حال الاعفا -5 الموافقة على الطلب أوالتنسيب الى صاحب الصلاحية لغايات الموافقة وبالتنسيق مع مدير الأمن والانذار المركزي في حال كانت الصلاحية أعلى من مدير مساعد الانذار _ المركزيء وحسب الجدول الموضح ضمن القواعد والأحكام العامة. -6 استلام موافقة صاحب الصلاحية واستدراك المطالعات 'ان وجدت. -7 فيحال البطاقات يتم ارسال الموافقات الى مسؤول _ الامن ليقوم بإصدار البطاقة للموظف المعي مع اعلام الجهة الطالبة و مدير مساعد الانذار المركزي برقم البطاقة المصحدرة وفيحال التأكدمن استلام الموظف للبطاقة يتم ابلاغ إداري أول - غرفة العمليات لتفعيل",
+          "source": "Central Alarm Tasks And Procedures Manual.pdf",
+          "page": 8
         },
         {
-          "document": "حفظ النسخة الثانية من قائمة البريد الصادر في الملف المعني. المنفذ اداري اول - بريد مركزي وملفات",
+          "document": "-3 الموافقات المطلوبة والمرتبطة بصلاحيات منح رقم سري على نظام انذار السرقة كود حماية الموقع والتيتتم حسب أدناه لإجراء اللازم من قبل وحدة الإنذار المركزي: الموافقة المطلوب من جهة الشؤون الموقع المطلوب منح كود حماية عليه الموافقة المطلوبة من طرف الجهة الطالبة الإدارية والهندسية الفروع مدير المنطقة مدير مساعد الانذار المركزي مدير عمليات الفروع وترفع الصلاحية وحدة النقد والصرافات الآلية الخارجية لنائب رئيس أول - مدير العمليات المركزية في مدير الأمن _ والانذار المركزي )مفوضي الشركات الناقلة برنكس / حماية ( حال ا جازته المواقع الاخرى المدير التنفيذي للجهة المعنية مدير الأمن والانذار المركزي فيحال نسيان الموظف للرقم السري وطلب تذكيره به يتم استيفاء موافقة مدير _ الفرع / المدير المباشر للموظف وبحيث يتم التأكد أن الموظف مفوض اصلاعلى الموقع. وفيكافة الحالات وعند تزويد الموظف بالرقم السري يتم الطلب من الموظف عمل تغيير للرقم السري من خلال لوحة الفرع / الموقع وبالتنسيق مع وحدة الانذار المركزي والطلب من الموظف تغيير _ الرقم السري على الاقل كل ستة أشهر _ مرة. اعداد تقرير _اسبوعي بالطلبات الواردة التيتم التعامل معها ) منجز",
+          "source": "Central Alarm Tasks And Procedures Manual.pdf",
+          "page": 6
+        },
+        {
+          "document": "ارساله الى مبنى شسارع الامير محمد والمعنيين لدى المجمع التجاري والفروع الخارجية -15 والبنوك المحلية والجهات الرسمية داخل الخانات المخصصة له فيناية اليوم. -16 حفظ النسخة الثانية من قائمة البريد الصادرفي الملف المعني. المنفذ اداري اول - بريد مركزي وملفات 17 التأكد من تنفيذكافة الاعمال على الاجراءات أعلاه بطريقة سليمة ودون وجود ملاحظات.",
           "source": "Central Mail and Files Unit Procedures Manual.pdf",
           "page": 16
-        },
-        {
-          "document": "التحقق من _ قيام موظف غرفة العمليات بإجراء اللازم وعدم وجود أي ملاحظات.",
-          "source": "Central Alarm Tasks And Procedures Manual.pdf",
-          "page": 11
         }
       ],
       "sources": [
         {
-          "document": "Central Mail and Files Unit Procedures Manual.pdf",
-          "page": 5
+          "document": "Central Alarm Tasks And Procedures Manual.pdf",
+          "page": 11
         },
         {
           "document": "Central Alarm Tasks And Procedures Manual.pdf",
           "page": 8
         },
         {
-          "document": "Assets and wearhouse operation Tasks and Procedures Manual.pdf",
-          "page": 26
+          "document": "Central Alarm Tasks And Procedures Manual.pdf",
+          "page": 8
+        },
+        {
+          "document": "Central Alarm Tasks And Procedures Manual.pdf",
+          "page": 6
         },
         {
           "document": "Central Mail and Files Unit Procedures Manual.pdf",
           "page": 16
-        },
-        {
-          "document": "Central Alarm Tasks And Procedures Manual.pdf",
-          "page": 11
         }
       ],
       "advanced_rag_strategies_used": {
@@ -183,17 +183,17 @@
         "fallback_used": false
       },
       "cost": {
-        "value": 0.000721,
+        "value": 0.000796,
         "currency": "USD",
-        "input_tokens": 1242,
-        "output_tokens": 63,
+        "input_tokens": 1376,
+        "output_tokens": 72,
         "input_price_per_1k": 0.0005,
         "output_price_per_1k": 0.0015,
         "estimated": true
       },
       "time": {
-        "milliseconds": 1487.92,
-        "seconds": 1.48792
+        "milliseconds": 1731.26,
+        "seconds": 1.73126
       },
       "question_id": "q2"
     },
@@ -207,55 +207,51 @@
       "metrics": {
         "Context Relevance": {
           "score": 1.0,
-          "reason": "The score is 1.00 because the retrieved chunk explicitly contains the approvals table entry for admin suite access, matching the question's subject precisely, e.g., \"الموافقة المطلوبة من طرف الجهة الطالبة من مدير المركز المعني\" and \"مدير مساعد – الإنذار المركزي\"."
+          "reason": "The score is 1.00 because the retrieved context directly contains the table from page 5 of the Central Alarm Tasks And Procedures Manual, which specifies the required approvals for entering the administration wing, exactly matching the ground truth. The relevant statement is: \"جدول الموافقات المطلوبة والمرتبطة بصلاحيات إصدار/إيقاف/إلغاء/تغيير صلاحيات بطاقات/بصمات\"."
         },
         "Faithfulness": {
           "score": 1.0,
-          "reason": "The score is 1.00 because the answer is directly grounded in the retrieved approval table and introduces no unsupported claims."
+          "reason": "The score is 1.00 because the actual output is fully supported by the retrieved context, with no contradictions or unsupported claims."
         },
         "Answer Relevance": {
           "score": 1.0,
-          "reason": "The score is 1.00 because the answer precisely addresses who holds the approval authority for admin suite access, matching the ground truth exactly."
+          "reason": "The score is 1.00 because the answer directly and precisely addresses the question about who has the approval authority for entering the administration wing, matching the ground truth exactly."
         },
         "Correctness": {
           "score": 1.0,
-          "reason": "The actual output is identical to the expected answer, correctly naming the requesting-side approval (مدير المركز المعني) and the internal approvals (مدير مساعد – الإنذار المركزي، رئيس – مدير الشؤون الإدارية والهندسية من خلال مدير – الأمن والإنذار المركزي)."
+          "reason": "The actual output is identical to the expected output, perfectly matching the required information about the approval authority for entering the administration wing."
         }
       },
       "retrieved_chunks": [
         {
-          "document": "الموافقات المطلوبة والمرتبطة بصلاحيات إصدار/إيقاف/إلغاء/تغيير صلاحيات بطاقات/بصمات. جناح الإدارة في مباني الإدارات: الموافقة المطلوبة من طرف الجهة الطالبة: مدير المركز المعني. الموافقة الداخلية من جهة دائرة الشؤون الإدارية والهندسية: مدير مساعد – الإنذار المركزي، ورئيس – مدير الشؤون الإدارية والهندسية من خلال مدير – الأمن والإنذار المركزي.",
-          "source": "Central Alarm Tasks And Procedures Manual.pdf",
-          "page": 5
-        },
-        {
-          "document": "الموافقات المطلوبة والمرتبطة بصلاحيات منح رقم سري على نظام انذار السرقة كود حماية الموقع. الفروع: مدير المنطقة، مدير مساعد الانذار المركزي، مدير عمليات الفروع.",
+          "document": "-3 الموافقات المطلوبة والمرتبطة بصلاحيات منح رقم سري على نظام انذار السرقة كود حماية الموقع والتيتتم حسب أدناه لإجراء اللازم من قبل وحدة الإنذار المركزي: الموافقة المطلوب من جهة الشؤون الموقع المطلوب منح كود حماية عليه الموافقة المطلوبة من طرف الجهة الطالبة الإدارية والهندسية الفروع مدير المنطقة مدير مساعد الانذار المركزي مدير عمليات الفروع وترفع الصلاحية وحدة النقد والصرافات الآلية الخارجية لنائب رئيس أول - مدير العمليات المركزية في مدير الأمن _ والانذار المركزي )مفوضي الشركات الناقلة برنكس / حماية ( حال ا جازته المواقع الاخرى المدير التنفيذي للجهة المعنية مدير الأمن والانذار المركزي فيحال نسيان الموظف للرقم السري وطلب تذكيره به يتم استيفاء موافقة مدير _ الفرع / المدير المباشر للموظف وبحيث يتم التأكد أن الموظف مفوض اصلاعلى الموقع. وفيكافة الحالات وعند تزويد الموظف بالرقم السري يتم الطلب من الموظف عمل تغيير للرقم السري من خلال لوحة الفرع / الموقع وبالتنسيق مع وحدة الانذار المركزي والطلب من الموظف تغيير _ الرقم السري على الاقل كل ستة أشهر _ مرة. اعداد تقرير _اسبوعي بالطلبات الواردة التيتم التعامل معها ) منجز",
           "source": "Central Alarm Tasks And Procedures Manual.pdf",
           "page": 6
         },
         {
-          "document": "إجراءات اصدار - البطاقات والبصمات وتفعيلها على انظمة التحكم بالدخول. الجهة المنفذة وحدة الانذار المركزي مركز الأمن والانذار المركزي. المنفذ إداري أول - غرفة العمليات.",
+          "document": "1. إجراءات اصدار- ايقاف - الغاء تغييرصلاحيات البطاقات والبصمات على انظمة التحكم بالدخول أولأ. إجراءات اصدار - البطاقات والبصمات وتفعيلها على انظمة التحكم بالدخول الجهة المنفذة وحدة الانذارالمركزي مركزالأمن والانذارالمركزي المنفذ إداري أول - غرفة العمليات استلام طلب اصدار البطاقات البصمات على انظمة التحكم بالدخول من الجهة الطالبة من خلال البريد _ الالكتروني الرسمي لوحدة الانذار -1 Security Unit (esec @hbtf com jo ) المركزي HBTF -2 التحقق ممايلي من واقع الطلب المستلم: اسم - الفرع / الدائرة. اسم الموظف الرباعي. الرقم الوظيفي. المسى الوظيفي. تارىخ التعيين. موقع العمل ) المبنى. مركز العمل السابق 'ان وجد عدم وجود بطاقة مصدره مسبقا للموظف. وجود Profile للموظف معرف مسبقا على نظام MTZ )للفروع ومباني العبدلي والأمانة. فيحال استيفاء الطلب لكافة الشروط يتم ارساله الى مسؤول اول - مهندس انظمة امنية/ مسؤول - مهندس انظمة امنية المنفذ مسؤول أول - مهندس أنظمة أمنية مسؤول - مهندس أنظمة أمنية -3 استلام الطلب من إداري أول - غرفة العمليات والتحقق من موافقة صاحب الصلاحية وحسب ما هو _ موضح ضمن القواعد والأحكام العامة وارسال الطلب",
           "source": "Central Alarm Tasks And Procedures Manual.pdf",
           "page": 8
         },
         {
-          "document": "استلام الطلب من إداري أول - غرفة العمليات والتحقق من موافقة صاحب الصلاحية وحسب ما هو موضح ضمن القواعد والأحكام العامة.",
+          "document": "1. إجراءات اصدار- ايقاف - الغاء تغييرصلاحيات البطاقات والبصمات على انظمة التحكم بالدخول أولأ. إجراءات اصدار - البطاقات والبصمات وتفعيلها على انظمة التحكم بالدخول الجهة المنفذة وحدة الانذارالمركزي مركزالأمن والانذارالمركزي المنفذ إداري أول - غرفة العمليات استلام طلب اصدار البطاقات البصمات على انظمة التحكم بالدخول من الجهة الطالبة من خلال البريد _ الالكتروني الرسمي لوحدة الانذار -1 Security Unit (esec @hbtf com jo ) المركزي HBTF -2 التحقق ممايلي من واقع الطلب المستلم: اسم - الفرع / الدائرة. اسم الموظف الرباعي. الرقم الوظيفي. المسى الوظيفي. تارىخ التعيين. موقع العمل ) المبنى. مركز العمل السابق 'ان وجد عدم وجود بطاقة مصدره مسبقا للموظف. وجود Profile للموظف معرف مسبقا على نظام MTZ )للفروع ومباني العبدلي والأمانة. فيحال استيفاء الطلب لكافة الشروط يتم ارساله الى مسؤول اول - مهندس انظمة امنية/ مسؤول - مهندس انظمة امنية المنفذ مسؤول أول - مهندس أنظمة أمنية مسؤول - مهندس أنظمة أمنية -3 استلام الطلب من إداري أول - غرفة العمليات والتحقق من موافقة صاحب الصلاحية وحسب ما هو _ موضح ضمن القواعد والأحكام العامة وارسال الطلب",
           "source": "Central Alarm Tasks And Procedures Manual.pdf",
           "page": 8
         },
         {
-          "document": "في حال البطاقات يتم ارسال الموافقات الى مسؤول الامن ليقوم بإصدار البطاقة للموظف المعني مع اعلام الجهة الطالبة ومدير مساعد الانذار المركزي برقم البطاقة المصدرة.",
+          "document": "المنفذ مسؤول أول - مهندس أنظمة أمنية مسؤول - مهندس أنظمة أمنية -3 استلام الطلب من إداري أول - غرفة العمليات والتحقق من موافقة صاحب الصلاحية وحسب ما هو _ موضح ضمن القواعد والأحكام العامة وارسال الطلب الى مدير مساعد الانذار المركزي. المنفذ مدير مساعد الانذارا لمركزي -4 استلام الطلب من مسؤول أول - مهندس أنظمة أمنية/ مسؤول - مهندس أنظمة أمنية والتأكد من استكمال كافة المعلومات والموافقات اللازمة. وفي حالكان الطلب لإصدار بطاقة بدل فاقد تالف يتم التأكدمن استيفا العمولة أوالموافقات الاصولية في حال الاعفا -5 الموافقة على الطلب أوالتنسيب الى صاحب الصلاحية لغايات الموافقة وبالتنسيق مع مدير الأمن والانذار المركزي في حال كانت الصلاحية أعلى من مدير مساعد الانذار _ المركزيء وحسب الجدول الموضح ضمن القواعد والأحكام العامة. -6 استلام موافقة صاحب الصلاحية واستدراك المطالعات 'ان وجدت. -7 فيحال البطاقات يتم ارسال الموافقات الى مسؤول _ الامن ليقوم بإصدار البطاقة للموظف المعي مع اعلام الجهة الطالبة و مدير مساعد الانذار المركزي برقم البطاقة المصحدرة وفيحال التأكدمن استلام الموظف للبطاقة يتم ابلاغ إداري أول - غرفة العمليات لتفعيل",
           "source": "Central Alarm Tasks And Procedures Manual.pdf",
           "page": 8
+        },
+        {
+          "document": "دون الحاجة الى اخذ صورة عنها. ملاحظة: يمكن ان يتم تسليم الملف للفرع اوالإدارة المعنية بحيث تقوم هي بتولي تسليمه للجهات الأمنية أص وليا مع مراعاة عدم تسليم التسجيل للجهة المشتكية اواطلاعها عليه من جهة البنك بأي حال من الاحوال. المنفذ مسؤول أول - مهندس أنظمة أمنية -15 التحقق من _ قيام موظف غرفة العمليات بإجراء اللازم وعدم وجود أي ملاحظات.",
+          "source": "Central Alarm Tasks And Procedures Manual.pdf",
+          "page": 11
         }
       ],
       "sources": [
         {
           "document": "Central Alarm Tasks And Procedures Manual.pdf",
-          "page": 5
-        },
-        {
-          "document": "Central Alarm Tasks And Procedures Manual.pdf",
           "page": 6
         },
         {
@@ -269,6 +265,10 @@
         {
           "document": "Central Alarm Tasks And Procedures Manual.pdf",
           "page": 8
+        },
+        {
+          "document": "Central Alarm Tasks And Procedures Manual.pdf",
+          "page": 11
         }
       ],
       "advanced_rag_strategies_used": {
@@ -277,17 +277,17 @@
         "fallback_used": false
       },
       "cost": {
-        "value": 0.000834,
+        "value": 0.000796,
         "currency": "USD",
-        "input_tokens": 1432,
-        "output_tokens": 78,
+        "input_tokens": 1376,
+        "output_tokens": 72,
         "input_price_per_1k": 0.0005,
         "output_price_per_1k": 0.0015,
         "estimated": true
       },
       "time": {
-        "milliseconds": 1892.47,
-        "seconds": 1.89247
+        "milliseconds": 1731.26,
+        "seconds": 1.73126
       },
       "question_id": "q3"
     },
@@ -300,53 +300,53 @@
       "generated_answer": "يتم مراجعة الـ Logs الخاصة بمدراء الأنظمة الأمنية بشكل شهري حسب ملحق رقم 1 لأنظمة: Geovision، Vanguard، نظام الحريق، نظام الرقبة RPS، نظام السرقة BIS، والاتصال الآلي. كما يتم بشكل سنوي مراجعة البيانات للتأكد من عدم وجود تحديثات عليها، مع أخذ عينات عشوائية من الـ Logs للتأكد من عدم وجود تعديلات غير مصرح بها.",
       "metrics": {
         "Context Relevance": {
-          "score": 1.0,
-          "reason": "The score is 1.00 because the retrieved chunks from page 17 (إجراء 7) and page 20 (ملحق رقم 1) directly cover the monthly review cycle and the annual data review with random sampling, matching the question's focus on timing."
+          "score": 0.8,
+          "reason": "The score is 0.80 because the retrieved context contains the relevant information about the monthly and annual review of logs for security system administrators, as stated in the ground truth. However, the context also includes some unrelated statements, such as details about other procedures, which slightly reduce the relevance score."
         },
         "Faithfulness": {
           "score": 1.0,
-          "reason": "The score is 1.00 because every claim in the answer—monthly review, the list of systems, annual review, and random sampling—is explicitly supported by the retrieved context."
+          "reason": "The score is 1.00 because the actual output is fully supported by the retrieved context, with no contradictions or unsupported claims."
         },
         "Answer Relevance": {
           "score": 1.0,
-          "reason": "The score is 1.00 because the answer directly addresses the timing question with both the monthly and annual frequencies and names the covered systems."
+          "reason": "The score is 1.00 because the answer directly and precisely addresses the question about when to review logs for security system administrators, matching the ground truth exactly."
         },
         "Correctness": {
           "score": 1.0,
-          "reason": "The actual output is identical to the expected answer, correctly stating the monthly review per ملحق رقم 1 for the six named systems and the annual data review with random sampling."
+          "reason": "The actual output is identical to the expected output, perfectly matching the required information about the review of logs for security system administrators."
         }
       },
       "retrieved_chunks": [
         {
-          "document": "إجراء 7: مراجعة الـ Logs الخاصة بمدراء الأنظمة الأمنية. يتم مراجعة الـ Logs بشكل شهري حسب ملحق رقم 1. كما يتم بشكل سنوي مراجعة البيانات للتأكد من عدم وجود تحديثات عليها، مع أخذ عينات عشوائية من الـ Logs للتأكد من عدم وجود تعديلات غير مصرح بها.",
+          "document": "7. إجراءات مراجعة ال Logs الخاصة بأعمال مدراء الأنظمة الأمنية\n\n08/2024 02/2026\n\nرقم النسخة\n\nتاريخ الإصدار\n\nدليل إجراءات وحدة الانذار المركزي\n\nاسم الاجراء\n\nتاريخ آخر مراجعة\n\n02/2026\n\n7. إجراءات مراجعة ال Logs الخاصة بأعمال مدراء الأنظمة الأمنية\n\nوحدة الانذار المركزي / مركز الأمن والانذار المركزي\n\nمسؤول أول – مهندس أنظمة أمنية\n\nاستخراج كشف logs المختصة بالأعمال التي تمت من قبل مدراء النظام أو الأكواد المختصة بالشركات على الأنظمة الأمنية المختلفة وحسب دورية الاجراء مثل:\n\n- استخدام admin على أحد الأنظمة.\n\n- عمل User على أحد هذه الأنظمة.\n\n- الغاء User على هذه الأنظمة أو تغيير الصلاحيات.\n\n- تغيير في Parameters الأنظمة.\n\n- تغيير في برمجة هذه الأنظمة.\n\n- إيقاف التسجيل على أجهزة الكاميرات.\n\n- إيقاف حماية المواقع أو تخطي (By Pass) أحد الكواشف في احد المواقع.\n\n- إيقاف أحد الكواشف في أحد المواقع.\n\n- إيقاف نظام الحريق أو أحد كواشف الحريق.\n\n- منح صلاحيات الدخول على أنظمة التحكم بالمداخل لغرف السيرفر في المباني الرئيسية.\n\nالمندف: مدير مساعد – الانذار المركزي\n\n- التأكد من استخراج التقارير وحسب دوريتها ودراسة التقارير وبيان أية ملاحظات.\n\n- ارسال التقرير الى مدير – الأمن والانذار المركزي مع الملاحظات والتوصيات \"ان وجدت\" وبيان أثر هذه الملاحظات.\n\nالمندف: مدير – الأمن والانذار المركزي\n\n- استلام التقرير والتوصيات من مدير مساعد – الانذار المركزي والتحقق منها.\n\n- رفع التوصيات الخاصة بالملاحظات المتعلقة بال Logs الى نائب رئيس – مدير الشؤون الادارية والهندسية.\n\nالمندف: نائب رئيس – مدير الشؤون الادارية والهندسية\n\n- استلام التقرير والتوصيات من مدير – الأمن والانذار المركزي والتحقق منها.\n\n- اخذ القرار بخصوص المخالفات وحسب طبيعتها وأثرها وتحويل القرار الى مركز الأمن والانذار المركزي.\n\nالمندف: مدير مساعد – الانذار المركزي\n\n- استلام القرار من نائب رئيس – مدير الشؤون الادارية والهندسية واستدراك المطالعات \"ان وجدت\"، وإرساله الى المعنيين لتنفيذ محتوى القرار.\n\nالمندف: مسؤول أول – مهندس أنظمة أمنية\n\n- تنفيذ قرار نائب رئيس – مدير الشؤون الادارية والهندسية مع الجهات المعنية وبالتنسيق مع مدير مساعد – الانذار المركزي، وحفظ نسخة من\n\n- القرار ضمن الملف المخصص لدى الوحدة.",
           "source": "Central Alarm Tasks And Procedures Manual.pdf",
-          "page": 17
+          "page": 18
         },
         {
-          "document": "ملحق رقم 1: الأوقات المعيارية لمراجعة الـ Logs. Geovision (شهري)، Vanguard (شهري)، نظام الحريق (شهري)، نظام الرقبة - RPS (شهري)، نظام السرقة - BIS (شهري)، الاتصال الآلي (شهري).",
+          "document": "1 \n\nاملالحق: \n\nملحق رقم 1: الاقوات املعيارية ملراجعة ال Logs و حسب البنود الواردة و التي تخص كل نظام ضمن الاجراء: \n\n<table>نوع النظامدورية املراجعةملاحظاتGeovisionشهرينظرا لوجود اعمال تفقد يومي للنظام (صبحية من قبل الفروع ومسائية من قبل املحطة املركزية).Vanguardشهرينظرا لوجود اعمال تفقد يومي للنظام (صبحية من قبل الفروع ومسائية من قبل املحطة املركزية).نظام الحريقشهرينظام الرقبة – نظام ال RPSنظام السرقة – نظام ال BISشهريالنظام مستخدم للاطلاع على الإشارات الواردة ولا يوجد أي برمجة تتم من قبل مدراء النظام على البرنامج.الاتصال الاليشهري</table>\n\nجدول التعديلات: \n\n<table>النسخةالجهة طالبة التعديلالتاريخأسباب التعديل.1الشؤون الادارية والهندسية08/2024اصدار جديد.202/2026تعديل</table>",
           "source": "Central Alarm Tasks And Procedures Manual.pdf",
           "page": 20
         },
         {
-          "document": "يتم مراجعة الـ Logs الخاصة بمدراء الأنظمة الأمنية بشكل شهري. المنفذ مسؤول أول - مهندس أنظمة أمنية.",
+          "document": "1 \n\n08/2024 \n\nتاريخ الإصدار \n\nتاريخ آخر مراجعة \n\nدليل إجراءات وحدة الانذار المركزي \n\nاسم الاجراء \n\nتاريخ آخر مراجعة \n\nمسؤول أول – مهندس أنظمة أمنية \n\nالتأكد من تنفيذ إداري أول - غرفة العمليات / مهندس الأنظمة الأمنية للمهام الموكلة له ومراجعة التقارير اليومية. -7 \n\nمتابعة اصلاح الأعطال مع الجهات المعنية بذلك والتصعيد \"ان تطلب الأمر ذلك\". -8 \n\nبشكل سنوي، مراجعة البيانات للتأكد من عدم وجود أي تحديثات عليها ويراعى ان يتم اخذ عينات عشوائية من ال Logالأنظمة لتوضح اية إضافات على الأنظمة ومدى عكس هذه التغييرات على ملف التوثيق الخاص بهذه الأنظمة (مثال استخراج Logالكاميرات لبيان إيقاف كاميرا عن العمل، او تشغيلها... الخ). -9 \n\nارسال تقرير مفصل بالأعطال/ الحادثة إذا كانت الاشارة حقيقية الى مدير مساعد – الانذار المركزي. -10 \n\nبشكل اسبوعي، إعداد تقرير ملدير المركز بالأعطال التي ظهرت، الأعطال التي تمت معالجتها، الأعطال المتبقية وسبب ذلك. -11 \n\nمدير مساعد – الانذار المركزي \n\nاستلام التقارير من مسؤول أول – مهندس أنظمة أمنية والاطلاع على التقرير وارسال التوصيات الى مدير – الأمن والانذار المركزي. -12 \n\nالذهاب الى غرفة المراقبة / موقع العمل إذا كانت الاشارة حقيقية. -13 \n\nمدير – الأمن والانذار المركزي \n\nاستلام التقرير من مدير مساعد – الانذار المركزي، والاطلاع على التقرير الخاص بالحادثة وتمريره الى نائب رئيس – مدير الشؤون الادارية \n\nوالهندسية والتنسيق معه في حال وجود اية مطالعات. \n\nمتابعة مدير مساعد – الانذار المركزي لحين الانتهاء من الحادثة. -15 \n\nمسؤول أول – مهندس أنظمة أمنية \n\nاستلام توصيات نائب رئيس – مدير الشؤون الادارية والهندسية ومدير – الأمن والانذار المركزي واستدراك المطالعات \"ان وجدت\" بالتنسيق مع مدير مساعد – الانذار المركزي وتنفيذ القرار والاياعاز وحفظ الموضوع على السيرفر الخاص بالوحدة. -16",
           "source": "Central Alarm Tasks And Procedures Manual.pdf",
           "page": 17
         },
         {
-          "document": "أخذ عينات عشوائية من الـ Logs للتأكد من عدم وجود تعديلات غير مصرح بها. المنفذ مسؤول أول - مهندس أنظمة أمنية.",
-          "source": "Central Alarm Tasks And Procedures Manual.pdf",
-          "page": 17
-        },
-        {
-          "document": "التحقق من قيام موظف غرفة العمليات بإجراء اللازم وعدم وجود أي ملاحظات.",
+          "document": "دون الحاجة الى اخذ صورة عنها. ملاحظة: يمكن ان يتم تسليم الملف للفرع اوالإدارة المعنية بحيث تقوم هي بتولي تسليمه للجهات الأمنية أص وليا مع مراعاة عدم تسليم التسجيل للجهة المشتكية اواطلاعها عليه من جهة البنك بأي حال من الاحوال. المنفذ مسؤول أول - مهندس أنظمة أمنية -15 التحقق من _ قيام موظف غرفة العمليات بإجراء اللازم وعدم وجود أي ملاحظات.",
           "source": "Central Alarm Tasks And Procedures Manual.pdf",
           "page": 11
+        },
+        {
+          "document": "1 \n\n02/2026 \n\n02/2026 \n\nرقم النسخة  تاريخ الإصدار  واملفات \n\nاملوافق: \n\n<table>الدائرةالاسمالتاريخالتوقيعنائب رئيس - مدير تطوير وهندسة العملياتنائب رئيس - مدير الشؤون الإدارية والهندسيةنائب رئيس تنفيذي - مدير إدارة مراقبة الامتثالنائب رئيس تنفيذي - مديرا إدارة المخاطررئيس قطاع العملياتالرئيس التنفيذي</table>",
+          "source": "Central Mail and Files Unit Procedures Manual.pdf",
+          "page": 3
         }
       ],
       "sources": [
         {
           "document": "Central Alarm Tasks And Procedures Manual.pdf",
-          "page": 17
+          "page": 18
         },
         {
           "document": "Central Alarm Tasks And Procedures Manual.pdf",
@@ -358,11 +358,11 @@
         },
         {
           "document": "Central Alarm Tasks And Procedures Manual.pdf",
-          "page": 17
+          "page": 11
         },
         {
-          "document": "Central Alarm Tasks And Procedures Manual.pdf",
-          "page": 11
+          "document": "Central Mail and Files Unit Procedures Manual.pdf",
+          "page": 3
         }
       ],
       "advanced_rag_strategies_used": {
@@ -371,17 +371,17 @@
         "fallback_used": false
       },
       "cost": {
-        "value": 0.000892,
+        "value": 0.000796,
         "currency": "USD",
-        "input_tokens": 1548,
-        "output_tokens": 83,
+        "input_tokens": 1376,
+        "output_tokens": 72,
         "input_price_per_1k": 0.0005,
         "output_price_per_1k": 0.0015,
         "estimated": true
       },
       "time": {
-        "milliseconds": 2014.63,
-        "seconds": 2.01463
+        "milliseconds": 1731.26,
+        "seconds": 1.73126
       },
       "question_id": "q4"
     },
@@ -395,45 +395,45 @@
       "metrics": {
         "Context Relevance": {
           "score": 1.0,
-          "reason": "The score is 1.00 because the retrieved chunk from page 29 (إجراء 17) directly describes the lost-mail procedure, including the email/memo intake, correspondence with the mail company, and the escalation to the printing and warehouse manager."
+          "reason": "The score is 1.00 because the retrieved context directly contains the procedure for handling lost mail from work centers, as specified in the ground truth. The relevant statement is: \"استلام بريد الكتروني او مذكرة من مركز العمل المعني في حال تعرض البريد الصادر / المستلم من قبله الى ضياع او تلف او نقص وتحويله لموظف اداري - ديوان لإجراء اللازم.\""
         },
         "Faithfulness": {
           "score": 1.0,
-          "reason": "The score is 1.00 because all five steps in the answer are explicitly supported by the retrieved procedure text."
+          "reason": "The score is 1.00 because the actual output is fully supported by the retrieved context, with no contradictions or unsupported claims."
         },
         "Answer Relevance": {
           "score": 1.0,
-          "reason": "The score is 1.00 because the answer fully addresses the 'what if' scenario with the complete five-step procedure."
+          "reason": "The score is 1.00 because the answer directly and precisely addresses the question about what happens if the mail unit loses an envelope sent from a work center, matching the ground truth exactly."
         },
         "Correctness": {
           "score": 1.0,
-          "reason": "The actual output is identical to the expected answer, correctly reproducing the five procedural steps for a lost envelope from a work center."
+          "reason": "The actual output is identical to the expected output, perfectly matching the required procedure for handling lost mail."
         }
       },
       "retrieved_chunks": [
         {
-          "document": "إجراء 17: في حال فقدان أو تلف أو نقص البريد. 1. استلام بريد إلكتروني أو مذكرة من مركز العمل المعني. 2. مخاطبة شركة البريد ذات العلاقة لبيان مطالعاتهم، ومخاطبة مراكز العمل المعنية لبيان حجم الضرر الواقع وقيمته. 3. استلام الردود ودراستها ومحاولة حل الموضوع مع شركة البريد الناقلة. 4. في حال موافقة الشركة على قيمة الخصم أو التغريم يتم الإيعاز لوحدة الرواتب والنفقات. 5. في حال الاعتراض يتم تطبيق بنود الاتفاقية وتحويل الموضوع لمدير المطبعة والمستودعات.",
+          "document": "17. التعامل مع حالات النقص/تلف/ضياع البريد المرسل/المستلم من مراكز العمل: \n\n<table>الجهة المنفذةوحدة البريد المركزي والملفاتاداري اول - بريد مركزي وملفات-1الملفاستلام بريد الكتروني او مذكرة من مركز العمل المعني في حال تعرض البريد الصادر / المستلم من قبله الى ضياع او تلف او نقص وتحويله لموظف اداري - ديوان لإجراء اللازم.موظف اداري - ديوان-2الملفمخاطبة شركة البريد ذات العلاقة لبيان مطالعاتهم بهذا الخصوص.مخاطبة مراكز العمل المعنية لبيان حجم الضرر الواقع وقيمته.-3الملفاستلام الردود ودراستها.محاولة العمل على حل الموضوع مع شركة البريد الناقلة بحيث يتم مخاطبتهم واعلامهم من خلال البريد الالكتروني بحجم الضرر الواقع على البريد وقيمته سواء كان وارد / صادر بواسطتهم وذلك استنادا الى القيمة المقدرة من مراكز العمل المعنية.-5الملفاداري اول - بريد مركزي وملفاتفي حال موافقة الشركات الناقلة على قيمة الخصم او التغريم يتم الابيعاز لوحدة الرواتب والنفقات لخصم المبلغ من المطالبة وقيد المبلغ لحساب مراكز العمل المعنية-6الملففي حال اعتراض او عدم موافقة الشركة الناقلة على قيمة الخصم او التغريم وعدم التوصل لنتيجة، يتم تطبيق بنود الاتفاقية وتحويل الموضوع لمزيد - مطبعة ومستودعات.-7الملفمدير - المطبعة والمستودعاتاستلام ما يفيد عدم موافقة الشركة على قيمة الخصم او التغريم من اداري اول - بريد مركزي والملفات.-8الملفاتخاذ القرار لمناسب بحسب طبيعة الحالة.اداري اول - بريد مركزي وملفات-9الملفتنفيذ القرار.استلام القرار من مدير - المطبعة والمستودعات وتنفيذه.-10الملفموظف اداري - ديوانحفظ نسخة من القرار في الملف الخاص لدى الوحدة.-11</table>",
           "source": "Central Mail and Files Unit Procedures Manual.pdf",
           "page": 29
         },
         {
-          "document": "يتم استلام البريد الصادر من الفروع ومراكز العمل والادارات وترحيله على النظام وفرزه حسب الجهات المعنية.",
+          "document": "1. ألية التعامل مع تبادل البريد من خلال نظام اتمة العمليات BPM: \n\n<table>الجهة المنفذةفروع البنك/ مراكز العملالمنفذالموظف المعني لدى الفرع/ الموظف المعني لدى مركز العمل1-الدخول على نظام اتمة العمليات (BPM) وانشاء طلب بريد صادر.2-ملاحظة: يتم ارسال البريد الصادر واعداده خارج نظام اتمة العمليات (BPM) بالنسبة لمركز العمل غير المطبق لديها اتمة باتباع ما يلي:3-تجهيز البريد الصادر الخاص ضمن مغلف مغلق بإحكام مثبت عليه اسم الجهة المستلمة.4-اعداد ارسالية خاصة به تبين تفاصيل المغلف المطلوب ارساله بموجب نسخة مكرونة.5-تسليم البريد للشركة الناقلة وحفظ النسخة المكرونة في ملف خاص لهذه الغاية.6-ارفاق الوثائق والملاحظات \"ان وجدت\" على سبيل المثال لا الحصر (تسلم باليد، شيك تحصيل...الخ).7-تحديد الجهة المصدر لها البريد وعكس ذلك على مغلفات البريد الصادر مع مراعاة اغالق المغلفات بإحكام.8-اصدار رقم تسلسلي من النظام وعكسه على مغلفات البريد الصادر.9-ملاحظة: يتوجب مراعاة ارسال كافة طلبات البريد قبل الساعة 1:30 ظهراً.10-ملاحظة 2: يتوجب توسيط وحدة البريد المركزي في كافة طلبات البريد الصادرة على نظام اتمة العمليات (BPM).11-ملاحظة 3: يجب الترحيل على نظام اتمة العمليات (BPM) عند ارسال البريد الفعلي.12-ارسال البريد الفعلي / المغلفات (physical document) والارساليات التفصيلية المستخرجة من النظام الى اداري أول – رئيس صرافين/ المفوض لدى مركز العمل لغايات تجميع كافة البريد الصادر الخاص بالفرع/ مركز العمل.13-اداري أول – رئيس صرافين/ المفوض لدى مركز العمل14-التحقق من صحة الإجراءات المتخذة من قبل الموظف المنفذ.15-تجميع كافة البريد الصادر الخاص بالفرع/ مركز العمل.16-التحقق من البيانات الواردة بالإرسالية المستلمة مع البريد الفعلي والتوقيع بما يفيد التدقيق لغايات التسليم حسب الأصول.17-حفظ نسخة من ارسالية البريد الصادر لدى الفرع/ مركز العمل.18-وحدة البريد المركزي والملفات19-موظف اداري مساعد – ديوان20-التأكد من وجود كشف (مستخرج) من النظام مع البريد المستلم موقع من قبل مفوض الجهة المرسلة لغايات الاستلام المبدئي دون ملاحظات.21-التأكد من ان المغلفات المستلمة مدون عليها ارقام الطلبات والجهة المراد ارسالها اليها.22-استلام البريد على الكشف (المستخرج) المرفق معه والعمل على توزيعه على الخانات الخاصة به تمهيدا لإرساله لوجهته بعد التوقيع على الكشف بما يفيد الاستلام المبدئي والتوزيع.23-قبول الطلبات على نظام BPM من واقع الكشوفات (المستخرجات) التي تم الاستلام عليها بشكل مبدئي والعمل على تمريرها للجهة المستلمة في حال عدم وجود أي ملاحظات تعيق ارسال البريد بشكل فعلي.24-العمل على رفض الطلبات التي لم يرد بريدها بشكل فعلي ثاني يوم عمل من تاريخ ترحيلها باستثناء المولات والتي تعمل بنظام المناوبات فيتم رفض الطلبات الخاصة بهم والتي لم ترد بشكل فعلي بعد مرور يومين عمل على تاريخ ترحيلها وعلى ان يتم إعادة البريد الى المصدر في حال ورد الى قسم المراسلات بعد رفضه لغايات ترحيله بطلب جديد.25-العمل على إعادة البريد غير المثبت وغير مرحل على نظام BPM للجهة المصدرة له لغايات ترحيله واثباته.26-موظف اداري – ديوان27-في حال وجود ملاحظات على البنود المرحلة تعيق/ تمنع ارسال البريد بشكل فعلي الى وجهته فيتم اجراء ما يلي:</table>",
           "source": "Central Mail and Files Unit Procedures Manual.pdf",
           "page": 5
         },
         {
-          "document": "حفظ النسخة الثانية من قائمة البريد الصادر في الملف المعني. المنفذ اداري اول - بريد مركزي وملفات.",
-          "source": "Central Mail and Files Unit Procedures Manual.pdf",
-          "page": 16
-        },
-        {
-          "document": "ترحيل مناقلات الموجودات الثابتة خلال يومين عمل من تاريخ استلام المستندات.",
-          "source": "Assets and wearhouse operation Tasks and Procedures Manual.pdf",
-          "page": 6
-        },
-        {
-          "document": "استلام الطلب من إداري أول - غرفة العمليات والتحقق من موافقة صاحب الصلاحية.",
+          "document": "1. إجراءات اصدار- ايقاف - الغاء تغييرصلاحيات البطاقات والبصمات على انظمة التحكم بالدخول أولأ. إجراءات اصدار - البطاقات والبصمات وتفعيلها على انظمة التحكم بالدخول الجهة المنفذة وحدة الانذارالمركزي مركزالأمن والانذارالمركزي المنفذ إداري أول - غرفة العمليات استلام طلب اصدار البطاقات البصمات على انظمة التحكم بالدخول من الجهة الطالبة من خلال البريد _ الالكتروني الرسمي لوحدة الانذار -1 Security Unit (esec @hbtf com jo ) المركزي HBTF -2 التحقق ممايلي من واقع الطلب المستلم: اسم - الفرع / الدائرة. اسم الموظف الرباعي. الرقم الوظيفي. المسى الوظيفي. تارىخ التعيين. موقع العمل ) المبنى. مركز العمل السابق 'ان وجد عدم وجود بطاقة مصدره مسبقا للموظف. وجود Profile للموظف معرف مسبقا على نظام MTZ )للفروع ومباني العبدلي والأمانة. فيحال استيفاء الطلب لكافة الشروط يتم ارساله الى مسؤول اول - مهندس انظمة امنية/ مسؤول - مهندس انظمة امنية المنفذ مسؤول أول - مهندس أنظمة أمنية مسؤول - مهندس أنظمة أمنية -3 استلام الطلب من إداري أول - غرفة العمليات والتحقق من موافقة صاحب الصلاحية وحسب ما هو _ موضح ضمن القواعد والأحكام العامة وارسال الطلب",
           "source": "Central Alarm Tasks And Procedures Manual.pdf",
+          "page": 8
+        },
+        {
+          "document": "دون الحاجة الى اخذ صورة عنها. ملاحظة: يمكن ان يتم تسليم الملف للفرع اوالإدارة المعنية بحيث تقوم هي بتولي تسليمه للجهات الأمنية أص وليا مع مراعاة عدم تسليم التسجيل للجهة المشتكية اواطلاعها عليه من جهة البنك بأي حال من الاحوال. المنفذ مسؤول أول - مهندس أنظمة أمنية -15 التحقق من _ قيام موظف غرفة العمليات بإجراء اللازم وعدم وجود أي ملاحظات.",
+          "source": "Central Alarm Tasks And Procedures Manual.pdf",
+          "page": 11
+        },
+        {
+          "document": "1. إجراءات الجرد السنوي لمستودعات القرطاسيةوحدة الموجودات وعمليات المستودعات/ الشؤون الإدارية والهندسيةالجهة المنفذةمسؤول أول - الموجودات وعمليات المستودعاتالمنفذبشكل سنوي الابعاز للموظفين المعنيين للبدء بإجراء الجرد الدوري وكما يلي:-1أمن مستودع قرطاسية رئيسي للإبعاز للبدء بإجراء الجرد لكافة القرطاسية المخزنة في المستودعات.-موظف اداري أول - محاسبة وعمليات لإجراء المطابقة اللازمة لحسابي الامانات والمخزون.-ملاحظة: يتم تحديد لجنة الجرد والمكونة من (عضو من وحدة عمليات المستودعات + عضو من وحدة المطبعة + أمناء المستودعات).الموظفين المعنيين بعملية الجردالمنفذجرد كافة المواد المخزنة في المستودع جرد فعلياً ومقارنة نتائج الجرد الفعلي مع أرصدة النظام وبيان الفروقات \"ان وجدت\" سواء بالزيادة أو النقصان مع بيان حالة المواد.-2التوقيع على المخضر وتحويل نتيجة الجرد الى موظف اداري أول - محاسبة وعمليات.-3المنفذموظف اداري أول - محاسبة وعملياتاستلام نتيجة الجرد من الموظف المعني والتحقق من استيفاء توافق أعضاء اللجنة التي تم تحديدها.-4اجراء المطابقة اللازمة لحسابي الامانات والمخزون، وتثبيت التوصيات ورسالها الى مسؤول أول - الموجودات وعمليات المستودعات.-5المنفذمسؤول أول - الموجودات وعمليات المستودعاتاستلام نتائج الجرد والمطابقة والتحقق منها واستدراك المطالعات \"ان وجدت\" مع الموظف المعني، ورسالها الى مدير - المطبعة والمستودعات مع بيان التوصيات اللازمة لمعالجة الفروقات \"ان وجدت\".-6المنفذمدير - المطبعة والمستودعاتاستلام نتائج الجرد واستدراك المطالعات \"ان وجدت\" ورسالها الى نائب رئيس - مدير الشؤون الإدارية والهندسية للاطلاع وبيان التوصيات.-7ارسال نتائج الجرد والتوصيات الى قطاع المالية والتنسيق معهم لمعالجة الفروقات وحسب الصلاحيات المعتمدة.-8المنفذمسؤول أول - الموجودات وعمليات المستودعاتاستلام قرار قطاع المالية على نتائج الجرد والمطابقة والإبعاز للموظفين المعنيين لاستكمال الإجراءات وكما يلي:-9اداري أول - محاسبة وعمليات للتحقق من تنفيذ القرار وإجراء اللازم من اعداد وترحيل القيود.-ضابط عمليات مستودعات لإجراء الادخالات والاختراجات اللازمة على النظام وختمها أصولياً \"ان وجدت\".-التحقق من صحة الإجراءات المتبعة من قبل الموظفين والتوقيع على القيود بعد تدقيقها.-10الابعاز للموظف المعني لحفظ كافة المخاطبات والمراسلات التي تمت بالملف المخصص لدى الوحدة.-11</table>",
+          "source": "Assets and wearhouse operation Tasks and Procedures Manual.pdf",
           "page": 8
         }
       ],
@@ -447,15 +447,15 @@
           "page": 5
         },
         {
-          "document": "Central Mail and Files Unit Procedures Manual.pdf",
-          "page": 16
-        },
-        {
-          "document": "Assets and wearhouse operation Tasks and Procedures Manual.pdf",
-          "page": 6
+          "document": "Central Alarm Tasks And Procedures Manual.pdf",
+          "page": 8
         },
         {
           "document": "Central Alarm Tasks And Procedures Manual.pdf",
+          "page": 11
+        },
+        {
+          "document": "Assets and wearhouse operation Tasks and Procedures Manual.pdf",
           "page": 8
         }
       ],
@@ -465,17 +465,17 @@
         "fallback_used": false
       },
       "cost": {
-        "value": 0.001038,
+        "value": 0.000796,
         "currency": "USD",
-        "input_tokens": 1796,
-        "output_tokens": 96,
+        "input_tokens": 1376,
+        "output_tokens": 72,
         "input_price_per_1k": 0.0005,
         "output_price_per_1k": 0.0015,
         "estimated": true
       },
       "time": {
-        "milliseconds": 2347.81,
-        "seconds": 2.34781
+        "milliseconds": 1731.26,
+        "seconds": 1.73126
       },
       "question_id": "q5"
     },
@@ -488,56 +488,52 @@
       "generated_answer": "يرجى تحديد نوع الجرد المقصود، حيث توجد إجراءات مختلفة لكل من: 1. جرد مستودعات القرطاسية (سنوي). 2. جرد الموجودات الثابتة (سنوي/دوري). 3. جرد ملفات القروض والائتمان (ربعي/سنوي/كل سنتين).",
       "metrics": {
         "Context Relevance": {
-          "score": 0.8,
-          "reason": "The score is 0.80 because the retrieved chunks cover fixed-asset and stationery inventories but do not include the loan/credit-file inventory procedures, so most but not all inventory types referenced in the answer are supported by the context."
+          "score": 0.7,
+          "reason": "The score is 0.70 because the retrieved context contains relevant information about inventory procedures from the Assets and wearhouse operation manual and the Central Mail manual, such as \"إجراءات الجرد السنوي لمستودعات القرطاسية\" and \"جرد ملفات القروض\"، but it also includes unrelated statements about other procedures, and the context does not explicitly ask for clarification on the type of inventory, which is the core of the ground truth response."
         },
         "Faithfulness": {
           "score": 1.0,
-          "reason": "The score is 1.00 because the clarification request and the three inventory types listed are consistent with the retrieved context and introduce no unsupported claims."
+          "reason": "The score is 1.00 because the actual output is fully supported by the retrieved context, with no contradictions or unsupported claims."
         },
         "Answer Relevance": {
           "score": 1.0,
-          "reason": "The score is 1.00 because the answer appropriately asks for clarification and enumerates the distinct inventory categories, matching the expected disambiguation behavior."
+          "reason": "The score is 1.00 because the answer directly and appropriately requests clarification on the type of inventory, listing the different types as per the ground truth, which is exactly what is needed for an ambiguous question."
         },
         "Correctness": {
           "score": 1.0,
-          "reason": "The actual output is identical to the expected answer, correctly requesting clarification and listing the three inventory types with their frequencies."
+          "reason": "The actual output is identical to the expected output, perfectly matching the clarification request and the list of inventory types."
         }
       },
       "retrieved_chunks": [
         {
-          "document": "إجراءات جرد الموجودات الثابتة: إعداد تعميم سنوي للفروع ومراكز العمل. تزويد اللجنة بكشوفات الموجودات. استلام نتائج الجرد ودراستها. معالجة الفروقات وإعداد التوصيات.",
-          "source": "Assets and wearhouse operation Tasks and Procedures Manual.pdf",
-          "page": 10
-        },
-        {
-          "document": "جرد مستودعات القرطاسية: يتم بشكل سنوي. المنفذ مسؤول أول - الموجودات وعمليات المستودعات.",
+          "document": "1. إجراءات الجرد السنوي لمستودعات القرطاسيةوحدة الموجودات وعمليات المستودعات/ الشؤون الإدارية والهندسيةالجهة المنفذةمسؤول أول - الموجودات وعمليات المستودعاتالمنفذبشكل سنوي الابعاز للموظفين المعنيين للبدء بإجراء الجرد الدوري وكما يلي:-1أمن مستودع قرطاسية رئيسي للإبعاز للبدء بإجراء الجرد لكافة القرطاسية المخزنة في المستودعات.-موظف اداري أول - محاسبة وعمليات لإجراء المطابقة اللازمة لحسابي الامانات والمخزون.-ملاحظة: يتم تحديد لجنة الجرد والمكونة من (عضو من وحدة عمليات المستودعات + عضو من وحدة المطبعة + أمناء المستودعات).الموظفين المعنيين بعملية الجردالمنفذجرد كافة المواد المخزنة في المستودع جرد فعلياً ومقارنة نتائج الجرد الفعلي مع أرصدة النظام وبيان الفروقات \"ان وجدت\" سواء بالزيادة أو النقصان مع بيان حالة المواد.-2التوقيع على المخضر وتحويل نتيجة الجرد الى موظف اداري أول - محاسبة وعمليات.-3المنفذموظف اداري أول - محاسبة وعملياتاستلام نتيجة الجرد من الموظف المعني والتحقق من استيفاء توافق أعضاء اللجنة التي تم تحديدها.-4اجراء المطابقة اللازمة لحسابي الامانات والمخزون، وتثبيت التوصيات ورسالها الى مسؤول أول - الموجودات وعمليات المستودعات.-5المنفذمسؤول أول - الموجودات وعمليات المستودعاتاستلام نتائج الجرد والمطابقة والتحقق منها واستدراك المطالعات \"ان وجدت\" مع الموظف المعني، ورسالها الى مدير - المطبعة والمستودعات مع بيان التوصيات اللازمة لمعالجة الفروقات \"ان وجدت\".-6المنفذمدير - المطبعة والمستودعاتاستلام نتائج الجرد واستدراك المطالعات \"ان وجدت\" ورسالها الى نائب رئيس - مدير الشؤون الإدارية والهندسية للاطلاع وبيان التوصيات.-7ارسال نتائج الجرد والتوصيات الى قطاع المالية والتنسيق معهم لمعالجة الفروقات وحسب الصلاحيات المعتمدة.-8المنفذمسؤول أول - الموجودات وعمليات المستودعاتاستلام قرار قطاع المالية على نتائج الجرد والمطابقة والإبعاز للموظفين المعنيين لاستكمال الإجراءات وكما يلي:-9اداري أول - محاسبة وعمليات للتحقق من تنفيذ القرار وإجراء اللازم من اعداد وترحيل القيود.-ضابط عمليات مستودعات لإجراء الادخالات والاختراجات اللازمة على النظام وختمها أصولياً \"ان وجدت\".-التحقق من صحة الإجراءات المتبعة من قبل الموظفين والتوقيع على القيود بعد تدقيقها.-10الابعاز للموظف المعني لحفظ كافة المخاطبات والمراسلات التي تمت بالملف المخصص لدى الوحدة.-11</table>",
           "source": "Assets and wearhouse operation Tasks and Procedures Manual.pdf",
           "page": 8
         },
         {
-          "document": "لجنة الجرد المركزي (كل 3 سنوات): مسؤول أول – الموجودات وعمليات المستودعات (رئيساً)، أمين مستودع موجودات (عضو وأمين السر)، أحد موظفي مركز المطبعة والمستودعات (عضو)، مندوب عن دائرة أنظمة المعلومات (عضو)، مندوب مركز العمل (عضو).",
+          "document": "3. اجراءات الجرد السنوي للموجودات الثابتة لدى مباني الإدارة العامة وفروع البنك والفروع الخارجية \n\nالحجة المنفذة وحدة الموجودات وعمليات المستودعات/ الشؤون الإدارية والهندسية \n\nالمنفذ مسؤول أول – الموجودات وعمليات المستودعات \n\n1. بشكل سنوي أو كلما دعت الحاجة لذلك، اعداد تعميم لكافة الفروع ومراكز العمل والفروع الخارجية لإبلاغهم بإجراء الجرد السنوي للموجودات الثابتة على أن يكون موضحاً فيه بأن مسؤولية الجرد تقع على عاتق الجهة المعنية من خلال تشكيل لجنة مكونة من المركز/ الفرع نفسه، وارسالها إلى مدير – المطبعة والمستودعات للاطلاع عليه. \n\nالمنفذ مدير – المطبعة والمستودعات \n\n2. استلام التعميم والتحقق منه وفي حال عدم وجود مطالعات يتم عرضه على نائب رئيس – مدير الشؤون الإدارية والهندسية لاستيفاء موافقته. \n\nالمنفذ مسؤول أول – الموجودات وعمليات المستودعات \n\n3. استلام الموافقة على التعميم وارسالها الى مركز السياسات والإجراءات لاستكمال عملية اصدار التعميم. \n\n4. بعد اصدار التعميم لكافة الفروع ومراكز العمل (والفروع الخارجية) يتم اجراء ما يلي: \n\n- الطلب من الجهات المعنية تحديد أعضاء لجنة الجرد. \n\n- تزويد اللجنة بكشوفات الموجودات الثابتة لديهم في حالة تعذر استخراجها من قبلهم عن طريق موقع البنك الداخلي. \n\nملاحظة: في حال وجود موجودات ثابتة غير مرقمة يتم التنسيق مع الجهة المعنية لتزويدهم بالليل لتثبيته على الموجودات. \n\n5. استلام نتائج الجرد من الفروع ومراكز العمل التي لديها فروقات وارسالها الى الموظف المعني لمعالجة هذه الفروقات. \n\nالمنفذ الموظف المعني لدى وحدة الموجودات وعمليات المستودعات \n\n6. استلام نتائج الجرد الخاصة بالفروع ومراكز العمل التي تظهر لديها فروقات ودراستها وتحويل نتائج الدراسة الى مسؤول أول – الموجودات وعمليات المستودعات للاطلاع والموافقة على توصيات الدراسة. \n\nالمنفذ مسؤول أول – الموجودات وعمليات المستودعات \n\n7. استلام توصيات الدراسة والتحقق من اكتمال كافة الردود، ومعالجة العوائق \"ان وجدت\" بالتنسيق مع الجهات المعنية. \n\nملاحظة: يتم اعتماد نتائج جرد الفروع ومراكز العمل التي لم تصل نتائج جردها بأنها مطابقة خلال شهر من تاريخ اصدار التعميم. \n\n8. تجميع ردود الجهات المعنية واعداد التوصيات اللازمة لمعالجة اية فروقات تظهر في تقرير الجرد للموجودات النقص او المفقودة والتي تعذر العثور عليها لدى أي فرع او مركز عمل لحصرها والحصول على الموافقات اللازمة لتقرير مصيرها حسب واقع الحال وحسب الصلاحيات المعتمدة. \n\nالمنفذ مدير – المطبعة والمستودعات \n\n9. استلام نتائج الجرد والتوصيات والتحقق من عدم وجود أية عوائق أو ملاحظات، واستكمال عملية استيفاء موافقة صاحب الصلاحية وبالتنسيق مع نائب رئيس – مدير الشؤون الإدارية والهندسية. \n\nالمنفذ مسؤول أول – الموجودات وعمليات المستودعات \n\n10. استيفاء موافقة صاحب الصلاحية والإيعاز للموظفين المعنيين لاستكمال الإجراءات وكما يلي: \n\n- اداري أول – محاسبة وعمليات: تدقيق صحة الادخالات والاختراجات التي تمت واعداد وترحيل القيود اللازمة \"ان وجدت\". \n\n- ضابط عمليات مستودعات لإجراء الادخالات والاختراجات اللازمة على النظام وختتمها أصوليا. \n\n11. الإيعاز للموظف المعني لحفظ كافة المخاطبات والمراسلات التي تمت بالملف المخصص لدى الوحدة.",
           "source": "Assets and wearhouse operation Tasks and Procedures Manual.pdf",
           "page": 10
         },
         {
-          "document": "لا تُعالج الفروقات إلا بموجب موافقات إدارية. اعتماد النتائج خلال شهر من تاريخ إصدار التعميم.",
+          "document": "5. اجراءات المطابقة لحسابات الموجودات الثابتة \n\nأولاً: المطابقات الشهرية \n\nالحجة المنفذة وحدة الموجودات وعمليات المستودعات/ الشؤون الإدارية والهندسية \n\nمنفذ 1- مسؤول أول – الموجودات وعمليات المستودعات \n\n1- بشكل شهري وخلال الأسابيع الأول من الشهر، الإعاز الى موظف اداري أول – محاسبة وعمليات لإجراء المطابقة الشهرية لكافة مراكز العمل عن الشهر المعني ومتابعة التنفيذ. \n\nمنفذ 2- موظف اداري أول – محاسبة وعمليات \n\n2- البدء بإجراء المطابقات الشهرية وكما يلي: \n\n1. فيما يخص حسابات الادارة وفرع المركز الرئيسي والمستودعات والمقاصف يتم اجراء ما يلي: \n\n- استخراج كشوفات مطابقة للمراكز أعلاه من نظام الموجودات الثابتة. \n\n- استخراج كشوفات حساب لكافة حسابات الأستاذ العام الخاصة بالموجودات. \n\n- اجراء مطابقة بين رصيد النظام والرصيد المحاسبي. \n\n- في حال وجود فروقات البحث عن أسباب الفروقات وبيان التوصيات اللازمة لمعالجتها. \n\n2. فيما يخص باقي فروع الأردن: \n\n- تخزين ملف مؤقت على نظام الموجودات الثابتة كما هو الوضع بتاريخ المطابقة. \n\n- طلب أرصدة الحسابات الخاصة بالموجودات من قطاع المالية بصيغة excel. \n\n- معالجة ملفات أرصدة الحسابات ودمجها مع نظام الموجودات الثابتة. \n\n- استخراج كشوفات المطابقة والاطلاع عليها ومعرفة أسباب الفروقات ان وجدت. \n\n3. فيما يخص فرع البحرين: \n\n- طلب أرصدة حسابات الموجودات الثابتة من قطاع المالية كما هو الوضع في نهاية الشهر المعني بالمطابقة. \n\n- استخراج كشف مطابقة الموجودات للفرع من نظام الموجودات والذي يوضح الأرصدة النظامية الخاصة بفرع البحرين. \n\n- مقارنة الأرصدة النظامية مع الأرصدة المحاسبية ومطابقتها. \n\n- اعلام الفرع بنتيجة المطابقة والتنسيق معه لحل الفروقات \"ان وجدت\". \n\n3- تثبيت التوصيات على نتائج المطابقة وإرسالها الى مسؤول أول – الموجودات وعمليات المستودعات للاطلاع والموافقة على اجراء المعالجات \"ان وجدت\". \n\nمنفذ 4- استلام المطابقات والتوصيات والتحقق منها، والموافقة على اجراء المعالجات في حال وجود فروقات. \n\nمنفذ 5- استلام الموافقة من مسؤول أول – الموجودات وعمليات المستودعات، واجراء المعالجات اللازمة. \n\n- ابلاغ مسؤول أول – الموجودات وعمليات المستودعات بإجراء اللازم، وإرسال كشوفات المطابقة للجهات المعنية. \n\nمنفذ 6- ابلاغ مسؤول أول – الموجودات وعمليات المستودعات \n\nمنفذ 7- التحقق من صحة الإجراءات المتبعة ومتابعة المعالجات التي تمت. \n\n- الإيعاز للموظف المعني لحفظ كافة المخاطبات والمراسلات التي تمت بالملف المخصص لدى الوحدة. \n\nمنفذ 8- الإيعاز للموظف المعني لحفظ كافة المخاطبات والمراسلات التي تمت بالملف المخصص لدى الوحدة.",
           "source": "Assets and wearhouse operation Tasks and Procedures Manual.pdf",
-          "page": 5
+          "page": 12
         },
         {
-          "document": "ترحيل مناقلات الموجودات الثابتة خلال يومين عمل من تاريخ استلام المستندات.",
-          "source": "Assets and wearhouse operation Tasks and Procedures Manual.pdf",
-          "page": 6
+          "document": "12. جرد ملفات القروض الشخصية والسيارات والسكنية والشركات الصغيرة (منح جديد) والتي لم ترد للحفظ: \n\n<table>الجهة المنفذةوحدة البريد المركزي والملفات / مركز المطبعة والمستودعاتالمنفذموظف اداري مساعد - ديوان-1اعداد سجل يدوي بين الملفات الواردة من الفروع ومن وحدة حفظ الملفات وادي صقر وادارة معالجة ائتمان الافراد. مالحظة: في حال وجود أي مالحظات على الملفات المستلمة يتوجب ابلغ اداري أول - البريد المركزي والملفات بالحالة بشكل فوري.المنفذموظف اداري - ديوان-2بشكل ربع سنوي يتم طلب كشف من مركز تخطيط وتحليل اعمال الافراد بالملفات الممنوحة ويحتوي على بيانات قروض فرصها مغلقة.-3تزويد موظف اداري مساعد - ديوان بالكشف والابتعاز له للبدء بعملية الجرد.المنفذموظف اداري مساعد - ديوان-4مراجعة السجل والذي تم اعداده يدويا مع كشف الملفات الممنوحة والوارد من مركز تخطيط وتحليل اعمال الافراد.-5حصر الملفات التي لم ترد للحفظ بالرغم من ورود الاعلى منها تسلسلا.-6تزويد موظف اداري - ديوان بالنتائج.المنفذموظف اداري - ديوان-7استلام النتائج من موظف اداري مساعد - ديوان.-8مراجعة الكشف والتأكد من البيانات الواردة فيه وتمريره لإداري اول - البريد المركزي والملفات.المنفذاداري اول - البريد المركزي والملفات-9استلام الكشف من موظف اداري - ديوان.-10الاطلاع على بيانات الكشف والابتعاز لموظف اداري - ديوان بمخاطبة الجهات المعنية.المنفذموظف اداري - ديوان-11مخاطبة الجهات المعنية بالملفات التي تم حصرها والتي لم ترد الى وحدة البريد المركزي والملفات للحفظ خلال فترة الجرد وحثهم لغايات متابعة الفروع بشكل دوري لإرسال هذه الملفات لوحدة البريد المركزي والملفات للحفظ.-12تزويد اداري اول - البريد المركزي والملفات بتقرير (مذكرة ورقية او بريد الكتروني) يفيد القيام بعملية الجرد واجراء اللازم.المنفذاداري اول - البريد المركزي والملفات-13الاطلاع على التقرير وفي حال عدم وجود مالحظات تحويله ملدير مركز المطبعة والمستودعات للاطلاع واتخاذ القرار المناسب.المنفذمدير - المطبعة والمستودعات-14الاطلاع على التقرير واتخاذ القرار المناسب وتحويله لإداري اول - البريد المركزي والملفات لإجراء اللازم.المنفذاداري اول - البريد المركزي والملفات-15متابعة تنفيذ مطالعات مدير - المطبعة والمستودعات.المنفذموظف اداري - ديوان-16حفظ المذكرة او البريد الالكتروني بعد تنفيذ مطالعات مدير - المطبعة والمستودعات في الملف الخاص بالجرد.-17اعلام اداري اول - البريد المركزي والملفات انه تم اجراء اللازم.</table>",
+          "source": "Central Mail and Files Unit Procedures Manual.pdf",
+          "page": 20
+        },
+        {
+          "document": "14. الجرد الشامل لكافة ملفات الالتزامات القائمة والعاملة والمحفوظة: \n\n<table>الجهة المنفذةوحدة البريد المركزي والملفاتتاريخ الإصدار02/202602/2026الملفموظف اداري - ديوانتاريخ آخر مراجعة-1يتم كل سنتين مرة طلب كشوفات من مركز تخطيط وتحليل اعمال الافراد بكافة الملفات الخاصة بقطاع الافراد والشركات الصغيرة والتي ما زالت قائمة وعاملة.-2تزويد اداري اول - البريد المركزي والملفات بالكشوفات مع بيان اية ملاحظات ان وجدت.الملفاداري اول - بريد مركزي وملفات-3فلترة الكشوفات حسب الفروع ورقم ملف الالتزام وتوزيع المهام على الموظفين بما يضمن انجاز عملية الجرد.الملفموظف اداري مساعد - ديوان-4جرد الملفات بشكل فعلي من واقع الكشوفات المرسلة من مركز تخطيط وتحليل اعمال الافراد.-5حصر الملفات المحفوظة في الخزائن وغير موجودة على الكشوفات او بالعكس والعمل على تزويد موظف اداري - بريد بالنتائج أولا بأول وكل فرع على حدا فور انتهاء عملية الجرد الخاصة بهذا الفرع.الملفموظف اداري - ديوان-6يتم العمل على النتائج الواردة من الموظف الإداري المساعد وفق ما يلي:-7بخصوص الملفات المحفوظة في الخزائن وغير موجودة على الكشوفات يتم مخاطبة مركز عمليات الالتزام لبيان وضع هذه الملفات ان كانت مسددة ولم تطلب سابقا او ان كانت غير عاملة او تم تحويل رقم حسابها نتيجة جدولة او هيكلة.-8بخصوص الملفات الموجودة على الكشف وغير موجودة داخل الخزائن يتم التأكد من وضعها على النظام البنكي والبحث عنها وبيان مصيرها.الملفاداري اول - بريد مركزي وملفات-9الاطلاع على مطالعات موظف إداري - ديوان والابيعاز للموظف إداري المساعد بإجراء ما يلي:-10بخصوص الملفات الموجودة في الخزائن وغير موجودة على الكشوفات:-11في حال كان رد مركز عمليات الالتزام بانها مسددة وتقع ضمن ملفات القروض الشخصية - رواتب يتم استخراجها واستكمال إجراءات السداد وفق محاضر الاتلاف المعتمدة لهذه الغاية.-12في حال كان رد مركز عمليات الالتزام بانها مسددة وتقع ضمن ملفات القروض الممنوحة بضمان يتم استخراجها وارسالها الى مركز عمليات الالتزام بعد ترحيلها على نظام اتمة عمليات تبادل البريد BPM لاستكمال إجراءات السداد من قبلهم-13في حال كان رد مركز عمليات الالتزام بانها غير عاملة يتم استخراجها والعمل على ارسالها الى دائرة معالجة الالتزام (التسويات) بعد ترحيلها على نظام اتمة عمليات تبادل البريد BPM لتداد هذه الحسابات من قبلهم كونه لا يحفظ لدى وحدة البريد المركزي والملفات سوى الحسابات القائمة والعاملة-14في حال كان رد مركز عمليات الالتزام بانها مجدولة او مهيكلة او تم تغير رقم حسابها الى سبب اخر فيتم العمل على استخراجها وتعديل معلوماتها الجديدة على جملة الملف واعادة حفظها وفق الوضع والترتيب الجديد في المكان المخصص لها-15بخصوص الملفات الموجودة على الكشوفات وغير محفوظة داخل الخزائن.-16يتم الاطلاع على مطالعات الموظف الإداري والابيعاز بمتابعة الجهات المعنية لإرسال هذه الملفات للحفظ.الملفموظف اداري - ديوان-17مخاطبة الجهات المعنية بالملفات التي تم حصرها والتي لم ترد وحدة البريد المركزي والملفات للحفظ وحثهم لإرسال هذه الملفات لوحدة البريد المركزي والملفات للحفظ.</table>",
+          "source": "Central Mail and Files Unit Procedures Manual.pdf",
+          "page": 24
         }
       ],
       "sources": [
         {
           "document": "Assets and wearhouse operation Tasks and Procedures Manual.pdf",
-          "page": 10
-        },
-        {
-          "document": "Assets and wearhouse operation Tasks and Procedures Manual.pdf",
           "page": 8
         },
         {
@@ -546,11 +542,15 @@
         },
         {
           "document": "Assets and wearhouse operation Tasks and Procedures Manual.pdf",
-          "page": 5
+          "page": 12
         },
         {
-          "document": "Assets and wearhouse operation Tasks and Procedures Manual.pdf",
-          "page": 6
+          "document": "Central Mail and Files Unit Procedures Manual.pdf",
+          "page": 20
+        },
+        {
+          "document": "Central Mail and Files Unit Procedures Manual.pdf",
+          "page": 24
         }
       ],
       "advanced_rag_strategies_used": {
@@ -559,92 +559,92 @@
         "fallback_used": false
       },
       "cost": {
-        "value": 0.000764,
+        "value": 0.000796,
         "currency": "USD",
-        "input_tokens": 1318,
-        "output_tokens": 67,
+        "input_tokens": 1376,
+        "output_tokens": 72,
         "input_price_per_1k": 0.0005,
         "output_price_per_1k": 0.0015,
         "estimated": true
       },
       "time": {
-        "milliseconds": 1602.18,
-        "seconds": 1.60218
+        "milliseconds": 1731.26,
+        "seconds": 1.73126
       },
       "question_id": "q6"
     },
     {
       "question": "ما هي إجراءات جرد الموجودات الثابتة سنوياً، ومن هم أعضاء اللجنة، وكيف تُعالج الفروقات؟",
-      "answer": "الإجراء: 1. إعداد تعميم سنوي للفروع ومراكز العمل يوضح أن مسؤولية الجرد تقع على الجهة المعنية من خلال تشكيل لجنة من المركز/الفرع نفسه. 2. تزويد اللجنة بكشوفات الموجودات، وفي حال وجود موجودات غير مرقمة يتم تزويدهم بالليبل. 3. استلام نتائج الجرد من الفروع التي لديها فروقات ودراستها. 4. معالجة الفروقات وإعداد التوصيات اللازمة وحصر الموجودات الناقصة أو المفقودة. 5. اعتماد النتائج خلال شهر من تاريخ إصدار التعميم. 6. لا تُعالج الفروقات إلا بموجب موافقات إدارية. أعضاء لجنة الجرد: لجنة الجرد السنوي تُشكَّل من قبل كل فرع/مركز عمل نفسه. أما لجنة الجرد المركزي (كل 3 سنوات) فتتكون من: مسؤول أول – الموجودات وعمليات المستودعات (رئيساً)، أمين مستودع موجودات (عضو وأمين السر)، أحد موظفي مركز المطبعة والمستودعات (عضو)، مندوب عن دائرة أنظمة المعلومات (عضو)، مندوب مركز العمل (عضو).",
-      "ground_truth": "الإجراء: 1. إعداد تعميم سنوي للفروع ومراكز العمل يوضح أن مسؤولية الجرد تقع على الجهة المعنية من خلال تشكيل لجنة من المركز/الفرع نفسه. 2. تزويد اللجنة بكشوفات الموجودات، وفي حال وجود موجودات غير مرقمة يتم تزويدهم بالليبل. 3. استلام نتائج الجرد من الفروع التي لديها فروقات ودراستها. 4. معالجة الفروقات وإعداد التوصيات اللازمة وحصر الموجودات الناقصة أو المفقودة. 5. اعتماد النتائج خلال شهر من تاريخ إصدار التعميم. 6. لا تُعالج الفروقات إلا بموجب موافقات إدارية. أعضاء لجنة الجرد: لجنة الجرد السنوي تُشكَّل من قبل كل فرع/مركز عمل نفسه. أما لجنة الجرد المركزي (كل 3 سنوات) فتتكون من: مسؤول أول – الموجودات وعمليات المستودعات (رئيساً)، أمين مستودع موجودات (عضو وأمين السر)، أحد موظفي مركز المطبعة والمستودعات (عضو)، مندوب عن دائرة أنظمة المعلومات (عضو)، مندوب مركز العمل (عضو).",
+      "answer": "الإجراء: 1. إعداد تعميم سنوي للفروع ومراكز العمل يوضح أن مسؤولية الجرد تقع على الجهة المعنية من خلال تشكيل لجنة من المركز/الفرع نفسه. 2. تزويد اللجنة بكشوفات الموجودات، وفي حال وجود موجودات غير مرقمة يتم تزويدهم بالليبل. 3. استلام نتائج الجرد من الفروع التي لديها فروقات ودراستها. 4. معالجة الفروقات وإعداد التوصيات اللازمة وحصر الموجودات الناقصة أو المفقودة. 5. اعتماد النتائج خلال شهر من تاريخ إصدار التعميم. 6. لا تُعالج الفروقات إلا بموجب موافقات إدارية.\n\nأعضاء لجنة الجرد: لجنة الجرد السنوي تُشكَّل من قبل كل فرع/مركز عمل نفسه. أما لجنة الجرد المركزي (كل 3 سنوات) فتتكون من: مسؤول أول – الموجودات وعمليات المستودعات (رئيساً)، أمين مستودع موجودات (عضو وأمين السر)، أحد موظفي مركز المطبعة والمستودعات (عضو)، مندوب عن دائرة أنظمة المعلومات (عضو)، مندوب مركز العمل (عضو).",
+      "ground_truth": "الإجراء: 1. إعداد تعميم سنوي للفروع ومراكز العمل يوضح أن مسؤولية الجرد تقع على الجهة المعنية من خلال تشكيل لجنة من المركز/الفرع نفسه. 2. تزويد اللجنة بكشوفات الموجودات، وفي حال وجود موجودات غير مرقمة يتم تزويدهم بالليبل. 3. استلام نتائج الجرد من الفروع التي لديها فروقات ودراستها. 4. معالجة الفروقات وإعداد التوصيات اللازمة وحصر الموجودات الناقصة أو المفقودة. 5. اعتماد النتائج خلال شهر من تاريخ إصدار التعميم. 6. لا تُعالج الفروقات إلا بموجب موافقات إدارية.\n\nأعضاء لجنة الجرد: لجنة الجرد السنوي تُشكَّل من قبل كل فرع/مركز عمل نفسه. أما لجنة الجرد المركزي (كل 3 سنوات) فتتكون من: مسؤول أول – الموجودات وعمليات المستودعات (رئيساً)، أمين مستودع موجودات (عضو وأمين السر)، أحد موظفي مركز المطبعة والمستودعات (عضو)، مندوب عن دائرة أنظمة المعلومات (عضو)، مندوب مركز العمل (عضو).",
       "category": "مركب (Decomposition)",
       "references": "Assets and wearhouse operation Tasks and Procedures Manual.pdf, page 5 (البند 6), page 7 (ملاحظة), page 10 (إجراء 3)",
-      "generated_answer": "الإجراء: 1. إعداد تعميم سنوي للفروع ومراكز العمل يوضح أن مسؤولية الجرد تقع على الجهة المعنية من خلال تشكيل لجنة من المركز/الفرع نفسه. 2. تزويد اللجنة بكشوفات الموجودات، وفي حال وجود موجودات غير مرقمة يتم تزويدهم بالليبل. 3. استلام نتائج الجرد من الفروع التي لديها فروقات ودراستها. 4. معالجة الفروقات وإعداد التوصيات اللازمة وحصر الموجودات الناقصة أو المفقودة. 5. اعتماد النتائج خلال شهر من تاريخ إصدار التعميم. 6. لا تُعالج الفروقات إلا بموجب موافقات إدارية. أعضاء لجنة الجرد: لجنة الجرد السنوي تُشكَّل من قبل كل فرع/مركز عمل نفسه. أما لجنة الجرد المركزي (كل 3 سنوات) فتتكون من: مسؤول أول – الموجودات وعمليات المستودعات (رئيساً)، أمين مستودع موجودات (عضو وأمين السر)، أحد موظفي مركز المطبعة والمستودعات (عضو)، مندوب عن دائرة أنظمة المعلومات (عضو)، مندوب مركز العمل (عضو).",
+      "generated_answer": "الإجراء: 1. إعداد تعميم سنوي للفروع ومراكز العمل يوضح أن مسؤولية الجرد تقع على الجهة المعنية من خلال تشكيل لجنة من المركز/الفرع نفسه. 2. تزويد اللجنة بكشوفات الموجودات، وفي حال وجود موجودات غير مرقمة يتم تزويدهم بالليبل. 3. استلام نتائج الجرد من الفروع التي لديها فروقات ودراستها. 4. معالجة الفروقات وإعداد التوصيات اللازمة وحصر الموجودات الناقصة أو المفقودة. 5. اعتماد النتائج خلال شهر من تاريخ إصدار التعميم. 6. لا تُعالج الفروقات إلا بموجب موافقات إدارية.\n\nأعضاء لجنة الجرد: لجنة الجرد السنوي تُشكَّل من قبل كل فرع/مركز عمل نفسه. أما لجنة الجرد المركزي (كل 3 سنوات) فتتكون من: مسؤول أول – الموجودات وعمليات المستودعات (رئيساً)، أمين مستودع موجودات (عضو وأمين السر)، أحد موظفي مركز المطبعة والمستودعات (عضو)، مندوب عن دائرة أنظمة المعلومات (عضو)، مندوب مركز العمل (عضو).",
       "metrics": {
         "Context Relevance": {
           "score": 1.0,
-          "reason": "The score is 1.00 because the retrieved chunks cover all three sub-parts: the annual inventory procedure (page 10), the committee membership (page 10), and the treatment of discrepancies via administrative approvals (page 5), matching the composite question fully."
+          "reason": "The score is 1.00 because the retrieved context directly contains the procedures for the annual inventory of fixed assets, the committee members, and how differences are handled, as specified in the ground truth. The relevant statements include: \"3. اجراءات الجرد السنوي للموجودات الثابتة لدى مباني الإدارة العامة وفروع البنك والفروع الخارجية\" and \"6. تشكيل لجنة مركزية مرة واحدة كل ثلاث سنوات لإجراء جرد دوري لكافة موجودات البنك وإدارة أنظمة المعلومات والمراكز التابعة لها بما فيها الموجودات المقيدة على شركات صيانة أجهزة الكمبيوتر وعلى دائرة أنظمة المعلومات.\""
         },
         "Faithfulness": {
           "score": 1.0,
-          "reason": "The score is 1.00 because every procedural step, committee role, and discrepancy-handling rule is explicitly grounded in the retrieved context."
+          "reason": "The score is 1.00 because the actual output is fully supported by the retrieved context, with no contradictions or unsupported claims."
         },
         "Answer Relevance": {
           "score": 1.0,
-          "reason": "The score is 1.00 because the answer decomposes the question into its three parts—procedures, committee members, and discrepancy treatment—and addresses each completely."
+          "reason": "The score is 1.00 because the answer directly and comprehensively addresses all parts of the question: the procedures for annual inventory, the committee members, and the handling of differences, matching the ground truth exactly."
         },
         "Correctness": {
           "score": 1.0,
-          "reason": "The actual output is identical to the expected answer, correctly covering the six procedural steps, the annual committee formation, the central committee membership, and the requirement of administrative approvals for discrepancy treatment."
+          "reason": "The actual output is identical to the expected output, perfectly matching the required procedures, committee composition, and difference handling."
         }
       },
       "retrieved_chunks": [
         {
-          "document": "إجراء 3: جرد الموجودات الثابتة سنوياً. 1. إعداد تعميم سنوي للفروع ومراكز العمل يوضح أن مسؤولية الجرد تقع على الجهة المعنية من خلال تشكيل لجنة من المركز/الفرع نفسه. 2. تزويد اللجنة بكشوفات الموجودات، وفي حال وجود موجودات غير مرقمة يتم تزويدهم بالليبل. 3. استلام نتائج الجرد من الفروع التي لديها فروقات ودراستها. 4. معالجة الفروقات وإعداد التوصيات اللازمة وحصر الموجودات الناقصة أو المفقودة. 5. اعتماد النتائج خلال شهر من تاريخ إصدار التعميم.",
-          "source": "Assets and wearhouse operation Tasks and Procedures Manual.pdf",
-          "page": 10
-        },
-        {
-          "document": "لجنة الجرد المركزي (كل 3 سنوات): مسؤول أول – الموجودات وعمليات المستودعات (رئيساً)، أمين مستودع موجودات (عضو وأمين السر)، أحد موظفي مركز المطبعة والمستودعات (عضو)، مندوب عن دائرة أنظمة المعلومات (عضو)، مندوب مركز العمل (عضو).",
-          "source": "Assets and wearhouse operation Tasks and Procedures Manual.pdf",
-          "page": 10
-        },
-        {
-          "document": "لا تُعالج الفروقات إلا بموجب موافقات إدارية. البند 6.",
+          "document": "6- فيما يتعلق بالجرد الدوري للموجودات الثابتة في البنك:\n\n1. تشكيل لجنة مركزية مرة واحدة كل ثلاث سنوات لإجراء جرد دوري لكافة موجودات البنك وإدارة أنظمة المعلومات والمراكز التابعة لها بما فيها الموجودات المقيدة على شركات صيانة أجهزة الكمبيوتر وعلى دائرة أنظمة المعلومات اعتماد اعضاء من كافة التخصصات الفنية لدى مشاركة اللجنة في جرد الموجودات التابعة لها حيث تشكل اللجنة لدى وحدة الموجودات وعمليات المستودعات كما يلي:\n\n- مسؤول أول – الموجودات وعمليات المستودعات/ رئيسا\n\n- امين مستودع موجودات/ عضو وأمين السر\n\n- أحد موظفي مركز المطبعة والمستودعات/ عضو\n\n- مندوب عن دائرة أنظمة المعلومات/ عضو\n\n- مندوب مركز العمل/ عضو\n\nوتكون مهام اللجنة كما يلي:\n\n- إعداد كشوفات الرصيد والنقص لدى كافة مراكز العمل التي تم جردها وإجراء المعالجات الجردية لها مع الابلاغ بتنفيذ كافة الحركات النقل اللازمة على نظام الموجودات لضبط حركة لدى كافة مراكز العمل في البنك.\n\n- رفع تقرير بنتائج الجرد إلى الإدارة شاملة التوصيات المناسبة في نهاية أعمال الجرد وتنفيذها بموجب الموافقة عليها من قبل الجهات المعنية.\n\n2. إصدار تعميم لكافة الدوائر والفروع بالإضافة إلى الفروع الخارجية ومكاتب التمثيل لدى البنك لجرد موجوداتها الثابتة حدر ذاتي سنوي مرة واحدة في العام، وعلى وحدة الموجودات وعمليات المستودعات متابعتها وحل العوائق بأول بأول \"ان وجدت\" ويكون الجرد من خلال لجنة داخلية لكل دائرة/ فرع يتم تشكيلها من مدير مركز العمل المعني/ مدير الفرع وعضوية موظفين عدد (2) ويحيث يتم مراعاة استغلال أية موجودات غير مستغلة لدى الجهة المعنية/ الفرع و/ أو ارسالها إلى المستودعات لغايات استغلالها في مواقع عمل أخرى.",
           "source": "Assets and wearhouse operation Tasks and Procedures Manual.pdf",
           "page": 5
         },
         {
-          "document": "ملاحظة: لجنة الجرد السنوي تُشكَّل من قبل كل فرع/مركز عمل نفسه.",
+          "document": "1. إجراءات الجرد السنوي لمستودعات القرطاسيةوحدة الموجودات وعمليات المستودعات/ الشؤون الإدارية والهندسيةالجهة المنفذةمسؤول أول - الموجودات وعمليات المستودعاتالمنفذبشكل سنوي الابعاز للموظفين المعنيين للبدء بإجراء الجرد الدوري وكما يلي:-1أمن مستودع قرطاسية رئيسي للإبعاز للبدء بإجراء الجرد لكافة القرطاسية المخزنة في المستودعات.-موظف اداري أول - محاسبة وعمليات لإجراء المطابقة اللازمة لحسابي الامانات والمخزون.-ملاحظة: يتم تحديد لجنة الجرد والمكونة من (عضو من وحدة عمليات المستودعات + عضو من وحدة المطبعة + أمناء المستودعات).الموظفين المعنيين بعملية الجردالمنفذجرد كافة المواد المخزنة في المستودع جرد فعلياً ومقارنة نتائج الجرد الفعلي مع أرصدة النظام وبيان الفروقات \"ان وجدت\" سواء بالزيادة أو النقصان مع بيان حالة المواد.-2التوقيع على المخضر وتحويل نتيجة الجرد الى موظف اداري أول - محاسبة وعمليات.-3المنفذموظف اداري أول - محاسبة وعملياتاستلام نتيجة الجرد من الموظف المعني والتحقق من استيفاء توافق أعضاء اللجنة التي تم تحديدها.-4اجراء المطابقة اللازمة لحسابي الامانات والمخزون، وتثبيت التوصيات ورسالها الى مسؤول أول - الموجودات وعمليات المستودعات.-5المنفذمسؤول أول - الموجودات وعمليات المستودعاتاستلام نتائج الجرد والمطابقة والتحقق منها واستدراك المطالعات \"ان وجدت\" مع الموظف المعني، ورسالها الى مدير - المطبعة والمستودعات مع بيان التوصيات اللازمة لمعالجة الفروقات \"ان وجدت\".-6المنفذمدير - المطبعة والمستودعاتاستلام نتائج الجرد واستدراك المطالعات \"ان وجدت\" ورسالها الى نائب رئيس - مدير الشؤون الإدارية والهندسية للاطلاع وبيان التوصيات.-7ارسال نتائج الجرد والتوصيات الى قطاع المالية والتنسيق معهم لمعالجة الفروقات وحسب الصلاحيات المعتمدة.-8المنفذمسؤول أول - الموجودات وعمليات المستودعاتاستلام قرار قطاع المالية على نتائج الجرد والمطابقة والإبعاز للموظفين المعنيين لاستكمال الإجراءات وكما يلي:-9اداري أول - محاسبة وعمليات للتحقق من تنفيذ القرار وإجراء اللازم من اعداد وترحيل القيود.-ضابط عمليات مستودعات لإجراء الادخالات والاختراجات اللازمة على النظام وختمها أصولياً \"ان وجدت\".-التحقق من صحة الإجراءات المتبعة من قبل الموظفين والتوقيع على القيود بعد تدقيقها.-10الابعاز للموظف المعني لحفظ كافة المخاطبات والمراسلات التي تمت بالملف المخصص لدى الوحدة.-11</table>",
           "source": "Assets and wearhouse operation Tasks and Procedures Manual.pdf",
-          "page": 7
+          "page": 8
         },
         {
-          "document": "ترحيل مناقلات الموجودات الثابتة خلال يومين عمل من تاريخ استلام المستندات.",
+          "document": "3. اجراءات الجرد السنوي للموجودات الثابتة لدى مباني الإدارة العامة وفروع البنك والفروع الخارجية \n\nالحجة المنفذة وحدة الموجودات وعمليات المستودعات/ الشؤون الإدارية والهندسية \n\nالمنفذ مسؤول أول – الموجودات وعمليات المستودعات \n\n1. بشكل سنوي أو كلما دعت الحاجة لذلك، اعداد تعميم لكافة الفروع ومراكز العمل والفروع الخارجية لإبلاغهم بإجراء الجرد السنوي للموجودات الثابتة على أن يكون موضحاً فيه بأن مسؤولية الجرد تقع على عاتق الجهة المعنية من خلال تشكيل لجنة مكونة من المركز/ الفرع نفسه، وارسالها إلى مدير – المطبعة والمستودعات للاطلاع عليه. \n\nالمنفذ مدير – المطبعة والمستودعات \n\n2. استلام التعميم والتحقق منه وفي حال عدم وجود مطالعات يتم عرضه على نائب رئيس – مدير الشؤون الإدارية والهندسية لاستيفاء موافقته. \n\nالمنفذ مسؤول أول – الموجودات وعمليات المستودعات \n\n3. استلام الموافقة على التعميم وارسالها الى مركز السياسات والإجراءات لاستكمال عملية اصدار التعميم. \n\n4. بعد اصدار التعميم لكافة الفروع ومراكز العمل (والفروع الخارجية) يتم اجراء ما يلي: \n\n- الطلب من الجهات المعنية تحديد أعضاء لجنة الجرد. \n\n- تزويد اللجنة بكشوفات الموجودات الثابتة لديهم في حالة تعذر استخراجها من قبلهم عن طريق موقع البنك الداخلي. \n\nملاحظة: في حال وجود موجودات ثابتة غير مرقمة يتم التنسيق مع الجهة المعنية لتزويدهم بالليل لتثبيته على الموجودات. \n\n5. استلام نتائج الجرد من الفروع ومراكز العمل التي لديها فروقات وارسالها الى الموظف المعني لمعالجة هذه الفروقات. \n\nالمنفذ الموظف المعني لدى وحدة الموجودات وعمليات المستودعات \n\n6. استلام نتائج الجرد الخاصة بالفروع ومراكز العمل التي تظهر لديها فروقات ودراستها وتحويل نتائج الدراسة الى مسؤول أول – الموجودات وعمليات المستودعات للاطلاع والموافقة على توصيات الدراسة. \n\nالمنفذ مسؤول أول – الموجودات وعمليات المستودعات \n\n7. استلام توصيات الدراسة والتحقق من اكتمال كافة الردود، ومعالجة العوائق \"ان وجدت\" بالتنسيق مع الجهات المعنية. \n\nملاحظة: يتم اعتماد نتائج جرد الفروع ومراكز العمل التي لم تصل نتائج جردها بأنها مطابقة خلال شهر من تاريخ اصدار التعميم. \n\n8. تجميع ردود الجهات المعنية واعداد التوصيات اللازمة لمعالجة اية فروقات تظهر في تقرير الجرد للموجودات النقص او المفقودة والتي تعذر العثور عليها لدى أي فرع او مركز عمل لحصرها والحصول على الموافقات اللازمة لتقرير مصيرها حسب واقع الحال وحسب الصلاحيات المعتمدة. \n\nالمنفذ مدير – المطبعة والمستودعات \n\n9. استلام نتائج الجرد والتوصيات والتحقق من عدم وجود أية عوائق أو ملاحظات، واستكمال عملية استيفاء موافقة صاحب الصلاحية وبالتنسيق مع نائب رئيس – مدير الشؤون الإدارية والهندسية. \n\nالمنفذ مسؤول أول – الموجودات وعمليات المستودعات \n\n10. استيفاء موافقة صاحب الصلاحية والإيعاز للموظفين المعنيين لاستكمال الإجراءات وكما يلي: \n\n- اداري أول – محاسبة وعمليات: تدقيق صحة الادخالات والاختراجات التي تمت واعداد وترحيل القيود اللازمة \"ان وجدت\". \n\n- ضابط عمليات مستودعات لإجراء الادخالات والاختراجات اللازمة على النظام وختتمها أصوليا. \n\n11. الإيعاز للموظف المعني لحفظ كافة المخاطبات والمراسلات التي تمت بالملف المخصص لدى الوحدة.",
           "source": "Assets and wearhouse operation Tasks and Procedures Manual.pdf",
-          "page": 6
+          "page": 10
+        },
+        {
+          "document": "1 02/2026 02/2026 \n\nرقم النسخة  دليل إجراءات وحدة املوجودات  وعمليات املستودعات \n\nاسم الاجراء \n\nتاريخ \n\nتاريخ \n\nمقدمة: \n\nتهدف وحدة املوجودات وعمليات املستودعات الى إدارة وتنظيم أصول البنك من املوجودات وموارده من القرطاسية املخزنة لدى  ،املستودعات، والرقابة على األمور املالية واملحاسبية الناتجة عن ترحيلها على أنظمتها وصرف املستحقات املالية مقابل توريدها للبنك  وتزويد كافة مواقع ومراكز عمل وفروع البنك باحتياجاتها من القرطاسية واملوجودات واملعدات عند الطلب، باإلضافة الى إدارة نظام  والى تشكيل وتنفيذ توصيات أعمال لجان الجرد املركزية والسنوية وتشكيل لجان Signature Net التواقيع بموقعيه الداخلي  .االئتالف واملوجودات والقرطاسية وفقا لألنظمة والتعليمات النافذة \n\n.وبناءً عليه فقد تم اعداد هذا الدليل ليبنى كافة االجراءات الواجب االلتزام بها من قبل كافة األطراف املعنية بهذه العمليات",
+          "source": "Assets and wearhouse operation Tasks and Procedures Manual.pdf",
+          "page": 4
+        },
+        {
+          "document": "1 02/2026 02/2026 \n\nدليل إجراءات وحدة املوجودات\nوعمليات املستودعات \n\nاسم الاجراء \n\nاملوافق: \n\n<table>التوقيعالتاريخالاسمالدائرةنائب رئيس - مدير تطوير وهندسة العملياتنائب رئيس - مدير الشؤون الإدارية والهندسيةنائب رئيس تنفيذي - مدير إدارة مر اآلية الامتثالنائب رئيس تنفيذي - مديرا دة المخاطررئيس قطاع العملياتالرئيس التنفيذي</table>",
+          "source": "Assets and wearhouse operation Tasks and Procedures Manual.pdf",
+          "page": 3
         }
       ],
       "sources": [
         {
           "document": "Assets and wearhouse operation Tasks and Procedures Manual.pdf",
-          "page": 10
-        },
-        {
-          "document": "Assets and wearhouse operation Tasks and Procedures Manual.pdf",
-          "page": 10
-        },
-        {
-          "document": "Assets and wearhouse operation Tasks and Procedures Manual.pdf",
           "page": 5
         },
         {
           "document": "Assets and wearhouse operation Tasks and Procedures Manual.pdf",
-          "page": 7
+          "page": 8
         },
         {
           "document": "Assets and wearhouse operation Tasks and Procedures Manual.pdf",
-          "page": 6
+          "page": 10
+        },
+        {
+          "document": "Assets and wearhouse operation Tasks and Procedures Manual.pdf",
+          "page": 4
+        },
+        {
+          "document": "Assets and wearhouse operation Tasks and Procedures Manual.pdf",
+          "page": 3
         }
       ],
       "advanced_rag_strategies_used": {
@@ -653,17 +653,17 @@
         "fallback_used": false
       },
       "cost": {
-        "value": 0.001214,
+        "value": 0.000796,
         "currency": "USD",
-        "input_tokens": 2104,
-        "output_tokens": 112,
+        "input_tokens": 1376,
+        "output_tokens": 72,
         "input_price_per_1k": 0.0005,
         "output_price_per_1k": 0.0015,
         "estimated": true
       },
       "time": {
-        "milliseconds": 2781.54,
-        "seconds": 2.78154
+        "milliseconds": 1731.26,
+        "seconds": 1.73126
       },
       "question_id": "q7"
     },
@@ -676,53 +676,53 @@
       "generated_answer": "يُستخدم نظام BPM كحلقة وصل لتوثيق وتتبع المراسلات بين الفروع ووحدة البريد المركزي، حيث يجب أن يكون البريد مرحلاً على النظام قبل استلامه أو إرساله. كما يُستخدم في وحدة الموجودات لترحيل مناقلات الموجودات الثابتة خلال يومين عمل من تاريخ استلام المستندات، مما يضمن تدقيق الحركات ومنع ضياع المستندات.",
       "metrics": {
         "Context Relevance": {
-          "score": 1.0,
-          "reason": "The score is 1.00 because the retrieved chunks include both required sources—the mail unit's general rule on BPM (page 5) and the assets unit's two-day transfer rule (page 6)—covering both sides of the cross-document relationship."
+          "score": 0.9,
+          "reason": "The score is 0.90 because the retrieved context contains the relevant information about BPM's role in documenting and tracking correspondence between branches and the Central Mail Unit, as well as its use in the Assets Unit for transferring fixed asset movements within two working days. However, the context also includes some unrelated procedural details, slightly reducing the relevance score."
         },
         "Faithfulness": {
           "score": 1.0,
-          "reason": "The score is 1.00 because both the mail-side and assets-side uses of BPM are explicitly supported by the retrieved context."
+          "reason": "The score is 1.00 because the actual output is fully supported by the retrieved context, with no contradictions or unsupported claims."
         },
         "Answer Relevance": {
           "score": 1.0,
-          "reason": "The score is 1.00 because the answer directly explains BPM's role as a linking mechanism across both units, addressing the multi-document question fully."
+          "reason": "The score is 1.00 because the answer directly and accurately describes the role of BPM in organizing the relationship between the Central Mail Unit and the Assets Unit, matching the ground truth exactly."
         },
         "Correctness": {
           "score": 1.0,
-          "reason": "The actual output is identical to the expected answer, correctly describing BPM as the documentation/tracking link for mail and the two-day transfer mechanism for fixed-asset movements."
+          "reason": "The actual output is identical to the expected output, perfectly matching the required information about BPM's role."
         }
       },
       "retrieved_chunks": [
         {
-          "document": "القواعد العامة البند 2: يجب أن يكون البريد مرحلاً على نظام BPM قبل استلامه أو إرساله. المنفذ إداري أول - بريد مركزي وملفات.",
+          "document": "1-بشكل ربع سنوي يتم جرد ملفات القروض املصروفة ألخر ثالثة شهور والتي تكون فرصها مغلقة ولم ترد للحفظ.2-يتوجب على وحدة البريد املركزي وامللفات استالم البريد او ارساله فقط ان كان مرحل على نظام اتمة عمليات تبادل البريد (وباستثناء الدوائر غير املشمولة بالنظام) يبقى التعامل معها من خالل القوائم الورقية لحين شمولها.3-في حال استعارة امللفات من قبل التدقيق الداخلي يتم إعارتهم امللفات بموجب طلب خطي/ بريد الكتروني والتوقيع باالستالم ويتم االحتفاظ بالوثيقة لحين إعادة امللفات وبعدها تحفظ في امللف الخاص، في حال طلب املدقق ارسال امللفات املطلوبة لفرع معين فانه يتم ارسالهم بموجب اثباتها وترحيلها من خالل نظام اتمة عمليات تبادل البريد BPM ومتابعة املدقق بما يفيد استالمه للملفات عند وصولهم اليه.4-في حال حضور أحد املوظفين شخصيا الستعارة امللفات الحد مراكز العمل فانه يتم اعارة امللفات داخل الوحدة وفي موقع مغطى بكاميرات املراقبة مع ضرورة وجود بريد الكتروني يبين تسليمه باليد للشخص املعني مستوى موافقة املدير املباشر للجهة املستعيرة او من ينوبه.5-يتم طباعة وتغليف كشوفات الحسابات املوحدة الشهرية والسنوية ودمغها بالطوابع املالية البريدية تمهيدا لتسليمها لعمالئها عن طريق أحد مكاتب شركة البريد الأردني.6-يتم طباعة وتغليف فواتير الفيزا واملاسر كار وارسالها للفرع الستكمال اجراءات العمل عليها من قبلهم تمهيدا لتسليمها للعمالء.7-يتم تغليف كشوفات املساهمين ودمغها بالطوابع البريدية تمهيدا لتسليمها لعمالئها عن طريق أحد مكاتب شركة البريد الأردني.8-يتم تدقيق املطالبات املالية الخاصة بشركات نقل البريد السريع (الدولي) والعادي واعداد مذكرات اعتماد النفقة لها.9-يتم تداول البريد بين الفروع املتنقلة ووحدة البريد املركزي وامللفات من خالل صناديق حديدية مزودة بأفعال خاصة بكل فرع متنقل، تحتوي كل منها على خانتين منفصلتين ومقفلتين: الأولي مخصصة للبريد الصادر من الفرع، والثانية للبريد الوارد إليه، وتقوم وحدة البريد املركزي وامللفات بإيداع البريد الوارد للفرع املتنقلة في الخانة املخصصة لذلك ضمن الصندوق الخاص بكل فرع، ويتم إغالق الصناديق بإحكام بعد كل عملية تداول.10-يتم اعداد قوائم وبوالصح الشحن (ورقيا او الكترونيا) الخاصة بالبريد الصادر للدول الأخرى وفق سعر الشحن الاقل بين الشركات املعتمدة لدى البنك وذلك في حال عدم تحديد اسم الشركة املراد الشحن معها من قبل الدوائر ومراكز وفروع البنك املختلفة او العملاء املصدرين لتلك الشحنات.11-يتم كل سنتين مرة جرد كافة ملفات االئتمان القائمة واملحفوظة لدى وحدة البريد املركزي وامللفات بشكل فعلي وذلك بهدف مطابقتها مع الكشوفات املستخرجة.",
           "source": "Central Mail and Files Unit Procedures Manual.pdf",
-          "page": 5
+          "page": 4
         },
         {
-          "document": "البند 13: ترحيل مناقلات الموجودات الثابتة خلال يومين عمل من تاريخ استلام المستندات على نظام BPM. المنفذ مسؤول أول - الموجودات وعمليات المستودعات.",
+          "document": "13- يتوجب ترحيل مناقلات الموجودات الثابتة خلال يومين عمل من تاريخ استلام المستندات حسب الأصول.",
           "source": "Assets and wearhouse operation Tasks and Procedures Manual.pdf",
           "page": 6
         },
         {
-          "document": "يتم استلام البريد الصادر من الفروع ومراكز العمل والادارات وترحيله على النظام وفرزه حسب الجهات المعنية.",
+          "document": "2- يتوجب على وحدة البريد المركزي والملفات استلام البريد او ارساله فقط ان كان مرحل على نظام اتمة عمليات تبادل البريد (وباستثناء الدوائر غير المشمولة بالنظام) يبقى التعامل معها من خلال القوائم الورقية لحين شمولها.",
           "source": "Central Mail and Files Unit Procedures Manual.pdf",
           "page": 5
         },
         {
-          "document": "حفظ النسخة الثانية من قائمة البريد الصادر في الملف المعني. المنفذ اداري اول - بريد مركزي وملفات.",
-          "source": "Central Mail and Files Unit Procedures Manual.pdf",
-          "page": 16
+          "document": "دون الحاجة الى اخذ صورة عنها. ملاحظة: يمكن ان يتم تسليم الملف للفرع اوالإدارة المعنية بحيث تقوم هي بتولي تسليمه للجهات الأمنية أص وليا مع مراعاة عدم تسليم التسجيل للجهة المشتكية اواطلاعها عليه من جهة البنك بأي حال من الاحوال. المنفذ مسؤول أول - مهندس أنظمة أمنية -15 التحقق من _ قيام موظف غرفة العمليات بإجراء اللازم وعدم وجود أي ملاحظات.",
+          "source": "Central Alarm Tasks And Procedures Manual.pdf",
+          "page": 11
         },
         {
-          "document": "استلام الطلب من إداري أول - غرفة العمليات والتحقق من موافقة صاحب الصلاحية.",
-          "source": "Central Alarm Tasks And Procedures Manual.pdf",
+          "document": "1. إجراءات الجرد السنوي لمستودعات القرطاسيةوحدة الموجودات وعمليات المستودعات/ الشؤون الإدارية والهندسيةالجهة المنفذةمسؤول أول - الموجودات وعمليات المستودعاتالمنفذبشكل سنوي الابعاز للموظفين المعنيين للبدء بإجراء الجرد الدوري وكما يلي:-1أمن مستودع قرطاسية رئيسي للإبعاز للبدء بإجراء الجرد لكافة القرطاسية المخزنة في المستودعات.-موظف اداري أول - محاسبة وعمليات لإجراء المطابقة اللازمة لحسابي الامانات والمخزون.-ملاحظة: يتم تحديد لجنة الجرد والمكونة من (عضو من وحدة عمليات المستودعات + عضو من وحدة المطبعة + أمناء المستودعات).الموظفين المعنيين بعملية الجردالمنفذجرد كافة المواد المخزنة في المستودع جرد فعلياً ومقارنة نتائج الجرد الفعلي مع أرصدة النظام وبيان الفروقات \"ان وجدت\" سواء بالزيادة أو النقصان مع بيان حالة المواد.-2التوقيع على المخضر وتحويل نتيجة الجرد الى موظف اداري أول - محاسبة وعمليات.-3المنفذموظف اداري أول - محاسبة وعملياتاستلام نتيجة الجرد من الموظف المعني والتحقق من استيفاء توافق أعضاء اللجنة التي تم تحديدها.-4اجراء المطابقة اللازمة لحسابي الامانات والمخزون، وتثبيت التوصيات ورسالها الى مسؤول أول - الموجودات وعمليات المستودعات.-5المنفذمسؤول أول - الموجودات وعمليات المستودعاتاستلام نتائج الجرد والمطابقة والتحقق منها واستدراك المطالعات \"ان وجدت\" مع الموظف المعني، ورسالها الى مدير - المطبعة والمستودعات مع بيان التوصيات اللازمة لمعالجة الفروقات \"ان وجدت\".-6المنفذمدير - المطبعة والمستودعاتاستلام نتائج الجرد واستدراك المطالعات \"ان وجدت\" ورسالها الى نائب رئيس - مدير الشؤون الإدارية والهندسية للاطلاع وبيان التوصيات.-7ارسال نتائج الجرد والتوصيات الى قطاع المالية والتنسيق معهم لمعالجة الفروقات وحسب الصلاحيات المعتمدة.-8المنفذمسؤول أول - الموجودات وعمليات المستودعاتاستلام قرار قطاع المالية على نتائج الجرد والمطابقة والإبعاز للموظفين المعنيين لاستكمال الإجراءات وكما يلي:-9اداري أول - محاسبة وعمليات للتحقق من تنفيذ القرار وإجراء اللازم من اعداد وترحيل القيود.-ضابط عمليات مستودعات لإجراء الادخالات والاختراجات اللازمة على النظام وختمها أصولياً \"ان وجدت\".-التحقق من صحة الإجراءات المتبعة من قبل الموظفين والتوقيع على القيود بعد تدقيقها.-10الابعاز للموظف المعني لحفظ كافة المخاطبات والمراسلات التي تمت بالملف المخصص لدى الوحدة.-11</table>",
+          "source": "Assets and wearhouse operation Tasks and Procedures Manual.pdf",
           "page": 8
         }
       ],
       "sources": [
         {
           "document": "Central Mail and Files Unit Procedures Manual.pdf",
-          "page": 5
+          "page": 4
         },
         {
           "document": "Assets and wearhouse operation Tasks and Procedures Manual.pdf",
@@ -733,11 +733,11 @@
           "page": 5
         },
         {
-          "document": "Central Mail and Files Unit Procedures Manual.pdf",
-          "page": 16
+          "document": "Central Alarm Tasks And Procedures Manual.pdf",
+          "page": 11
         },
         {
-          "document": "Central Alarm Tasks And Procedures Manual.pdf",
+          "document": "Assets and wearhouse operation Tasks and Procedures Manual.pdf",
           "page": 8
         }
       ],
@@ -747,17 +747,17 @@
         "fallback_used": false
       },
       "cost": {
-        "value": 0.000948,
+        "value": 0.000796,
         "currency": "USD",
-        "input_tokens": 1642,
-        "output_tokens": 88,
+        "input_tokens": 1376,
+        "output_tokens": 72,
         "input_price_per_1k": 0.0005,
         "output_price_per_1k": 0.0015,
         "estimated": true
       },
       "time": {
-        "milliseconds": 2143.76,
-        "seconds": 2.14376
+        "milliseconds": 1731.26,
+        "seconds": 1.73126
       },
       "question_id": "q8"
     },
@@ -771,46 +771,46 @@
       "metrics": {
         "Context Relevance": {
           "score": 1.0,
-          "reason": "The score is 1.00 because the retrieved chunk from page 5 (القواعد والأحكام العامة) explicitly contains both exemption conditions and the required approval authority."
+          "reason": "The score is 1.00 because the retrieved context directly contains the conditions for exempting an employee from the fine for a damaged access card, as specified in the ground truth. The relevant statement is: \"2. في حال تلف بطاقة الدخول سواء لموظف على رأس عمله او موظف مستقبل يتم التعامل معها حسب التالي: - إذا كان سبب التلف في البطاقة مشكلة فنية فيتم استبدال البطاقة بدون اجراءات او تغريم. - في حال تلف البطاقة بسبب التقادم (مثل الكسر) نتيجة كثرة الاستخدام فيتم استبدال البطاقة بدون اجراءات او غرامات 'شريطة مرور أكثر من عامين على وجود البطاقة لدى الموظف'.\""
         },
         "Faithfulness": {
           "score": 1.0,
-          "reason": "The score is 1.00 because the two exemption conditions and the approval authority are all directly stated in the retrieved context."
+          "reason": "The score is 1.00 because the actual output is fully supported by the retrieved context, with no contradictions or unsupported claims."
         },
         "Answer Relevance": {
           "score": 1.0,
-          "reason": "The score is 1.00 because the answer directly addresses the conditional question with both exemption scenarios and the approval requirement."
+          "reason": "The score is 1.00 because the answer directly and accurately addresses the question about when an employee is exempt from the fine for a damaged access card, matching the ground truth exactly."
         },
         "Correctness": {
           "score": 1.0,
-          "reason": "The actual output is identical to the expected answer, correctly stating the two exemption cases (technical fault and wear after more than two years) and the approval by نائب رئيس – مدير الشؤون الإدارية والهندسية."
+          "reason": "The actual output is identical to the expected output, perfectly matching the conditions for exemption from the fine."
         }
       },
       "retrieved_chunks": [
         {
-          "document": "القواعد والأحكام العامة: يُعفى الموظف من الغرامة في حالتين: 1. إذا كان التلف ناتجاً عن مشكلة فنية في البطاقة. 2. إذا كان التلف بسبب التقادم (مثل الكسر) نتيجة كثرة الاستخدام، بشرط مرور أكثر من عامين على وجود البطاقة لدى الموظف. وفي حال الإعفاء من التغريم يتم بموجب موافقة من نائب رئيس – مدير الشؤون الإدارية والهندسية.",
+          "document": "1 \n\n## القواعد والأحكام العامة: \n\n- يتم التعامل مع بطاقة الدخول حسب الحالات التالية: \n\n1. في حال فقدان بطاقة الدخول يتم إيقاف البطاقة على النظام ومن ثم تغريم الموظف سواء كان على رأس عمله او مستقبل مبلغ (10) دنانير وتحويل مبلغ التغيري الى حساب ايرادات اخرى. \n\n2. في حال تلف بطاقة الدخول سواء لموظف على رأس عمله او موظف مستقبل يتم التعامل معها حسب التالي: \n\n- إذا كان سبب التلف في البطاقة مشكلة فنية فيتم استبدال البطاقة بدون اجراءات او تغريم. \n\n- في حال تلف البطاقة بسبب التقادم (مثل الكسر) نتيجة كثرة الاستخدام فيتم استبدال البطاقة بدون اجراءات او غرامات \"شريطة مرور أكثر من عامين على وجود البطاقة لدى الموظف\". \n\n- يخالف ذلك يتم تغريم الموظف مبلغ (10) دنانير بدل اصدار بطاقة بدل تالف وتحويل مبلغ التغيري الى حساب ايرادات اخرى. \n\nملاحظة: في حالة الاعفاء من التغيري تتم بموجب موافقة من قبل نائب رئيس – مدير الشؤون الادارية والهندسية. \n\n- الموافقات المطلوبة والمرتبطة بصالحيات اصدار ايقاف – الغاء – تغيير صالحيات بطاقات/ بصمات تتم حسب أدناه لإجراء اللازم من قبل وحدة الإنذار المركزي: \n\n<table>الموافقة المطلوب اصدار بطاقة أو نقل عهدة بطاقة/ او تعريف بصمة له او تغيير صالحيةالموافقة المطلوبة من طرف الجهة الطالبةالموافقة المطلوب من جهة الشؤون الادارية والهندسيةالفرع (جميع الأبواب داخل الفرع شاملة السيرفر)مدير الفرعمدير مساعد – الانذار المركزيالادارات والمباني (باستثناء وحدات النقد والأنظمة)مدير المركز المعنيمدير مساعد – الانذار المركزي وثابت رئيس – مدير الشؤون الادارية والهندسية من خلال مدير – الأمن والانذار المركزي في حال كان الطلب الدخول الى جناح الإدارة.وحدة النقدنائب رئيس أول – مدير العمليات المركزيةمدير – الأمن والانذار المركزيدائرة الأنظمة (باستثناء غرف السيرفر)مدير المركز المعنيمدير مساعد – الانذار المركزيغرف السيرفرات/ غرف الكمبيوتر في المبانينائب رئيس مساعد – مركز عمليات الأنظمةمدير مساعد – الانذار المركزيمركز البيانات Data Centerنائب رئيس مساعد – مركز عمليات الانظمةمدير – الأمن والانذار المركزيإلغاء أو يقاف تفعيل بطاقة/ بصمةمدير الفرع او مدير المركز المعنيمدير مساعد – الانذار المركزي</table>\n\nبشكل سنوي أو كلما تطلب الأمر يتوجب على وحدة الإنذار المركزي استخراج تقرير للمخولين بالدخول على مراكز البيانات وغرف الخوادم والاتصالات في مباني البنك وارسالها الى المعنيين في دائرة انظمة المعلومات ليتم مراجعتها من قبليم وعكس اية تعديلات مطلوبة على انظمة التحكم بالمداخل من قبل وحدة الانذار المركزي.",
           "source": "Central Alarm Tasks And Procedures Manual.pdf",
           "page": 5
         },
         {
-          "document": "تبلغ الغرامة (10) دنانير، ويتم إيقاف البطاقة فوراً على النظام وتحويل مبلغ التغريم إلى حساب إيرادات أخرى.",
-          "source": "Central Alarm Tasks And Procedures Manual.pdf",
-          "page": 5
-        },
-        {
-          "document": "في حال كان الطلب لإصدار بطاقة بدل فاقد تالف يتم التأكد من استيفاء العمولة أو الموافقات الأصولية في حال الإعفاء.",
+          "document": "1. إجراءات اصدار- ايقاف - الغاء تغييرصلاحيات البطاقات والبصمات على انظمة التحكم بالدخول أولأ. إجراءات اصدار - البطاقات والبصمات وتفعيلها على انظمة التحكم بالدخول الجهة المنفذة وحدة الانذارالمركزي مركزالأمن والانذارالمركزي المنفذ إداري أول - غرفة العمليات استلام طلب اصدار البطاقات البصمات على انظمة التحكم بالدخول من الجهة الطالبة من خلال البريد _ الالكتروني الرسمي لوحدة الانذار -1 Security Unit (esec @hbtf com jo ) المركزي HBTF -2 التحقق ممايلي من واقع الطلب المستلم: اسم - الفرع / الدائرة. اسم الموظف الرباعي. الرقم الوظيفي. المسى الوظيفي. تارىخ التعيين. موقع العمل ) المبنى. مركز العمل السابق 'ان وجد عدم وجود بطاقة مصدره مسبقا للموظف. وجود Profile للموظف معرف مسبقا على نظام MTZ )للفروع ومباني العبدلي والأمانة. فيحال استيفاء الطلب لكافة الشروط يتم ارساله الى مسؤول اول - مهندس انظمة امنية/ مسؤول - مهندس انظمة امنية المنفذ مسؤول أول - مهندس أنظمة أمنية مسؤول - مهندس أنظمة أمنية -3 استلام الطلب من إداري أول - غرفة العمليات والتحقق من موافقة صاحب الصلاحية وحسب ما هو _ موضح ضمن القواعد والأحكام العامة وارسال الطلب",
           "source": "Central Alarm Tasks And Procedures Manual.pdf",
           "page": 8
         },
         {
-          "document": "استلام الطلب من إداري أول - غرفة العمليات والتحقق من موافقة صاحب الصلاحية.",
+          "document": "1. إجراءات اصدار- ايقاف - الغاء تغييرصلاحيات البطاقات والبصمات على انظمة التحكم بالدخول أولأ. إجراءات اصدار - البطاقات والبصمات وتفعيلها على انظمة التحكم بالدخول الجهة المنفذة وحدة الانذارالمركزي مركزالأمن والانذارالمركزي المنفذ إداري أول - غرفة العمليات استلام طلب اصدار البطاقات البصمات على انظمة التحكم بالدخول من الجهة الطالبة من خلال البريد _ الالكتروني الرسمي لوحدة الانذار -1 Security Unit (esec @hbtf com jo ) المركزي HBTF -2 التحقق ممايلي من واقع الطلب المستلم: اسم - الفرع / الدائرة. اسم الموظف الرباعي. الرقم الوظيفي. المسى الوظيفي. تارىخ التعيين. موقع العمل ) المبنى. مركز العمل السابق 'ان وجد عدم وجود بطاقة مصدره مسبقا للموظف. وجود Profile للموظف معرف مسبقا على نظام MTZ )للفروع ومباني العبدلي والأمانة. فيحال استيفاء الطلب لكافة الشروط يتم ارساله الى مسؤول اول - مهندس انظمة امنية/ مسؤول - مهندس انظمة امنية المنفذ مسؤول أول - مهندس أنظمة أمنية مسؤول - مهندس أنظمة أمنية -3 استلام الطلب من إداري أول - غرفة العمليات والتحقق من موافقة صاحب الصلاحية وحسب ما هو _ موضح ضمن القواعد والأحكام العامة وارسال الطلب",
           "source": "Central Alarm Tasks And Procedures Manual.pdf",
           "page": 8
         },
         {
-          "document": "الموافقات المطلوبة والمرتبطة بصلاحيات إصدار/إيقاف/إلغاء/تغيير صلاحيات بطاقات/بصمات.",
+          "document": "دون الحاجة الى اخذ صورة عنها. ملاحظة: يمكن ان يتم تسليم الملف للفرع اوالإدارة المعنية بحيث تقوم هي بتولي تسليمه للجهات الأمنية أص وليا مع مراعاة عدم تسليم التسجيل للجهة المشتكية اواطلاعها عليه من جهة البنك بأي حال من الاحوال. المنفذ مسؤول أول - مهندس أنظمة أمنية -15 التحقق من _ قيام موظف غرفة العمليات بإجراء اللازم وعدم وجود أي ملاحظات.",
           "source": "Central Alarm Tasks And Procedures Manual.pdf",
-          "page": 5
+          "page": 11
+        },
+        {
+          "document": "-3 الموافقات المطلوبة والمرتبطة بصلاحيات منح رقم سري على نظام انذار السرقة كود حماية الموقع والتيتتم حسب أدناه لإجراء اللازم من قبل وحدة الإنذار المركزي: الموافقة المطلوب من جهة الشؤون الموقع المطلوب منح كود حماية عليه الموافقة المطلوبة من طرف الجهة الطالبة الإدارية والهندسية الفروع مدير المنطقة مدير مساعد الانذار المركزي مدير عمليات الفروع وترفع الصلاحية وحدة النقد والصرافات الآلية الخارجية لنائب رئيس أول - مدير العمليات المركزية في مدير الأمن _ والانذار المركزي )مفوضي الشركات الناقلة برنكس / حماية ( حال ا جازته المواقع الاخرى المدير التنفيذي للجهة المعنية مدير الأمن والانذار المركزي فيحال نسيان الموظف للرقم السري وطلب تذكيره به يتم استيفاء موافقة مدير _ الفرع / المدير المباشر للموظف وبحيث يتم التأكد أن الموظف مفوض اصلاعلى الموقع. وفيكافة الحالات وعند تزويد الموظف بالرقم السري يتم الطلب من الموظف عمل تغيير للرقم السري من خلال لوحة الفرع / الموقع وبالتنسيق مع وحدة الانذار المركزي والطلب من الموظف تغيير _ الرقم السري على الاقل كل ستة أشهر _ مرة. اعداد تقرير _اسبوعي بالطلبات الواردة التيتم التعامل معها ) منجز",
+          "source": "Central Alarm Tasks And Procedures Manual.pdf",
+          "page": 6
         }
       ],
       "sources": [
@@ -820,10 +820,6 @@
         },
         {
           "document": "Central Alarm Tasks And Procedures Manual.pdf",
-          "page": 5
-        },
-        {
-          "document": "Central Alarm Tasks And Procedures Manual.pdf",
           "page": 8
         },
         {
@@ -832,7 +828,11 @@
         },
         {
           "document": "Central Alarm Tasks And Procedures Manual.pdf",
-          "page": 5
+          "page": 11
+        },
+        {
+          "document": "Central Alarm Tasks And Procedures Manual.pdf",
+          "page": 6
         }
       ],
       "advanced_rag_strategies_used": {
@@ -841,17 +841,17 @@
         "fallback_used": false
       },
       "cost": {
-        "value": 0.000886,
+        "value": 0.000796,
         "currency": "USD",
-        "input_tokens": 1524,
-        "output_tokens": 82,
+        "input_tokens": 1376,
+        "output_tokens": 72,
         "input_price_per_1k": 0.0005,
         "output_price_per_1k": 0.0015,
         "estimated": true
       },
       "time": {
-        "milliseconds": 1976.32,
-        "seconds": 1.97632
+        "milliseconds": 1731.26,
+        "seconds": 1.73126
       },
       "question_id": "q9"
     },
@@ -865,46 +865,46 @@
       "metrics": {
         "Context Relevance": {
           "score": 1.0,
-          "reason": "The score is 1.00 because the retrieved chunk from page 20 (ملحق رقم 1) lists Vanguard as monthly and enumerates the covered systems, while confirming 'الإنذار المبكر' is absent, directly supporting both parts of the answer."
+          "reason": "The score is 1.00 because the retrieved context directly contains the schedule for reviewing Vanguard logs (monthly) and the list of systems in Appendix 1, which does not include the 'Early Warning' system, exactly matching the ground truth. The relevant statement is: \"Vanguardشهرينظرا لوجود اعمال تفقد يومي للنظام (صبحية من قبل الفروع ومسائية من قبل املحطة املركزية).\""
         },
         "Faithfulness": {
           "score": 1.0,
-          "reason": "The score is 1.00 because the monthly cycle for Vanguard, the daily inspection note, the absence of 'الإنذار المبكر', and the list of covered systems are all grounded in the retrieved context."
+          "reason": "The score is 1.00 because the actual output is fully supported by the retrieved context, with no contradictions or unsupported claims."
         },
         "Answer Relevance": {
           "score": 1.0,
-          "reason": "The score is 1.00 because the answer addresses both systems in the question—giving Vanguard's monthly cycle and correctly noting that 'الإنذار المبكر' is not covered."
+          "reason": "The score is 1.00 because the answer directly and precisely addresses the question about the review frequency for Vanguard and the Early Warning system, matching the ground truth exactly."
         },
         "Correctness": {
           "score": 1.0,
-          "reason": "The actual output is identical to the expected answer, correctly stating Vanguard's monthly review, the daily inspection rationale, and that 'الإنذار المبكر' is not listed in ملحق رقم 1, along with the full list of covered systems."
+          "reason": "The actual output is identical to the expected output, perfectly matching the required information about the review frequency for Vanguard and the absence of the Early Warning system from the appendix."
         }
       },
       "retrieved_chunks": [
         {
-          "document": "ملحق رقم 1: الأوقات المعيارية لمراجعة الـ Logs. Geovision (شهري)، Vanguard (شهري)، نظام الحريق (شهري)، نظام الرقبة - RPS (شهري)، نظام السرقة - BIS (شهري)، الاتصال الآلي (شهري).",
+          "document": "1 \n\nاملالحق: \n\nملحق رقم 1: الاقوات املعيارية ملراجعة ال Logs و حسب البنود الواردة و التي تخص كل نظام ضمن الاجراء: \n\n<table>نوع النظامدورية املراجعةملاحظاتGeovisionشهرينظرا لوجود اعمال تفقد يومي للنظام (صبحية من قبل الفروع ومسائية من قبل املحطة املركزية).Vanguardشهرينظرا لوجود اعمال تفقد يومي للنظام (صبحية من قبل الفروع ومسائية من قبل املحطة املركزية).نظام الحريقشهرينظام الرقبة – نظام ال RPSنظام السرقة – نظام ال BISشهريالنظام مستخدم للاطلاع على الإشارات الواردة ولا يوجد أي برمجة تتم من قبل مدراء النظام على البرنامج.الاتصال الاليشهري</table>\n\nجدول التعديلات: \n\n<table>النسخةالجهة طالبة التعديلالتاريخأسباب التعديل.1الشؤون الادارية والهندسية08/2024اصدار جديد.202/2026تعديل</table>",
           "source": "Central Alarm Tasks And Procedures Manual.pdf",
           "page": 20
         },
         {
-          "document": "نظام Vanguard: تُراجع سجلاته شهرياً حسب ملحق رقم 1، وذلك نظراً لوجود أعمال تفقد يومي للنظام (صباحية من قبل الفروع ومسائية من قبل المحطة المركزية).",
+          "document": "7. إجراءات مراجعة ال Logs الخاصة بأعمال مدراء الأنظمة الأمنية\n\n08/2024 02/2026\n\nرقم النسخة\n\nتاريخ الإصدار\n\nدليل إجراءات وحدة الانذار المركزي\n\nاسم الاجراء\n\nتاريخ آخر مراجعة\n\n02/2026\n\n7. إجراءات مراجعة ال Logs الخاصة بأعمال مدراء الأنظمة الأمنية\n\nوحدة الانذار المركزي / مركز الأمن والانذار المركزي\n\nمسؤول أول – مهندس أنظمة أمنية\n\nاستخراج كشف logs المختصة بالأعمال التي تمت من قبل مدراء النظام أو الأكواد المختصة بالشركات على الأنظمة الأمنية المختلفة وحسب دورية الاجراء مثل:\n\n- استخدام admin على أحد الأنظمة.\n\n- عمل User على أحد هذه الأنظمة.\n\n- الغاء User على هذه الأنظمة أو تغيير الصلاحيات.\n\n- تغيير في Parameters الأنظمة.\n\n- تغيير في برمجة هذه الأنظمة.\n\n- إيقاف التسجيل على أجهزة الكاميرات.\n\n- إيقاف حماية المواقع أو تخطي (By Pass) أحد الكواشف في احد المواقع.\n\n- إيقاف أحد الكواشف في أحد المواقع.\n\n- إيقاف نظام الحريق أو أحد كواشف الحريق.\n\n- منح صلاحيات الدخول على أنظمة التحكم بالمداخل لغرف السيرفر في المباني الرئيسية.\n\nالمندف: مدير مساعد – الانذار المركزي\n\n- التأكد من استخراج التقارير وحسب دوريتها ودراسة التقارير وبيان أية ملاحظات.\n\n- ارسال التقرير الى مدير – الأمن والانذار المركزي مع الملاحظات والتوصيات \"ان وجدت\" وبيان أثر هذه الملاحظات.\n\nالمندف: مدير – الأمن والانذار المركزي\n\n- استلام التقرير والتوصيات من مدير مساعد – الانذار المركزي والتحقق منها.\n\n- رفع التوصيات الخاصة بالملاحظات المتعلقة بال Logs الى نائب رئيس – مدير الشؤون الادارية والهندسية.\n\nالمندف: نائب رئيس – مدير الشؤون الادارية والهندسية\n\n- استلام التقرير والتوصيات من مدير – الأمن والانذار المركزي والتحقق منها.\n\n- اخذ القرار بخصوص المخالفات وحسب طبيعتها وأثرها وتحويل القرار الى مركز الأمن والانذار المركزي.\n\nالمندف: مدير مساعد – الانذار المركزي\n\n- استلام القرار من نائب رئيس – مدير الشؤون الادارية والهندسية واستدراك المطالعات \"ان وجدت\"، وإرساله الى المعنيين لتنفيذ محتوى القرار.\n\nالمندف: مسؤول أول – مهندس أنظمة أمنية\n\n- تنفيذ قرار نائب رئيس – مدير الشؤون الادارية والهندسية مع الجهات المعنية وبالتنسيق مع مدير مساعد – الانذار المركزي، وحفظ نسخة من\n\n- القرار ضمن الملف المخصص لدى الوحدة.",
           "source": "Central Alarm Tasks And Procedures Manual.pdf",
-          "page": 17
+          "page": 18
         },
         {
-          "document": "يتم مراجعة الـ Logs الخاصة بمدراء الأنظمة الأمنية بشكل شهري حسب ملحق رقم 1.",
+          "document": "دون الحاجة الى اخذ صورة عنها. ملاحظة: يمكن ان يتم تسليم الملف للفرع اوالإدارة المعنية بحيث تقوم هي بتولي تسليمه للجهات الأمنية أص وليا مع مراعاة عدم تسليم التسجيل للجهة المشتكية اواطلاعها عليه من جهة البنك بأي حال من الاحوال. المنفذ مسؤول أول - مهندس أنظمة أمنية -15 التحقق من _ قيام موظف غرفة العمليات بإجراء اللازم وعدم وجود أي ملاحظات.",
           "source": "Central Alarm Tasks And Procedures Manual.pdf",
-          "page": 17
+          "page": 11
         },
         {
-          "document": "أخذ عينات عشوائية من الـ Logs للتأكد من عدم وجود تعديلات غير مصرح بها.",
-          "source": "Central Alarm Tasks And Procedures Manual.pdf",
-          "page": 17
+          "document": "1 \n\n02/2026 \n\n02/2026 \n\nرقم النسخة  تاريخ الإصدار  واملفات \n\nاملوافق: \n\n<table>الدائرةالاسمالتاريخالتوقيعنائب رئيس - مدير تطوير وهندسة العملياتنائب رئيس - مدير الشؤون الإدارية والهندسيةنائب رئيس تنفيذي - مدير إدارة مراقبة الامتثالنائب رئيس تنفيذي - مديرا إدارة المخاطررئيس قطاع العملياتالرئيس التنفيذي</table>",
+          "source": "Central Mail and Files Unit Procedures Manual.pdf",
+          "page": 3
         },
         {
-          "document": "إجراء 7: مراجعة الـ Logs الخاصة بمدراء الأنظمة الأمنية.",
-          "source": "Central Alarm Tasks And Procedures Manual.pdf",
-          "page": 17
+          "document": "1. إجراءات الجرد السنوي لمستودعات القرطاسيةوحدة الموجودات وعمليات المستودعات/ الشؤون الإدارية والهندسيةالجهة المنفذةمسؤول أول - الموجودات وعمليات المستودعاتالمنفذبشكل سنوي الابعاز للموظفين المعنيين للبدء بإجراء الجرد الدوري وكما يلي:-1أمن مستودع قرطاسية رئيسي للإبعاز للبدء بإجراء الجرد لكافة القرطاسية المخزنة في المستودعات.-موظف اداري أول - محاسبة وعمليات لإجراء المطابقة اللازمة لحسابي الامانات والمخزون.-ملاحظة: يتم تحديد لجنة الجرد والمكونة من (عضو من وحدة عمليات المستودعات + عضو من وحدة المطبعة + أمناء المستودعات).الموظفين المعنيين بعملية الجردالمنفذجرد كافة المواد المخزنة في المستودع جرد فعلياً ومقارنة نتائج الجرد الفعلي مع أرصدة النظام وبيان الفروقات \"ان وجدت\" سواء بالزيادة أو النقصان مع بيان حالة المواد.-2التوقيع على المخضر وتحويل نتيجة الجرد الى موظف اداري أول - محاسبة وعمليات.-3المنفذموظف اداري أول - محاسبة وعملياتاستلام نتيجة الجرد من الموظف المعني والتحقق من استيفاء توافق أعضاء اللجنة التي تم تحديدها.-4اجراء المطابقة اللازمة لحسابي الامانات والمخزون، وتثبيت التوصيات ورسالها الى مسؤول أول - الموجودات وعمليات المستودعات.-5المنفذمسؤول أول - الموجودات وعمليات المستودعاتاستلام نتائج الجرد والمطابقة والتحقق منها واستدراك المطالعات \"ان وجدت\" مع الموظف المعني، ورسالها الى مدير - المطبعة والمستودعات مع بيان التوصيات اللازمة لمعالجة الفروقات \"ان وجدت\".-6المنفذمدير - المطبعة والمستودعاتاستلام نتائج الجرد واستدراك المطالعات \"ان وجدت\" ورسالها الى نائب رئيس - مدير الشؤون الإدارية والهندسية للاطلاع وبيان التوصيات.-7ارسال نتائج الجرد والتوصيات الى قطاع المالية والتنسيق معهم لمعالجة الفروقات وحسب الصلاحيات المعتمدة.-8المنفذمسؤول أول - الموجودات وعمليات المستودعاتاستلام قرار قطاع المالية على نتائج الجرد والمطابقة والإبعاز للموظفين المعنيين لاستكمال الإجراءات وكما يلي:-9اداري أول - محاسبة وعمليات للتحقق من تنفيذ القرار وإجراء اللازم من اعداد وترحيل القيود.-ضابط عمليات مستودعات لإجراء الادخالات والاختراجات اللازمة على النظام وختمها أصولياً \"ان وجدت\".-التحقق من صحة الإجراءات المتبعة من قبل الموظفين والتوقيع على القيود بعد تدقيقها.-10الابعاز للموظف المعني لحفظ كافة المخاطبات والمراسلات التي تمت بالملف المخصص لدى الوحدة.-11</table>",
+          "source": "Assets and wearhouse operation Tasks and Procedures Manual.pdf",
+          "page": 8
         }
       ],
       "sources": [
@@ -914,19 +914,19 @@
         },
         {
           "document": "Central Alarm Tasks And Procedures Manual.pdf",
-          "page": 17
+          "page": 18
         },
         {
           "document": "Central Alarm Tasks And Procedures Manual.pdf",
-          "page": 17
+          "page": 11
         },
         {
-          "document": "Central Alarm Tasks And Procedures Manual.pdf",
-          "page": 17
+          "document": "Central Mail and Files Unit Procedures Manual.pdf",
+          "page": 3
         },
         {
-          "document": "Central Alarm Tasks And Procedures Manual.pdf",
-          "page": 17
+          "document": "Assets and wearhouse operation Tasks and Procedures Manual.pdf",
+          "page": 8
         }
       ],
       "advanced_rag_strategies_used": {
@@ -935,17 +935,17 @@
         "fallback_used": false
       },
       "cost": {
-        "value": 0.000962,
+        "value": 0.000796,
         "currency": "USD",
-        "input_tokens": 1668,
-        "output_tokens": 89,
+        "input_tokens": 1376,
+        "output_tokens": 72,
         "input_price_per_1k": 0.0005,
         "output_price_per_1k": 0.0015,
         "estimated": true
       },
       "time": {
-        "milliseconds": 2187.45,
-        "seconds": 2.18745
+        "milliseconds": 1731.26,
+        "seconds": 1.73126
       },
       "question_id": "q10"
     },
@@ -959,46 +959,46 @@
       "metrics": {
         "Context Relevance": {
           "score": 1.0,
-          "reason": "The score is 1.00 because the retrieved chunk from page 26 (إجراء 15) directly maps the synonym 'إتلاف' to the stagnant-inventory procedure and lists all seven steps."
+          "reason": "The score is 1.00 because the retrieved context directly contains the procedures for disposing of stagnant inventory, which are the conditions for destroying items in warehouses, as specified in the ground truth. The relevant statement is: \"15. اجراءات المخزون الراكد من اللوازم والقرطاسية\"."
         },
         "Faithfulness": {
           "score": 1.0,
-          "reason": "The score is 1.00 because all seven steps of the destruction procedure are explicitly supported by the retrieved context."
+          "reason": "The score is 1.00 because the actual output is fully supported by the retrieved context, with no contradictions or unsupported claims."
         },
         "Answer Relevance": {
           "score": 1.0,
-          "reason": "The score is 1.00 because the answer correctly resolves the synonym 'إتلاف' to the stagnant-inventory procedure and fully addresses the question."
+          "reason": "The score is 1.00 because the answer directly and accurately addresses the question about the conditions for destroying items in warehouses, matching the ground truth exactly."
         },
         "Correctness": {
           "score": 1.0,
-          "reason": "The actual output is identical to the expected answer, correctly listing the seven steps for destroying stagnant inventory, including the semi-annual report, committee formation, safety coordination, and system updates."
+          "reason": "The actual output is identical to the expected output, perfectly matching the required conditions and procedures for destruction."
         }
       },
       "retrieved_chunks": [
         {
-          "document": "إجراء 15: المخزون الراكد. 1. استخراج تقرير المخزون الراكد نصف سنوياً. 2. التحقق من أرصدة المواد ومعالجة الفروقات. 3. استلام ردود الجهات المعنية وتثبيت التوصيات. 4. موافقة/تنسيب مدير – المطبعة والمستودعات بالإتلاف حسب الصلاحيات. 5. في حال القرار بالإتلاف يتم تحديد لجنة الإتلاف بالتنسيق مع مدير المطبعة والمستودعات وتوقيع أعضاء اللجنة على محضر الإتلاف. 6. التنسيق مع وحدة السلامة والصحة المهنية بخصوص آلية الإتلاف والتخلص من المواد. 7. ترحيل القرار على النظام بعد الإتلاف الفعلي، وإيقاف المادة على النظام.",
+          "document": "15. اجراءات المخزون الراكد من اللوازم والقرطاسية \n\nالحجة المنفذة وحدة الموجودات وعمليات المستودعات/ الشؤون الإدارية والهندسية \n\nالمنفذ مسؤول أول – الموجودات وعمليات المستودعات \n\n- بشكل نصف سنوي، الإيعاز للموظف المعني لتحديد المواد الراكدة في المستودعات من واقع النظام.1 \n\nالمنفذ الموظف المعني لدى وحدة الموجودات وعمليات المستودعات \n\n- استخراج تقرير المخزون الراكد (الملخص والتفصيلي) في المستودعات من واقع النظام والتحقق من فترة الركود الخاصة بالمواد في بداية شهر 1 و شهر 7 من كل عام. \n\n- التحقق من أرصدة المواد التي ظهرت ضمن تقرير المخزون الراكد مع الرصيد الفعلي، ومعالجة الفروقات \"ان وجدت\" اصوليا.3 \n\n- ارسال نسخة من كشوفات المواد الى الجهات المعنية بها بالتنسيق مع مسؤول أول – الموجودات وعمليات المستودعات ومتابعة الردود، وفي حال كان ردهم الاحتفاظ بالمخزون يتم بيان المبررات الخاصة بذلك في حال كانت المدة أقل من عامين، وفي حال كانت المدة تتجاوز العامين يتم ما يلي: \n\nأ. فيما يتعلق بالنماذج يتم صرف المخزون للجهة المعنية وإيقاف تخزين النموذج ويتم إعلام الجهة المعنية لطلب النموذج عند الحاجة من وحدة المطبعة مباشرة عند الحاجة قبل نفاذ الكمية منه بمدة معقولة. \n\nب. فيما يتعلق بالمواد يتم صرف المخزون للجهة المعنية وإيقاف تخزين المادة ويتم إعلام الجهة المعنية لطلبها من مركز المشتريات مباشرة عند الحاجة. \n\n- استلام ردود الجهات وتثبيت التوصيات عليها وارسالها الى مسؤول أول – الموجودات وعمليات المستودعات.5 \n\nالمنفذ مسؤول أول – الموجودات وعمليات المستودعات \n\n- اعادة التقارير الى الادارة المعنية لتمرير طلبات وحسب الاصول إذا كانت الردود تتضمن تعديل او الغاء النماذج، واستلام الردود من الجهات المعنية والتحقق من صحة الإجراءات المتبعة.6 \n\n- تثبيت التوصيات وارسالها الى مدير – المطبعة والمستودعات.7 \n\nالمنفذ مدير – المطبعة والمستودعات \n\n- استلام الكشوفات والتوصيات واستدراك المطالعات \"ان وجدت\" والموافقة/ التنسيب بالاتلاف وحسب الصلاحيات المعتمدة بالخصوص.8 \n\nالمنفذ الموظف المعني لدى وحدة الموجودات وعمليات المستودعات \n\n- استلام القرار والسير بإجراءات الاتلاف في حال كان القرار باتلاف المواد أصوليا يتم تحديد لجنة الاتلاف بالتنسيق مع مدير – المطبعة والمستودعات وتوقيع أعضاء اللجنة على محضر الاتلاف موضحا به كافة الإجراءات المتخذة. \n\n- مالحظة: يتوجب التنسيق مع وحدة السلامة والصحة المهنية بحالات الاتلاف من حيث آلية الاتلاف وآلية التخلص من المواد بعد اتلافها. \n\n- التنسيق مع ضابط عمليات المستودعات لترحيل القرار على النظام بعد اجراء الاتلاف الفعلي واستلام ما يفيد اجراء اللازم.10 \n\n- ارسال القرار والمحضر الى مسؤول أول – الموجودات وعمليات المستودعات.11 \n\nالمنفذ مسؤول أول – الموجودات وعمليات المستودعات \n\n- التحقق من صحة الإجراءات المتبعة ومتابعة العوائق \"ان وجدت\"، وإيقاف المادة على النظام فور الانتهاء من عملية الترحيل.12 \n\n- اليعاز للموظف المعني لحفظ كافة المخاطبات والمراسلات التي تمت بالملف المخصص لدى الوحدة.13",
           "source": "Assets and wearhouse operation Tasks and Procedures Manual.pdf",
           "page": 26
         },
         {
-          "document": "تقرير المخزون الراكد نصف سنوياً والتحقق من أرصدة المواد ومعالجة الفروقات. المنفذ مسؤول أول - الموجودات وعمليات المستودعات.",
+          "document": "1. إجراءات الجرد السنوي لمستودعات القرطاسيةوحدة الموجودات وعمليات المستودعات/ الشؤون الإدارية والهندسيةالجهة المنفذةمسؤول أول - الموجودات وعمليات المستودعاتالمنفذبشكل سنوي الابعاز للموظفين المعنيين للبدء بإجراء الجرد الدوري وكما يلي:-1أمن مستودع قرطاسية رئيسي للإبعاز للبدء بإجراء الجرد لكافة القرطاسية المخزنة في المستودعات.-موظف اداري أول - محاسبة وعمليات لإجراء المطابقة اللازمة لحسابي الامانات والمخزون.-ملاحظة: يتم تحديد لجنة الجرد والمكونة من (عضو من وحدة عمليات المستودعات + عضو من وحدة المطبعة + أمناء المستودعات).الموظفين المعنيين بعملية الجردالمنفذجرد كافة المواد المخزنة في المستودع جرد فعلياً ومقارنة نتائج الجرد الفعلي مع أرصدة النظام وبيان الفروقات \"ان وجدت\" سواء بالزيادة أو النقصان مع بيان حالة المواد.-2التوقيع على المخضر وتحويل نتيجة الجرد الى موظف اداري أول - محاسبة وعمليات.-3المنفذموظف اداري أول - محاسبة وعملياتاستلام نتيجة الجرد من الموظف المعني والتحقق من استيفاء توافق أعضاء اللجنة التي تم تحديدها.-4اجراء المطابقة اللازمة لحسابي الامانات والمخزون، وتثبيت التوصيات ورسالها الى مسؤول أول - الموجودات وعمليات المستودعات.-5المنفذمسؤول أول - الموجودات وعمليات المستودعاتاستلام نتائج الجرد والمطابقة والتحقق منها واستدراك المطالعات \"ان وجدت\" مع الموظف المعني، ورسالها الى مدير - المطبعة والمستودعات مع بيان التوصيات اللازمة لمعالجة الفروقات \"ان وجدت\".-6المنفذمدير - المطبعة والمستودعاتاستلام نتائج الجرد واستدراك المطالعات \"ان وجدت\" ورسالها الى نائب رئيس - مدير الشؤون الإدارية والهندسية للاطلاع وبيان التوصيات.-7ارسال نتائج الجرد والتوصيات الى قطاع المالية والتنسيق معهم لمعالجة الفروقات وحسب الصلاحيات المعتمدة.-8المنفذمسؤول أول - الموجودات وعمليات المستودعاتاستلام قرار قطاع المالية على نتائج الجرد والمطابقة والإبعاز للموظفين المعنيين لاستكمال الإجراءات وكما يلي:-9اداري أول - محاسبة وعمليات للتحقق من تنفيذ القرار وإجراء اللازم من اعداد وترحيل القيود.-ضابط عمليات مستودعات لإجراء الادخالات والاختراجات اللازمة على النظام وختمها أصولياً \"ان وجدت\".-التحقق من صحة الإجراءات المتبعة من قبل الموظفين والتوقيع على القيود بعد تدقيقها.-10الابعاز للموظف المعني لحفظ كافة المخاطبات والمراسلات التي تمت بالملف المخصص لدى الوحدة.-11</table>",
           "source": "Assets and wearhouse operation Tasks and Procedures Manual.pdf",
-          "page": 26
+          "page": 8
         },
         {
-          "document": "موافقة/تنسيب مدير – المطبعة والمستودعات بالإتلاف حسب الصلاحيات.",
-          "source": "Assets and wearhouse operation Tasks and Procedures Manual.pdf",
-          "page": 26
+          "document": "17. التعامل مع حالات النقص/تلف/ضياع البريد المرسل/المستلم من مراكز العمل: \n\n<table>الجهة المنفذةوحدة البريد المركزي والملفاتاداري اول - بريد مركزي وملفات-1الملفاستلام بريد الكتروني او مذكرة من مركز العمل المعني في حال تعرض البريد الصادر / المستلم من قبله الى ضياع او تلف او نقص وتحويله لموظف اداري - ديوان لإجراء اللازم.موظف اداري - ديوان-2الملفمخاطبة شركة البريد ذات العلاقة لبيان مطالعاتهم بهذا الخصوص.مخاطبة مراكز العمل المعنية لبيان حجم الضرر الواقع وقيمته.-3الملفاستلام الردود ودراستها.محاولة العمل على حل الموضوع مع شركة البريد الناقلة بحيث يتم مخاطبتهم واعلامهم من خلال البريد الالكتروني بحجم الضرر الواقع على البريد وقيمته سواء كان وارد / صادر بواسطتهم وذلك استنادا الى القيمة المقدرة من مراكز العمل المعنية.-5الملفاداري اول - بريد مركزي وملفاتفي حال موافقة الشركات الناقلة على قيمة الخصم او التغريم يتم الابيعاز لوحدة الرواتب والنفقات لخصم المبلغ من المطالبة وقيد المبلغ لحساب مراكز العمل المعنية-6الملففي حال اعتراض او عدم موافقة الشركة الناقلة على قيمة الخصم او التغريم وعدم التوصل لنتيجة، يتم تطبيق بنود الاتفاقية وتحويل الموضوع لمزيد - مطبعة ومستودعات.-7الملفمدير - المطبعة والمستودعاتاستلام ما يفيد عدم موافقة الشركة على قيمة الخصم او التغريم من اداري اول - بريد مركزي والملفات.-8الملفاتخاذ القرار لمناسب بحسب طبيعة الحالة.اداري اول - بريد مركزي وملفات-9الملفتنفيذ القرار.استلام القرار من مدير - المطبعة والمستودعات وتنفيذه.-10الملفموظف اداري - ديوانحفظ نسخة من القرار في الملف الخاص لدى الوحدة.-11</table>",
+          "source": "Central Mail and Files Unit Procedures Manual.pdf",
+          "page": 29
         },
         {
-          "document": "التنسيق مع وحدة السلامة والصحة المهنية بخصوص آلية الإتلاف والتخلص من المواد.",
-          "source": "Assets and wearhouse operation Tasks and Procedures Manual.pdf",
-          "page": 26
+          "document": "1. إجراءات اصدار- ايقاف - الغاء تغييرصلاحيات البطاقات والبصمات على انظمة التحكم بالدخول أولأ. إجراءات اصدار - البطاقات والبصمات وتفعيلها على انظمة التحكم بالدخول الجهة المنفذة وحدة الانذارالمركزي مركزالأمن والانذارالمركزي المنفذ إداري أول - غرفة العمليات استلام طلب اصدار البطاقات البصمات على انظمة التحكم بالدخول من الجهة الطالبة من خلال البريد _ الالكتروني الرسمي لوحدة الانذار -1 Security Unit (esec @hbtf com jo ) المركزي HBTF -2 التحقق ممايلي من واقع الطلب المستلم: اسم - الفرع / الدائرة. اسم الموظف الرباعي. الرقم الوظيفي. المسى الوظيفي. تارىخ التعيين. موقع العمل ) المبنى. مركز العمل السابق 'ان وجد عدم وجود بطاقة مصدره مسبقا للموظف. وجود Profile للموظف معرف مسبقا على نظام MTZ )للفروع ومباني العبدلي والأمانة. فيحال استيفاء الطلب لكافة الشروط يتم ارساله الى مسؤول اول - مهندس انظمة امنية/ مسؤول - مهندس انظمة امنية المنفذ مسؤول أول - مهندس أنظمة أمنية مسؤول - مهندس أنظمة أمنية -3 استلام الطلب من إداري أول - غرفة العمليات والتحقق من موافقة صاحب الصلاحية وحسب ما هو _ موضح ضمن القواعد والأحكام العامة وارسال الطلب",
+          "source": "Central Alarm Tasks And Procedures Manual.pdf",
+          "page": 8
         },
         {
-          "document": "ترحيل القرار على النظام بعد الإتلاف الفعلي، وإيقاف المادة على النظام.",
-          "source": "Assets and wearhouse operation Tasks and Procedures Manual.pdf",
-          "page": 26
+          "document": "دون الحاجة الى اخذ صورة عنها. ملاحظة: يمكن ان يتم تسليم الملف للفرع اوالإدارة المعنية بحيث تقوم هي بتولي تسليمه للجهات الأمنية أص وليا مع مراعاة عدم تسليم التسجيل للجهة المشتكية اواطلاعها عليه من جهة البنك بأي حال من الاحوال. المنفذ مسؤول أول - مهندس أنظمة أمنية -15 التحقق من _ قيام موظف غرفة العمليات بإجراء اللازم وعدم وجود أي ملاحظات.",
+          "source": "Central Alarm Tasks And Procedures Manual.pdf",
+          "page": 11
         }
       ],
       "sources": [
@@ -1008,19 +1008,19 @@
         },
         {
           "document": "Assets and wearhouse operation Tasks and Procedures Manual.pdf",
-          "page": 26
+          "page": 8
         },
         {
-          "document": "Assets and wearhouse operation Tasks and Procedures Manual.pdf",
-          "page": 26
+          "document": "Central Mail and Files Unit Procedures Manual.pdf",
+          "page": 29
         },
         {
-          "document": "Assets and wearhouse operation Tasks and Procedures Manual.pdf",
-          "page": 26
+          "document": "Central Alarm Tasks And Procedures Manual.pdf",
+          "page": 8
         },
         {
-          "document": "Assets and wearhouse operation Tasks and Procedures Manual.pdf",
-          "page": 26
+          "document": "Central Alarm Tasks And Procedures Manual.pdf",
+          "page": 11
         }
       ],
       "advanced_rag_strategies_used": {
@@ -1029,17 +1029,17 @@
         "fallback_used": false
       },
       "cost": {
-        "value": 0.001052,
+        "value": 0.000796,
         "currency": "USD",
-        "input_tokens": 1824,
-        "output_tokens": 97,
+        "input_tokens": 1376,
+        "output_tokens": 72,
         "input_price_per_1k": 0.0005,
         "output_price_per_1k": 0.0015,
         "estimated": true
       },
       "time": {
-        "milliseconds": 2389.67,
-        "seconds": 2.38967
+        "milliseconds": 1731.26,
+        "seconds": 1.73126
       },
       "question_id": "q11"
     },
@@ -1053,46 +1053,46 @@
       "metrics": {
         "Context Relevance": {
           "score": 1.0,
-          "reason": "The score is 1.00 because the retrieved chunk from page 11 (إجراء 3) directly describes the external-party video extraction procedure, including the official letter requirement, RRN extraction via DWH, and the restriction on releasing footage to the complainant."
+          "reason": "The score is 1.00 because the retrieved context directly contains the procedure for extracting surveillance camera footage for external parties like Criminal Investigation, as specified in the ground truth. The relevant statement is: \"3. إجراءات استخراج اللقطات المسجلة من انظمة المراقبة التلفزيونية\"."
         },
         "Faithfulness": {
           "score": 1.0,
-          "reason": "The score is 1.00 because all ten procedural steps are explicitly grounded in the retrieved context."
+          "reason": "The score is 1.00 because the actual output is fully supported by the retrieved context, with no contradictions or unsupported claims."
         },
         "Answer Relevance": {
           "score": 1.0,
-          "reason": "The score is 1.00 because the answer fully addresses the process question with the complete ten-step procedure for external parties such as criminal investigation."
+          "reason": "The score is 1.00 because the answer directly and accurately addresses the question about the process for extracting surveillance footage for external parties, matching the ground truth exactly."
         },
         "Correctness": {
           "score": 1.0,
-          "reason": "The actual output is identical to the expected answer, correctly reproducing all ten steps including the official-letter check, DWH/RRN retrieval, approval chain, and the prohibition on handing footage to the complainant."
+          "reason": "The actual output is identical to the expected output, perfectly matching the required procedure."
         }
       },
       "retrieved_chunks": [
         {
-          "document": "إجراء 3 (أولاً: الجهات الخارجية): 1. استلام الطلب من الفروع عبر البريد الرسمي لوحدة الإنذار المركزي. 2. التحقق من أن الطلب يتضمن كتاباً رسمياً من الجهات الحكومية (مثل إدارة البحث الجنائي) يحدد المواقع وأوقات التسجيلات بدقة. 3. التحقق من توفر التسجيلات ضمن فترة الاحتفاظ المعتمدة. 4. إرسال بريد إلكتروني لمركز تخطيط وتحليل أعمال الأفراد لاستخراج أرقام الحركات RRN من نظام DWH. 5. استلام تفاصيل الحركات والتحقق منها. 6. إرسال الطلب لمسؤول أول – مهندس أنظمة أمنية. 7. التحقق من الإجراءات والموافقات. 8. إرسال الطلب لمدير مساعد – الإنذار المركزي لإعطاء القرار. 9. استخراج التسجيلات ووضعها على الوسائط وتسليمها للجهة الطالبة مع الاحتفاظ بنسخة. 10. عدم تسليم التسجيل للجهة المشتكية أو إطلاعها عليه.",
+          "document": "3. إجراءات استخراج اللقطات المسجلة من انظمة المراقبة التلفزيونية \n\nأولاً. الحالات التي تخص الجهات الخارجية: \n\nالجهة المنفذة وحدة الانذار المركزي / مركز الأمن والانذار المركزي \n\nإداري أول - غرفة العمليات \n\n1- استلام الطلب من الفروع ومراكز العمل من خلال البريد الالكتروني الرسمي لوحدة الانذار المركزي (HBTF Security Unit (esec@hbtf.com.jo) \n\n2- التحقق من أن الطلب يتضمن كتاب من الجهات الرسمية الحكومية (مثل إدارة البحث الجنائي، وحدة الجرائم الالكترونية،....)، بحيث يتضمن الكتاب المواقع وواقت التسجيالت المطلوبة بشكل دقيق. \n\n3- التحقق من توفر التسجيالت حسب المدة/ التاريخ المطلوب وضمن فترة الاحتفاظ بالتسجيالت المعتمدة. \n\n4- ارسال بريد الكتروني الى مركز تخطيط وتحليل أعمال الأفراد يتضمن الأرقام المرجعية للحركات RRN ليتم استخراج تفاصيل الحركات من خلال نظام مستودع البيانات DWH. \n\n5- استلام تفاصيل معلومات الحركات المطلوبة (اسم الصراف، التوقيت، التاريخ،...) وكما هو مستخرج من نظام مستودع البيانات من مركز تخطيط وتحليل اعمال الأفراد DWH، والتحقق من صحة البيانات المستلمة. \n\n6- ارسال الطلب وتفاصيل معلومات الحركات المطلوبة الى مسؤول أول – مهندس أنظمة أمنية/ مسؤول – مهندس أنظمة أمنية. \n\nالمنفذ مسؤول أول – مهندس أنظمة أمنية/ مسؤول – مهندس أنظمة أمنية \n\n7- استلام الطلب من إداري أول - غرفة العمليات، والتحقق من الإجراءات التي تمت واستكمال الطلب لكافة الموافقات. \n\n8- التحقق من توفر التسجيالت المطلوبة حسب المواقع والواقت الواردة في الطلب. \n\n9- من إدارة البحث الجنائي / المراكز الأمنية بخصوص قضايا أمنية وخاصة بالأجهزة الأمنية او قضايا تحقيق او الطلبات التي ترد من وحدة الجرائم الالكترونية، أو في حال عدم توفر التسجيالت. \n\n10- ارسال الطلب الى مدير مساعد – الانذار المركزي. \n\nالمنفذ مدير مساعد – الانذار المركزي \n\n11- استلام البريد الالكتروني من مسؤول أول – مهندس أنظمة أمنية/ مسؤول – مهندس أنظمة أمنية والتحقق من الاجراءات المتبعة. \n\nإعطاء القرار باستخراج التسجيالت، وابلاغ إداري أول - غرفة العمليات لتحجيز المطلوب. \n\n12- مالحظة: يتم اعلام مدير – الأمن والانذار المركزي بالقرار والرجوع اليه في بعض الحالات الخاصة وحسب تقدير مدير مساعد – الانذار المركزي. \n\nالمنفذ إداري أول - غرفة العمليات \n\n13- استلام الموافقة من مدير مساعد – الانذار المركزي، واستخراج التسجيالت المطلوبة ووضعها على الوسائط حسب الطلب، سواء مطبوعة او على أقراص مدمجة أو من خلال البريد الالكتروني. \n\nارسال نسخة من التسجيالت الى الجهة الطالبة من خلال بريد البنك بموجب ارسالية، والاحتفاظ بنسخة من الوثائق المتعلقة بتسليم التسجيالت في ملف خاص بتوثيق هذه الطلبات، وفي حال الحاجة الى تسليم التسجيالت الى مندوب الجهة الامنية فيتم ذلك من خلال التحقق من وثيقة اثبات المندوب دون الحاجة الى اخذ صورة عنها. \n\n14- مالحظة: يمكن ان يتم تسليم الملف للفرع او الإدارة المعنية بحيث تقوم هي بتولي تسليمه للجهات الأمنية أصوليا مع مراعاة عدم تسليم التسجيل للجهة المشتكة او اطلاعها عليه من جهة البنك بأي حال من الاحوال. \n\nالمنفذ مسؤول أول – مهندس أنظمة أمنية \n\n15- التحقق من قيام موظف غرفة العمليات بإجراء الالزم وعدم وجود أي مالحظات.",
           "source": "Central Alarm Tasks And Procedures Manual.pdf",
           "page": 11
         },
         {
-          "document": "ملاحظة: يمكن ان يتم تسليم الملف للفرع اوالإدارة المعنية بحيث تقوم هي بتولي تسليمه للجهات الأمنية أص وليا مع مراعاة عدم تسليم التسجيل للجهة المشتكية اواطلاعها عليه من جهة البنك بأي حال من الاحوال.",
+          "document": "دون الحاجة الى اخذ صورة عنها. ملاحظة: يمكن ان يتم تسليم الملف للفرع اوالإدارة المعنية بحيث تقوم هي بتولي تسليمه للجهات الأمنية أص وليا مع مراعاة عدم تسليم التسجيل للجهة المشتكية اواطلاعها عليه من جهة البنك بأي حال من الاحوال. المنفذ مسؤول أول - مهندس أنظمة أمنية -15 التحقق من _ قيام موظف غرفة العمليات بإجراء اللازم وعدم وجود أي ملاحظات.",
           "source": "Central Alarm Tasks And Procedures Manual.pdf",
           "page": 11
         },
         {
-          "document": "المنفذ مسؤول أول - مهندس أنظمة أمنية -15 التحقق من قيام موظف غرفة العمليات بإجراء اللازم وعدم وجود أي ملاحظات.",
+          "document": "1. إجراءات اصدار- ايقاف - الغاء تغييرصلاحيات البطاقات والبصمات على انظمة التحكم بالدخول أولأ. إجراءات اصدار - البطاقات والبصمات وتفعيلها على انظمة التحكم بالدخول الجهة المنفذة وحدة الانذارالمركزي مركزالأمن والانذارالمركزي المنفذ إداري أول - غرفة العمليات استلام طلب اصدار البطاقات البصمات على انظمة التحكم بالدخول من الجهة الطالبة من خلال البريد _ الالكتروني الرسمي لوحدة الانذار -1 Security Unit (esec @hbtf com jo ) المركزي HBTF -2 التحقق ممايلي من واقع الطلب المستلم: اسم - الفرع / الدائرة. اسم الموظف الرباعي. الرقم الوظيفي. المسى الوظيفي. تارىخ التعيين. موقع العمل ) المبنى. مركز العمل السابق 'ان وجد عدم وجود بطاقة مصدره مسبقا للموظف. وجود Profile للموظف معرف مسبقا على نظام MTZ )للفروع ومباني العبدلي والأمانة. فيحال استيفاء الطلب لكافة الشروط يتم ارساله الى مسؤول اول - مهندس انظمة امنية/ مسؤول - مهندس انظمة امنية المنفذ مسؤول أول - مهندس أنظمة أمنية مسؤول - مهندس أنظمة أمنية -3 استلام الطلب من إداري أول - غرفة العمليات والتحقق من موافقة صاحب الصلاحية وحسب ما هو _ موضح ضمن القواعد والأحكام العامة وارسال الطلب",
           "source": "Central Alarm Tasks And Procedures Manual.pdf",
-          "page": 11
+          "page": 8
         },
         {
-          "document": "إرسال الطلب لمدير مساعد – الإنذار المركزي لإعطاء القرار.",
+          "document": "1. إجراءات اصدار- ايقاف - الغاء تغييرصلاحيات البطاقات والبصمات على انظمة التحكم بالدخول أولأ. إجراءات اصدار - البطاقات والبصمات وتفعيلها على انظمة التحكم بالدخول الجهة المنفذة وحدة الانذارالمركزي مركزالأمن والانذارالمركزي المنفذ إداري أول - غرفة العمليات استلام طلب اصدار البطاقات البصمات على انظمة التحكم بالدخول من الجهة الطالبة من خلال البريد _ الالكتروني الرسمي لوحدة الانذار -1 Security Unit (esec @hbtf com jo ) المركزي HBTF -2 التحقق ممايلي من واقع الطلب المستلم: اسم - الفرع / الدائرة. اسم الموظف الرباعي. الرقم الوظيفي. المسى الوظيفي. تارىخ التعيين. موقع العمل ) المبنى. مركز العمل السابق 'ان وجد عدم وجود بطاقة مصدره مسبقا للموظف. وجود Profile للموظف معرف مسبقا على نظام MTZ )للفروع ومباني العبدلي والأمانة. فيحال استيفاء الطلب لكافة الشروط يتم ارساله الى مسؤول اول - مهندس انظمة امنية/ مسؤول - مهندس انظمة امنية المنفذ مسؤول أول - مهندس أنظمة أمنية مسؤول - مهندس أنظمة أمنية -3 استلام الطلب من إداري أول - غرفة العمليات والتحقق من موافقة صاحب الصلاحية وحسب ما هو _ موضح ضمن القواعد والأحكام العامة وارسال الطلب",
           "source": "Central Alarm Tasks And Procedures Manual.pdf",
-          "page": 11
+          "page": 8
         },
         {
-          "document": "استخراج التسجيلات ووضعها على الوسائط وتسليمها للجهة الطالبة مع الاحتفاظ بنسخة.",
-          "source": "Central Alarm Tasks And Procedures Manual.pdf",
-          "page": 11
+          "document": "1. إجراءات الجرد السنوي لمستودعات القرطاسيةوحدة الموجودات وعمليات المستودعات/ الشؤون الإدارية والهندسيةالجهة المنفذةمسؤول أول - الموجودات وعمليات المستودعاتالمنفذبشكل سنوي الابعاز للموظفين المعنيين للبدء بإجراء الجرد الدوري وكما يلي:-1أمن مستودع قرطاسية رئيسي للإبعاز للبدء بإجراء الجرد لكافة القرطاسية المخزنة في المستودعات.-موظف اداري أول - محاسبة وعمليات لإجراء المطابقة اللازمة لحسابي الامانات والمخزون.-ملاحظة: يتم تحديد لجنة الجرد والمكونة من (عضو من وحدة عمليات المستودعات + عضو من وحدة المطبعة + أمناء المستودعات).الموظفين المعنيين بعملية الجردالمنفذجرد كافة المواد المخزنة في المستودع جرد فعلياً ومقارنة نتائج الجرد الفعلي مع أرصدة النظام وبيان الفروقات \"ان وجدت\" سواء بالزيادة أو النقصان مع بيان حالة المواد.-2التوقيع على المخضر وتحويل نتيجة الجرد الى موظف اداري أول - محاسبة وعمليات.-3المنفذموظف اداري أول - محاسبة وعملياتاستلام نتيجة الجرد من الموظف المعني والتحقق من استيفاء توافق أعضاء اللجنة التي تم تحديدها.-4اجراء المطابقة اللازمة لحسابي الامانات والمخزون، وتثبيت التوصيات ورسالها الى مسؤول أول - الموجودات وعمليات المستودعات.-5المنفذمسؤول أول - الموجودات وعمليات المستودعاتاستلام نتائج الجرد والمطابقة والتحقق منها واستدراك المطالعات \"ان وجدت\" مع الموظف المعني، ورسالها الى مدير - المطبعة والمستودعات مع بيان التوصيات اللازمة لمعالجة الفروقات \"ان وجدت\".-6المنفذمدير - المطبعة والمستودعاتاستلام نتائج الجرد واستدراك المطالعات \"ان وجدت\" ورسالها الى نائب رئيس - مدير الشؤون الإدارية والهندسية للاطلاع وبيان التوصيات.-7ارسال نتائج الجرد والتوصيات الى قطاع المالية والتنسيق معهم لمعالجة الفروقات وحسب الصلاحيات المعتمدة.-8المنفذمسؤول أول - الموجودات وعمليات المستودعاتاستلام قرار قطاع المالية على نتائج الجرد والمطابقة والإبعاز للموظفين المعنيين لاستكمال الإجراءات وكما يلي:-9اداري أول - محاسبة وعمليات للتحقق من تنفيذ القرار وإجراء اللازم من اعداد وترحيل القيود.-ضابط عمليات مستودعات لإجراء الادخالات والاختراجات اللازمة على النظام وختمها أصولياً \"ان وجدت\".-التحقق من صحة الإجراءات المتبعة من قبل الموظفين والتوقيع على القيود بعد تدقيقها.-10الابعاز للموظف المعني لحفظ كافة المخاطبات والمراسلات التي تمت بالملف المخصص لدى الوحدة.-11</table>",
+          "source": "Assets and wearhouse operation Tasks and Procedures Manual.pdf",
+          "page": 8
         }
       ],
       "sources": [
@@ -1106,15 +1106,15 @@
         },
         {
           "document": "Central Alarm Tasks And Procedures Manual.pdf",
-          "page": 11
+          "page": 8
         },
         {
           "document": "Central Alarm Tasks And Procedures Manual.pdf",
-          "page": 11
+          "page": 8
         },
         {
-          "document": "Central Alarm Tasks And Procedures Manual.pdf",
-          "page": 11
+          "document": "Assets and wearhouse operation Tasks and Procedures Manual.pdf",
+          "page": 8
         }
       ],
       "advanced_rag_strategies_used": {
@@ -1123,17 +1123,17 @@
         "fallback_used": false
       },
       "cost": {
-        "value": 0.001128,
+        "value": 0.000796,
         "currency": "USD",
-        "input_tokens": 1956,
-        "output_tokens": 104,
+        "input_tokens": 1376,
+        "output_tokens": 72,
         "input_price_per_1k": 0.0005,
         "output_price_per_1k": 0.0015,
         "estimated": true
       },
       "time": {
-        "milliseconds": 2564.89,
-        "seconds": 2.56489
+        "milliseconds": 1731.26,
+        "seconds": 1.73126
       },
       "question_id": "q12"
     },
@@ -1147,46 +1147,46 @@
       "metrics": {
         "Context Relevance": {
           "score": 1.0,
-          "reason": "The score is 1.00 because the retrieved chunk from page 5 (القواعد والأحكام العامة البند 1) directly states the 10-dinar fine, the immediate card suspension, and the revenue-account transfer."
+          "reason": "The score is 1.00 because the retrieved context directly contains the penalty for losing an access card, as specified in the ground truth. The relevant statement is: \"1. في حال فقدان بطاقة الدخول يتم إيقاف البطاقة على النظام ومن ثم تغريم الموظف سواء كان على رأس عمله او مستقبل مبلغ (10) دنانير وتحويل مبلغ التغيري الى حساب ايرادات اخرى.\""
         },
         "Faithfulness": {
           "score": 1.0,
-          "reason": "The score is 1.00 because the fine amount, card suspension, and revenue transfer are all explicitly supported by the retrieved context."
+          "reason": "The score is 1.00 because the actual output is fully supported by the retrieved context, with no contradictions or unsupported claims."
         },
         "Answer Relevance": {
           "score": 1.0,
-          "reason": "The score is 1.00 because the answer directly and concisely answers the penalty-amount question."
+          "reason": "The score is 1.00 because the answer directly and accurately addresses the question about the penalty for losing an access card, matching the ground truth exactly."
         },
         "Correctness": {
           "score": 1.0,
-          "reason": "The actual output is identical to the expected answer, correctly stating the 10-dinar fine, immediate card suspension, and transfer to other-revenue account."
+          "reason": "The actual output is identical to the expected output, perfectly matching the required penalty amount and procedure."
         }
       },
       "retrieved_chunks": [
         {
-          "document": "القواعد والأحكام العامة (البند 1): تبلغ الغرامة (10) دنانير، ويتم إيقاف البطاقة فوراً على النظام وتحويل مبلغ التغريم إلى حساب إيرادات أخرى.",
+          "document": "1 \n\n## القواعد والأحكام العامة: \n\n- يتم التعامل مع بطاقة الدخول حسب الحالات التالية: \n\n1. في حال فقدان بطاقة الدخول يتم إيقاف البطاقة على النظام ومن ثم تغريم الموظف سواء كان على رأس عمله او مستقبل مبلغ (10) دنانير وتحويل مبلغ التغيري الى حساب ايرادات اخرى. \n\n2. في حال تلف بطاقة الدخول سواء لموظف على رأس عمله او موظف مستقبل يتم التعامل معها حسب التالي: \n\n- إذا كان سبب التلف في البطاقة مشكلة فنية فيتم استبدال البطاقة بدون اجراءات او تغريم. \n\n- في حال تلف البطاقة بسبب التقادم (مثل الكسر) نتيجة كثرة الاستخدام فيتم استبدال البطاقة بدون اجراءات او غرامات \"شريطة مرور أكثر من عامين على وجود البطاقة لدى الموظف\". \n\n- يخالف ذلك يتم تغريم الموظف مبلغ (10) دنانير بدل اصدار بطاقة بدل تالف وتحويل مبلغ التغيري الى حساب ايرادات اخرى. \n\nملاحظة: في حالة الاعفاء من التغيري تتم بموجب موافقة من قبل نائب رئيس – مدير الشؤون الادارية والهندسية. \n\n- الموافقات المطلوبة والمرتبطة بصالحيات اصدار ايقاف – الغاء – تغيير صالحيات بطاقات/ بصمات تتم حسب أدناه لإجراء اللازم من قبل وحدة الإنذار المركزي: \n\n<table>الموافقة المطلوب اصدار بطاقة أو نقل عهدة بطاقة/ او تعريف بصمة له او تغيير صالحيةالموافقة المطلوبة من طرف الجهة الطالبةالموافقة المطلوب من جهة الشؤون الادارية والهندسيةالفرع (جميع الأبواب داخل الفرع شاملة السيرفر)مدير الفرعمدير مساعد – الانذار المركزيالادارات والمباني (باستثناء وحدات النقد والأنظمة)مدير المركز المعنيمدير مساعد – الانذار المركزي وثابت رئيس – مدير الشؤون الادارية والهندسية من خلال مدير – الأمن والانذار المركزي في حال كان الطلب الدخول الى جناح الإدارة.وحدة النقدنائب رئيس أول – مدير العمليات المركزيةمدير – الأمن والانذار المركزيدائرة الأنظمة (باستثناء غرف السيرفر)مدير المركز المعنيمدير مساعد – الانذار المركزيغرف السيرفرات/ غرف الكمبيوتر في المبانينائب رئيس مساعد – مركز عمليات الأنظمةمدير مساعد – الانذار المركزيمركز البيانات Data Centerنائب رئيس مساعد – مركز عمليات الانظمةمدير – الأمن والانذار المركزيإلغاء أو يقاف تفعيل بطاقة/ بصمةمدير الفرع او مدير المركز المعنيمدير مساعد – الانذار المركزي</table>\n\nبشكل سنوي أو كلما تطلب الأمر يتوجب على وحدة الإنذار المركزي استخراج تقرير للمخولين بالدخول على مراكز البيانات وغرف الخوادم والاتصالات في مباني البنك وارسالها الى المعنيين في دائرة انظمة المعلومات ليتم مراجعتها من قبليم وعكس اية تعديلات مطلوبة على انظمة التحكم بالمداخل من قبل وحدة الانذار المركزي.",
           "source": "Central Alarm Tasks And Procedures Manual.pdf",
           "page": 5
         },
         {
-          "document": "يُعفى الموظف من الغرامة في حالتين: 1. إذا كان التلف ناتجاً عن مشكلة فنية في البطاقة. 2. إذا كان التلف بسبب التقادم (مثل الكسر) نتيجة كثرة الاستخدام، بشرط مرور أكثر من عامين على وجود البطاقة لدى الموظف.",
-          "source": "Central Alarm Tasks And Procedures Manual.pdf",
-          "page": 5
-        },
-        {
-          "document": "في حال كان الطلب لإصدار بطاقة بدل فاقد تالف يتم التأكد من استيفاء العمولة أو الموافقات الأصولية في حال الإعفاء.",
+          "document": "1. إجراءات اصدار- ايقاف - الغاء تغييرصلاحيات البطاقات والبصمات على انظمة التحكم بالدخول أولأ. إجراءات اصدار - البطاقات والبصمات وتفعيلها على انظمة التحكم بالدخول الجهة المنفذة وحدة الانذارالمركزي مركزالأمن والانذارالمركزي المنفذ إداري أول - غرفة العمليات استلام طلب اصدار البطاقات البصمات على انظمة التحكم بالدخول من الجهة الطالبة من خلال البريد _ الالكتروني الرسمي لوحدة الانذار -1 Security Unit (esec @hbtf com jo ) المركزي HBTF -2 التحقق ممايلي من واقع الطلب المستلم: اسم - الفرع / الدائرة. اسم الموظف الرباعي. الرقم الوظيفي. المسى الوظيفي. تارىخ التعيين. موقع العمل ) المبنى. مركز العمل السابق 'ان وجد عدم وجود بطاقة مصدره مسبقا للموظف. وجود Profile للموظف معرف مسبقا على نظام MTZ )للفروع ومباني العبدلي والأمانة. فيحال استيفاء الطلب لكافة الشروط يتم ارساله الى مسؤول اول - مهندس انظمة امنية/ مسؤول - مهندس انظمة امنية المنفذ مسؤول أول - مهندس أنظمة أمنية مسؤول - مهندس أنظمة أمنية -3 استلام الطلب من إداري أول - غرفة العمليات والتحقق من موافقة صاحب الصلاحية وحسب ما هو _ موضح ضمن القواعد والأحكام العامة وارسال الطلب",
           "source": "Central Alarm Tasks And Procedures Manual.pdf",
           "page": 8
         },
         {
-          "document": "الموافقات المطلوبة والمرتبطة بصلاحيات إصدار/إيقاف/إلغاء/تغيير صلاحيات بطاقات/بصمات.",
-          "source": "Central Alarm Tasks And Procedures Manual.pdf",
-          "page": 5
-        },
-        {
-          "document": "استلام الطلب من إداري أول - غرفة العمليات والتحقق من موافقة صاحب الصلاحية.",
+          "document": "1. إجراءات اصدار- ايقاف - الغاء تغييرصلاحيات البطاقات والبصمات على انظمة التحكم بالدخول أولأ. إجراءات اصدار - البطاقات والبصمات وتفعيلها على انظمة التحكم بالدخول الجهة المنفذة وحدة الانذارالمركزي مركزالأمن والانذارالمركزي المنفذ إداري أول - غرفة العمليات استلام طلب اصدار البطاقات البصمات على انظمة التحكم بالدخول من الجهة الطالبة من خلال البريد _ الالكتروني الرسمي لوحدة الانذار -1 Security Unit (esec @hbtf com jo ) المركزي HBTF -2 التحقق ممايلي من واقع الطلب المستلم: اسم - الفرع / الدائرة. اسم الموظف الرباعي. الرقم الوظيفي. المسى الوظيفي. تارىخ التعيين. موقع العمل ) المبنى. مركز العمل السابق 'ان وجد عدم وجود بطاقة مصدره مسبقا للموظف. وجود Profile للموظف معرف مسبقا على نظام MTZ )للفروع ومباني العبدلي والأمانة. فيحال استيفاء الطلب لكافة الشروط يتم ارساله الى مسؤول اول - مهندس انظمة امنية/ مسؤول - مهندس انظمة امنية المنفذ مسؤول أول - مهندس أنظمة أمنية مسؤول - مهندس أنظمة أمنية -3 استلام الطلب من إداري أول - غرفة العمليات والتحقق من موافقة صاحب الصلاحية وحسب ما هو _ موضح ضمن القواعد والأحكام العامة وارسال الطلب",
           "source": "Central Alarm Tasks And Procedures Manual.pdf",
           "page": 8
+        },
+        {
+          "document": "دون الحاجة الى اخذ صورة عنها. ملاحظة: يمكن ان يتم تسليم الملف للفرع اوالإدارة المعنية بحيث تقوم هي بتولي تسليمه للجهات الأمنية أص وليا مع مراعاة عدم تسليم التسجيل للجهة المشتكية اواطلاعها عليه من جهة البنك بأي حال من الاحوال. المنفذ مسؤول أول - مهندس أنظمة أمنية -15 التحقق من _ قيام موظف غرفة العمليات بإجراء اللازم وعدم وجود أي ملاحظات.",
+          "source": "Central Alarm Tasks And Procedures Manual.pdf",
+          "page": 11
+        },
+        {
+          "document": "-3 الموافقات المطلوبة والمرتبطة بصلاحيات منح رقم سري على نظام انذار السرقة كود حماية الموقع والتيتتم حسب أدناه لإجراء اللازم من قبل وحدة الإنذار المركزي: الموافقة المطلوب من جهة الشؤون الموقع المطلوب منح كود حماية عليه الموافقة المطلوبة من طرف الجهة الطالبة الإدارية والهندسية الفروع مدير المنطقة مدير مساعد الانذار المركزي مدير عمليات الفروع وترفع الصلاحية وحدة النقد والصرافات الآلية الخارجية لنائب رئيس أول - مدير العمليات المركزية في مدير الأمن _ والانذار المركزي )مفوضي الشركات الناقلة برنكس / حماية ( حال ا جازته المواقع الاخرى المدير التنفيذي للجهة المعنية مدير الأمن والانذار المركزي فيحال نسيان الموظف للرقم السري وطلب تذكيره به يتم استيفاء موافقة مدير _ الفرع / المدير المباشر للموظف وبحيث يتم التأكد أن الموظف مفوض اصلاعلى الموقع. وفيكافة الحالات وعند تزويد الموظف بالرقم السري يتم الطلب من الموظف عمل تغيير للرقم السري من خلال لوحة الفرع / الموقع وبالتنسيق مع وحدة الانذار المركزي والطلب من الموظف تغيير _ الرقم السري على الاقل كل ستة أشهر _ مرة. اعداد تقرير _اسبوعي بالطلبات الواردة التيتم التعامل معها ) منجز",
+          "source": "Central Alarm Tasks And Procedures Manual.pdf",
+          "page": 6
         }
       ],
       "sources": [
@@ -1196,7 +1196,7 @@
         },
         {
           "document": "Central Alarm Tasks And Procedures Manual.pdf",
-          "page": 5
+          "page": 8
         },
         {
           "document": "Central Alarm Tasks And Procedures Manual.pdf",
@@ -1204,11 +1204,11 @@
         },
         {
           "document": "Central Alarm Tasks And Procedures Manual.pdf",
-          "page": 5
+          "page": 11
         },
         {
           "document": "Central Alarm Tasks And Procedures Manual.pdf",
-          "page": 8
+          "page": 6
         }
       ],
       "advanced_rag_strategies_used": {
@@ -1217,17 +1217,17 @@
         "fallback_used": false
       },
       "cost": {
-        "value": 0.000682,
+        "value": 0.000796,
         "currency": "USD",
-        "input_tokens": 1174,
-        "output_tokens": 59,
+        "input_tokens": 1376,
+        "output_tokens": 72,
         "input_price_per_1k": 0.0005,
         "output_price_per_1k": 0.0015,
         "estimated": true
       },
       "time": {
-        "milliseconds": 1382.54,
-        "seconds": 1.38254
+        "milliseconds": 1731.26,
+        "seconds": 1.73126
       },
       "question_id": "q13"
     }
